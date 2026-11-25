@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,6 +17,15 @@ class ListaExtra extends Model
 
     protected function casts(): array
     {
-        return ['lunes' => 'date', 'tachado' => 'boolean'];
+        return ['tachado' => 'boolean'];
+    }
+
+    /** Se guarda como «Y-m-d» (sin hora) para que las búsquedas por fecha exacta funcionen. */
+    protected function lunes(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($v) => $v === null ? null : CarbonImmutable::parse($v)->startOfDay(),
+            set: fn ($v) => $v === null ? null : CarbonImmutable::parse($v)->toDateString(),
+        );
     }
 }

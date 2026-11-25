@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AlimentoController;
+use App\Http\Controllers\ObjetivosController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\RecetaController;
 use App\Models\Receta;
 use Illuminate\Support\Facades\Route;
@@ -11,7 +13,15 @@ Route::inertia('/', 'welcome')->name('home');
 Route::bind('receta', fn (string $id) => Receta::visiblesPara(auth()->user())->findOrFail($id));
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::inertia('dashboard', 'dashboard')->name('dashboard');
+    Route::redirect('dashboard', '/plan')->name('dashboard');
+
+    Route::get('plan/{fecha?}', [PlanController::class, 'semana'])->name('plan');
+    Route::put('plan/{fecha}/{momento}', [PlanController::class, 'poner'])->name('plan.poner');
+    Route::delete('plan/{fecha}/{momento}', [PlanController::class, 'quitar'])->name('plan.quitar');
+    Route::post('plan/{fecha}/copiar-anterior', [PlanController::class, 'copiarAnterior'])->name('plan.copiar');
+
+    Route::get('ajustes/objetivos', [ObjetivosController::class, 'edit'])->name('objetivos.edit');
+    Route::put('ajustes/objetivos', [ObjetivosController::class, 'update'])->name('objetivos.update');
 
     Route::get('alimentos/buscar', [AlimentoController::class, 'buscar'])->name('alimentos.buscar');
     Route::get('alimentos/{alimento}/productos', [AlimentoController::class, 'productos'])->name('alimentos.productos');

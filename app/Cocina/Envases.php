@@ -10,7 +10,7 @@ final class Envases
 {
     /**
      * @return array{envases: int, comprado: float, sobra: float, unidad: string, coste_compra: float, coste_usado: float}|null
-     *         null si no se pueden pasar los gramos a la unidad del producto.
+     *                                                                                                                          null si no se pueden pasar los gramos a la unidad del producto.
      */
     public static function calcular(float $gramos, ProductoMercadona $p, Alimento $a): ?array
     {

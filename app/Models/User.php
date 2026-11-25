@@ -41,6 +41,14 @@ class User extends Authenticatable implements MustVerifyEmail, PasskeyUser
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, PasskeyAuthenticatable, TwoFactorAuthenticatable;
 
+    /** Los mismos valores por defecto que la base de datos, también para usuarios aún sin recargar. */
+    protected $attributes = [
+        'objetivo_kcal' => 2000,
+        'presupuesto_semanal' => 60,
+        'planifica_desayuno' => false,
+        'es_demo' => false,
+    ];
+
     /**
      * Get the attributes that should be cast.
      *

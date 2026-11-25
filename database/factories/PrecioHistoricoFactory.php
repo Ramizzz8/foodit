@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\PrecioHistorico;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /** @extends Factory<PrecioHistorico> */
 class PrecioHistoricoFactory extends Factory
