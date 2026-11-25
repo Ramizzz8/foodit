@@ -161,7 +161,7 @@ return [
     */
 
     'features' => [
-        Features::registration(),
+        ...(env('FOODIT_REGISTRO', false) ? [Features::registration()] : []),
         Features::resetPasswords(),
         Features::emailVerification(),
         Features::twoFactorAuthentication([
