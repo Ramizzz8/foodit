@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlimentoController;
+use App\Http\Controllers\ListaController;
 use App\Http\Controllers\ObjetivosController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\RecetaController;
@@ -22,6 +23,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('ajustes/objetivos', [ObjetivosController::class, 'edit'])->name('objetivos.edit');
     Route::put('ajustes/objetivos', [ObjetivosController::class, 'update'])->name('objetivos.update');
+
+    Route::get('lista/{fecha?}', [ListaController::class, 'semana'])->name('lista');
+    Route::get('lista/{fecha}/imprimir', [ListaController::class, 'imprimir'])->name('lista.imprimir');
+    Route::put('lista/{fecha}/marcas/{alimento}', [ListaController::class, 'marcar'])->name('lista.marcar');
+    Route::post('lista/{fecha}/extras', [ListaController::class, 'anadirExtra'])->name('lista.extras.anadir');
+    Route::put('lista/{fecha}/extras/{extra}', [ListaController::class, 'cambiarExtra'])->whereNumber('extra')->name('lista.extras.cambiar');
+    Route::delete('lista/{fecha}/extras/{extra}', [ListaController::class, 'quitarExtra'])->whereNumber('extra')->name('lista.extras.quitar');
 
     Route::get('alimentos/buscar', [AlimentoController::class, 'buscar'])->name('alimentos.buscar');
     Route::get('alimentos/{alimento}/productos', [AlimentoController::class, 'productos'])->name('alimentos.productos');

@@ -7,6 +7,7 @@ use App\Models\ComidaPlan;
 use App\Models\Receta;
 use App\Models\User;
 use App\Plan\ResumenSemana;
+use App\Plan\Semana;
 use Carbon\CarbonImmutable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,7 +15,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Inertia\Response;
-use Throwable;
 
 class PlanController extends Controller
 {
@@ -25,7 +25,7 @@ class PlanController extends Controller
     public function semana(Request $request, ?string $fecha = null): Response|RedirectResponse
     {
         $u = $request->user();
-        $dia = $fecha === null ? CarbonImmutable::today() : self::fecha($fecha);
+        $dia = $fecha === null ? CarbonImmutable::today() : Semana::fecha($fecha);
         $lunes = $dia->startOfWeek();
         if ($fecha !== null && ! $dia->equalTo($lunes)) {
             return redirect("/plan/{$lunes->toDateString()}");
@@ -53,7 +53,7 @@ class PlanController extends Controller
 
     public function poner(Request $request, string $fecha, string $momento): RedirectResponse
     {
-        $dia = self::fecha($fecha);
+        $dia = Semana::fecha($fecha);
         abort_unless(in_array($momento, self::MOMENTOS, true), 404);
         $u = $request->user();
 
@@ -84,7 +84,7 @@ class PlanController extends Controller
 
     public function quitar(Request $request, string $fecha, string $momento): RedirectResponse
     {
-        $request->user()->comidasPlan()->whereDate('fecha', self::fecha($fecha)->toDateString())->where('momento', $momento)->delete();
+        $request->user()->comidasPlan()->whereDate('fecha', Semana::fecha($fecha)->toDateString())->where('momento', $momento)->delete();
 
         return back();
     }
@@ -92,7 +92,7 @@ class PlanController extends Controller
     public function copiarAnterior(Request $request, string $fecha): RedirectResponse
     {
         $u = $request->user();
-        $lunes = self::fecha($fecha)->startOfWeek();
+        $lunes = Semana::fecha($fecha)->startOfWeek();
         $ocupados = ResumenSemana::comidas($u, $lunes)->map(fn ($c) => $c->fecha->toDateString().'|'.$c->momento)->all();
         $copiadas = 0;
 
@@ -116,17 +116,5 @@ class PlanController extends Controller
             'foto' => $r->foto_path ? Storage::url($r->foto_path) : $r->foto_url,
             'por_racion' => collect($this->calculadora->porRacion($r, $u))->except('faltan')->all(),
         ];
-    }
-
-    private static function fecha(string $fecha): CarbonImmutable
-    {
-        try {
-            $dia = CarbonImmutable::createFromFormat('!Y-m-d', $fecha);
-        } catch (Throwable) {
-            abort(404);
-        }
-        abort_if($dia === null || $dia->toDateString() !== $fecha, 404);
-
-        return $dia;
     }
 }

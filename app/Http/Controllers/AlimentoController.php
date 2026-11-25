@@ -7,6 +7,7 @@ use App\Models\Alimento;
 use App\Models\AlimentoProductoUsuario;
 use App\Models\ProductoMercadona;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class AlimentoController extends Controller
@@ -38,7 +39,7 @@ class AlimentoController extends Controller
     }
 
     /** El usuario elige otro producto para un alimento; solo cambia para él. */
-    public function elegirProducto(Request $request, Alimento $alimento): JsonResponse
+    public function elegirProducto(Request $request, Alimento $alimento): JsonResponse|RedirectResponse
     {
         $datos = $request->validate(['producto_mercadona_id' => ['required', 'string', 'exists:productos_mercadona,id']]);
 
@@ -47,6 +48,8 @@ class AlimentoController extends Controller
             ['producto_mercadona_id' => $datos['producto_mercadona_id']],
         );
 
-        return response()->json(['ok' => true]);
+        return $request->expectsJson()
+            ? response()->json(['ok' => true])
+            : back()->with('exito', "Producto cambiado para «{$alimento->nombre}».");
     }
 }
