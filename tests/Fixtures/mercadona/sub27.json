@@ -1,0 +1,182 @@
+{
+ "id": 27,
+ "name": "Fruta",
+ "order": 306,
+ "layout": 1,
+ "published": true,
+ "is_extended": false,
+ "categories": [
+  {
+   "id": 853,
+   "name": "Plátano y uva",
+   "order": 306,
+   "layout": 2,
+   "published": true,
+   "is_extended": false,
+   "image": null,
+   "subtitle": null,
+   "products": [
+    {
+     "id": "3819",
+     "slug": "platano-canarias-igp-pieza",
+     "limit": 999,
+     "badges": {
+      "is_water": false,
+      "requires_age_check": false
+     },
+     "status": null,
+     "packaging": "Pieza",
+     "published": true,
+     "share_url": "https://tienda.mercadona.es/product/3819/platano-canarias-igp-pieza",
+     "thumbnail": "https://prod-mercadona.imgix.net/images/e4a37940916985bf5ca166e266580c37.jpg?fit=crop&h=300&w=300",
+     "categories": [
+      {
+       "id": 1,
+       "name": "Fruta y verdura",
+       "level": 0,
+       "order": 306
+      }
+     ],
+     "display_name": "Plátano de Canarias IGP",
+     "main_feature": null,
+     "unavailable_from": null,
+     "price_instructions": {
+      "iva": null,
+      "is_new": false,
+      "is_pack": false,
+      "pack_size": null,
+      "unit_name": null,
+      "unit_size": 0.16,
+      "bulk_price": "3.20",
+      "unit_price": "0.51",
+      "approx_size": true,
+      "size_format": "kg",
+      "total_units": null,
+      "unit_selector": true,
+      "bunch_selector": false,
+      "drained_weight": null,
+      "selling_method": 0,
+      "tax_percentage": "4.000",
+      "price_decreased": false,
+      "reference_price": "3.200",
+      "min_bunch_amount": 1.0,
+      "reference_format": "kg",
+      "previous_unit_price": null,
+      "increment_bunch_amount": 1.0
+     },
+     "unavailable_weekdays": [],
+     "availability_restrictions": null,
+     "is_new_arrival": false
+    },
+    {
+     "id": "3824",
+     "slug": "banana-pieza",
+     "limit": 999,
+     "badges": {
+      "is_water": false,
+      "requires_age_check": false
+     },
+     "status": null,
+     "packaging": "Pieza",
+     "published": true,
+     "share_url": "https://tienda.mercadona.es/product/3824/banana-pieza",
+     "thumbnail": "https://prod-mercadona.imgix.net/images/69edef3541bbf3f4b7173c9d617a5698.jpg?fit=crop&h=300&w=300",
+     "categories": [
+      {
+       "id": 1,
+       "name": "Fruta y verdura",
+       "level": 0,
+       "order": 306
+      }
+     ],
+     "display_name": "Banana",
+     "main_feature": null,
+     "unavailable_from": null,
+     "price_instructions": {
+      "iva": null,
+      "is_new": false,
+      "is_pack": false,
+      "pack_size": null,
+      "unit_name": null,
+      "unit_size": 0.17,
+      "bulk_price": "1.55",
+      "unit_price": "0.26",
+      "approx_size": true,
+      "size_format": "kg",
+      "total_units": null,
+      "unit_selector": true,
+      "bunch_selector": false,
+      "drained_weight": null,
+      "selling_method": 0,
+      "tax_percentage": "4.000",
+      "price_decreased": false,
+      "reference_price": "1.550",
+      "min_bunch_amount": 1.0,
+      "reference_format": "kg",
+      "previous_unit_price": null,
+      "increment_bunch_amount": 1.0
+     },
+     "unavailable_weekdays": [],
+     "availability_restrictions": null,
+     "is_new_arrival": false
+    },
+    {
+     "id": "3132",
+     "slug": "platano-macho-pieza",
+     "limit": 999,
+     "badges": {
+      "is_water": false,
+      "requires_age_check": false
+     },
+     "status": null,
+     "packaging": "Pieza",
+     "published": true,
+     "share_url": "https://tienda.mercadona.es/product/3132/platano-macho-pieza",
+     "thumbnail": "https://prod-mercadona.imgix.net/images/c22baa2a17de06fbf8477ef25392b7ca.jpg?fit=crop&h=300&w=300",
+     "categories": [
+      {
+       "id": 1,
+       "name": "Fruta y verdura",
+       "level": 0,
+       "order": 306
+      }
+     ],
+     "display_name": "Plátano macho",
+     "main_feature": null,
+     "unavailable_from": null,
+     "price_instructions": {
+      "iva": 4,
+      "is_new": false,
+      "is_pack": false,
+      "pack_size": null,
+      "unit_name": null,
+      "unit_size": 0.29,
+      "bulk_price": "2.90",
+      "unit_price": "0.84",
+      "approx_size": true,
+      "size_format": "kg",
+      "total_units": null,
+      "unit_selector": true,
+      "bunch_selector": false,
+      "drained_weight": null,
+      "selling_method": 0,
+      "tax_percentage": "4.000",
+      "price_decreased": false,
+      "reference_price": "2.900",
+      "min_bunch_amount": 1.0,
+      "reference_format": "kg",
+      "previous_unit_price": null,
+      "increment_bunch_amount": 1.0
+     },
+     "unavailable_weekdays": [],
+     "availability_restrictions": null,
+     "is_new_arrival": false
+    }
+   ]
+  }
+ ],
+ "next_category": {
+  "id": 28,
+  "name": "Lechuga y ensalada preparada"
+ }
+}

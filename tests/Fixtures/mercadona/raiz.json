@@ -1,0 +1,75 @@
+{
+ "count": 26,
+ "next": null,
+ "previous": null,
+ "results": [
+  {
+   "id": 12,
+   "name": "Aceite, especias y salsas",
+   "order": 7,
+   "is_extended": false,
+   "categories": [
+    {
+     "id": 112,
+     "name": "Aceite, vinagre y sal",
+     "order": 7,
+     "layout": 1,
+     "published": true,
+     "is_extended": false
+    }
+   ],
+   "icon_url": null
+  },
+  {
+   "id": 1,
+   "name": "Fruta y verdura",
+   "order": 306,
+   "is_extended": false,
+   "categories": [
+    {
+     "id": 27,
+     "name": "Fruta",
+     "order": 306,
+     "layout": 1,
+     "published": true,
+     "is_extended": false
+    }
+   ],
+   "icon_url": null
+  },
+  {
+   "id": 6,
+   "name": "Huevos, leche y mantequilla",
+   "order": 373,
+   "is_extended": false,
+   "categories": [
+    {
+     "id": 77,
+     "name": "Huevos",
+     "order": 373,
+     "layout": 1,
+     "published": true,
+     "is_extended": false
+    }
+   ],
+   "icon_url": null
+  },
+  {
+   "id": 26,
+   "name": "Limpieza y hogar",
+   "order": 374,
+   "is_extended": false,
+   "categories": [
+    {
+     "id": 226,
+     "name": "Detergente y suavizante ropa",
+     "order": 374,
+     "layout": 1,
+     "published": true,
+     "is_extended": false
+    }
+   ],
+   "icon_url": null
+  }
+ ]
+}
