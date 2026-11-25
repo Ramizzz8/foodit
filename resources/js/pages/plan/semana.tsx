@@ -96,14 +96,14 @@ export default function PlanSemana({ lunes, hoy, momentos, comidas: delServidor,
 
                     <BarraTotales resumen={resumen} />
 
-                    <div className="space-y-3 lg:grid lg:grid-cols-7 lg:gap-2 lg:space-y-0">
+                    <div className="space-y-3 xl:grid xl:grid-cols-7 xl:gap-2 xl:space-y-0">
                         {fechas.map((fecha) => (
                             <section key={fecha} aria-label={DIA_LARGO.format(new Date(`${fecha}T12:00`))} className={cn('rounded-xl border p-2', fecha === hoy && 'border-primary')}>
                                 <h2 className="mb-2 px-1 text-sm font-semibold capitalize">
                                     {DIA_LARGO.format(new Date(`${fecha}T12:00`))}
                                     {fecha === hoy && <span className="ml-1 text-xs font-normal text-primary">hoy</span>}
                                 </h2>
-                                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-1">
+                                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-1">
                                     {momentos.map((m) => {
                                         const clave = `${fecha}|${m}`;
 

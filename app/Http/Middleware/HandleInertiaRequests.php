@@ -42,6 +42,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'flash' => fn () => ['exito' => $request->session()->get('exito')],
+            'demo' => fn () => $request->user()?->es_demo ? ['caduca_en' => $request->user()->caduca_en?->toIso8601String()] : null,
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }

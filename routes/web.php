@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlimentoController;
+use App\Http\Controllers\DemoController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\ObjetivosController;
 use App\Http\Controllers\PlanController;
@@ -9,6 +10,8 @@ use App\Models\Receta;
 use Illuminate\Support\Facades\Route;
 
 Route::inertia('/', 'welcome')->name('home');
+
+Route::post('demo/entrar', [DemoController::class, 'entrar'])->name('demo.entrar');
 
 // Una receta solo existe para quien puede verla: las de Foodit y las propias. Las de otros dan 404.
 Route::bind('receta', fn (string $id) => Receta::visiblesPara(auth()->user())->findOrFail($id));

@@ -1,4 +1,4 @@
-import { Form, Head } from '@inertiajs/react';
+import { Form, Head, router } from '@inertiajs/react';
 import InputError from '@/components/input-error';
 import PasswordInput from '@/components/password-input';
 import TextLink from '@/components/text-link';
@@ -15,14 +15,25 @@ type Props = {
     status?: string;
     canResetPassword: boolean;
     canRegister: boolean;
+    demo: boolean;
 };
 
-export default function Login({ status, canResetPassword, canRegister }: Props) {
+export default function Login({ status, canResetPassword, canRegister, demo }: Props) {
     return (
         <>
             <Head title="Entrar" />
 
             <PasskeyVerify />
+
+            {demo && (
+                <div className="mb-6 rounded-xl border bg-muted/40 p-4 text-center">
+                    <p className="font-medium">¿Solo quieres probarlo?</p>
+                    <p className="mt-1 text-sm text-muted-foreground">Entra en una demo con una semana ya planificada. Es solo para ti y se borra en 24 horas.</p>
+                    <Button type="button" className="mt-3 w-full" onClick={() => router.post('/demo/entrar')}>
+                        Probar la demo
+                    </Button>
+                </div>
+            )}
 
             <Form
                 {...store.form()}
