@@ -1,10 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Schedule;
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
-
+// Copia nocturna del catálogo de Mercadona (precios y envases).
 Schedule::command('foodit:mercadona')->dailyAt('04:30')->withoutOverlapping();
