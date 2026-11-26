@@ -11,6 +11,7 @@ export type DiaTique = {
         coste: number;
         kcal: number;
         foto: string | null;
+        plato: string | null;
     }[];
 };
 
@@ -20,14 +21,20 @@ const entero = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0 });
 export const ZIGZAG =
     'polygon(0 0,100% 0,100% calc(100% - 10px),95% 100%,90% calc(100% - 10px),85% 100%,80% calc(100% - 10px),75% 100%,70% calc(100% - 10px),65% 100%,60% calc(100% - 10px),55% 100%,50% calc(100% - 10px),45% 100%,40% calc(100% - 10px),35% 100%,30% calc(100% - 10px),25% 100%,20% calc(100% - 10px),15% 100%,10% calc(100% - 10px),5% 100%,0 calc(100% - 10px))';
 
-/** El tique de la semana: cada cena se cambia con un toque y el total se «reimprime». */
+/** Borde de arriba también rasgado: el tique recién cortado de la impresora. */
+export const RASGADO =
+    'polygon(0 10px,5% 0,10% 10px,15% 0,20% 10px,25% 0,30% 10px,35% 0,40% 10px,45% 0,50% 10px,55% 0,60% 10px,65% 0,70% 10px,75% 0,80% 10px,85% 0,90% 10px,95% 0,100% 10px,100% calc(100% - 10px),95% 100%,90% calc(100% - 10px),85% 100%,80% calc(100% - 10px),75% 100%,70% calc(100% - 10px),65% 100%,60% calc(100% - 10px),55% 100%,50% calc(100% - 10px),45% 100%,40% calc(100% - 10px),35% 100%,30% calc(100% - 10px),25% 100%,20% calc(100% - 10px),15% 100%,10% calc(100% - 10px),5% 100%,0 calc(100% - 10px))';
+
+/** El tique de la semana: cada cena se cambia con un toque, el plato de al lado cambia y el total se «reimprime». */
 export function Tique({
     dias,
     demo,
     registro,
     conSesion,
     preciosDe,
+    onElegir,
 }: {
+    onElegir?: (dia: string, receta: DiaTique['opciones'][number]) => void;
     dias: DiaTique[];
     demo: boolean;
     registro: boolean;
@@ -50,16 +57,29 @@ export function Tique({
         Math.max(1, lineas.length);
 
     const cambiar = (i: number) => {
-        setEleccion((e) => e.map((v, k) => (k === i ? v + 1 : v)));
+        const siguiente = eleccion[i] + 1;
+        setEleccion((e) => e.map((v, k) => (k === i ? siguiente : v)));
         setImpresion((n) => n + 1);
+        onElegir?.(
+            dias[i].dia,
+            dias[i].opciones[siguiente % dias[i].opciones.length],
+        );
     };
 
     return (
         <article
             aria-label="Tique de ejemplo de una semana de cenas"
-            className="relative mx-auto w-full max-w-xl bg-[#f3f3f1] px-6 pt-7 pb-12 text-[#3b0a0e] sm:px-9"
-            style={{ clipPath: ZIGZAG }}
+            className="papel-termico relative mx-auto w-full max-w-xl px-6 pt-9 pb-12 text-[#3b0a0e] sm:px-9"
+            style={{ clipPath: RASGADO }}
         >
+            <span
+                aria-hidden="true"
+                className="absolute top-8 right-5 flex size-24 rotate-[-14deg] flex-col items-center justify-center rounded-full border-[3px] border-double border-[#7d0c14]/70 text-center font-[family-name:var(--font-display)] text-[15px] leading-tight font-bold text-[#7d0c14]/80 uppercase sm:right-8 sm:size-28"
+            >
+                Precios
+                <br />
+                de hoy
+            </span>
             <h1 className="text-[clamp(2.75rem,5.5vw,4.75rem)] leading-[0.9] font-bold text-[#7d0c14] uppercase">
                 De la receta
                 <br />
@@ -115,11 +135,18 @@ export function Tique({
 
             <div className="mt-6 border-t-2 border-dashed border-[#7d0c14]/40 pt-3">
                 <p className="mb-2 text-sm text-[#7a4a4e]">
-                    Cenas de esta semana. Toca una para cambiarla.
+                    Cenas de esta semana. Toca una para cambiarla y verla en el
+                    plato.
                 </p>
                 <ul className="space-y-0.5 tabular-nums">
                     {lineas.map((l, i) => (
-                        <li key={l.dia}>
+                        <li
+                            key={l.dia}
+                            className="linea-imprime"
+                            style={{
+                                ['--retraso' as string]: `${300 + i * 110}ms`,
+                            }}
+                        >
                             <button
                                 type="button"
                                 onClick={() => cambiar(i)}

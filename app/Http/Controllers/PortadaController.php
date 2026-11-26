@@ -14,15 +14,15 @@ use Laravel\Fortify\Features;
 /** La landing: un tique de la semana hecho con recetas y precios reales, que el visitante puede cambiar. */
 class PortadaController extends Controller
 {
-    /** Cada día, tres cenas para elegir (slugs de recetas de Foodit). */
+    /** Cada día, tres cenas para elegir (slugs de recetas de Foodit); la primera de cada día tiene foto del plato. */
     private const SEMANA = [
         'Lunes' => ['crema-de-calabacin', 'lentejas-estofadas', 'tortilla-de-patatas'],
-        'Martes' => ['pollo-al-ajillo', 'revuelto-de-champinones', 'ensalada-mixta'],
-        'Miércoles' => ['merluza-en-salsa-verde', 'atun-con-tomate', 'pisto-con-huevo'],
-        'Jueves' => ['garbanzos-con-espinacas', 'fajitas-de-pollo', 'crema-de-calabaza-y-zanahoria'],
-        'Viernes' => ['hamburguesas-caseras', 'espaguetis-carbonara', 'ensalada-de-pasta'],
-        'Sábado' => ['paella-de-pollo-y-verduras', 'fideua-de-sepia-y-gambas', 'arroz-con-verduras'],
-        'Domingo' => ['salmon-al-horno-con-patatas', 'sopa-de-fideos', 'gazpacho-andaluz'],
+        'Martes' => ['ensalada-mixta', 'pollo-al-ajillo', 'revuelto-de-champinones'],
+        'Miércoles' => ['garbanzos-con-espinacas', 'merluza-en-salsa-verde', 'atun-con-tomate'],
+        'Jueves' => ['espaguetis-carbonara', 'fajitas-de-pollo', 'crema-de-calabaza-y-zanahoria'],
+        'Viernes' => ['gazpacho-andaluz', 'hamburguesas-caseras', 'ensalada-de-pasta'],
+        'Sábado' => ['salmorejo-cordobes', 'paella-de-pollo-y-verduras', 'arroz-con-verduras'],
+        'Domingo' => ['salmon-al-horno-con-patatas', 'sopa-de-fideos', 'fideua-de-sepia-y-gambas'],
     ];
 
     public function __invoke(CalculadoraReceta $calculadora): Response
@@ -39,7 +39,7 @@ class PortadaController extends Controller
                 $r = $recetas[$s];
                 $x = $calculadora->porRacion($r, null);
 
-                return ['id' => $r->id, 'titulo' => $r->titulo, 'coste' => $x['coste'], 'kcal' => $x['kcal'], 'foto' => self::fotoPrincipal($r)];
+                return ['id' => $r->id, 'titulo' => $r->titulo, 'coste' => $x['coste'], 'kcal' => $x['kcal'], 'foto' => self::fotoPrincipal($r), 'plato' => $r->foto_url];
             })->values()->all(),
         ])->filter(fn ($d) => $d['opciones'] !== [])->values();
 
@@ -48,6 +48,8 @@ class PortadaController extends Controller
             'registro' => Features::enabled(Features::registration()),
             'tique' => $tique,
             'preciosDe' => ProductoMercadona::max('visto_en'),
+            'ingredientes' => collect((require database_path('data/fotos.php'))['ingredientes'])
+                ->map(fn ($f, $clave) => ['url' => "/images/ingredientes/{$clave}.webp", 'alt' => $f['alt']])->values(),
             'creditos' => collect(require database_path('data/fotos.php'))->flatMap(fn ($g) => array_values($g))
                 ->map(fn ($f) => collect($f)->only('titulo', 'autor', 'licencia', 'enlace'))->values(),
             'productos' => Alimento::whereIn('nombre', ['lenteja pardina', 'huevo', 'calabacín', 'tomate triturado', 'aceite de oliva virgen extra'])

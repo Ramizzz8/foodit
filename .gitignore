@@ -47,3 +47,4 @@ yarn-error.log
 # Documentación interna y herramientas locales
 /docs/superpowers/
 /.superpowers/
+.taste-skill/

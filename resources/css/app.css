@@ -179,3 +179,101 @@ h2 {
     opacity: 1;
     transform: none;
 }
+
+/* ---- Portada con movimiento (Tarea 23). Solo transform y opacity; todo quieto con reduced-motion. ---- */
+
+/* Papel térmico: grano fino y un leve degradado, sin imágenes externas. */
+.papel-termico {
+    background-color: #f3f3f1;
+    background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .23 0 0 0 0 .04 0 0 0 0 .05 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes plato-entra {
+    from {
+        opacity: 0;
+        transform: rotate(-140deg) scale(0.55);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+@keyframes plato-sale {
+    from {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: rotate(140deg) scale(0.55);
+    }
+}
+@keyframes plato-gira {
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes linea-imprime {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+@keyframes flota {
+    0%,
+    100% {
+        translate: 0 0;
+    }
+    50% {
+        translate: 0 -10px;
+    }
+}
+
+.plato-entra {
+    animation: plato-entra 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.plato-sale {
+    animation: plato-sale 0.7s cubic-bezier(0.6, 0, 0.8, 0.4) both;
+}
+.plato-gira {
+    animation: plato-gira 90s linear infinite;
+}
+.linea-imprime {
+    animation: linea-imprime 0.45s ease-out both;
+    animation-delay: var(--retraso, 0ms);
+}
+.flota {
+    animation: flota var(--duracion, 6s) ease-in-out infinite;
+    animation-delay: var(--retraso, 0ms);
+}
+
+/* Ingredientes en parallax: el script solo escribe --mx, --my (ratón, −1…1) y --sy (scroll en px). */
+.parallax {
+    transform: translate3d(
+        calc(var(--mx, 0) * var(--p, 1) * 18px),
+        calc(var(--my, 0) * var(--p, 1) * 18px + var(--sy, 0) * var(--p, 1) * -0.25px),
+        0
+    );
+    will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .plato-entra,
+    .plato-sale,
+    .plato-gira,
+    .linea-imprime,
+    .flota {
+        animation: none;
+    }
+    .plato-sale {
+        display: none;
+    }
+    .parallax {
+        transform: none;
+    }
+}
