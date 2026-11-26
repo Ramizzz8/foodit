@@ -12,6 +12,9 @@ use Illuminate\Support\Str;
 class PlantillaDemo
 {
     /** Recetas de Foodit que la persona de ejemplo tiene guardadas. */
+    /** Lo que Lucía tiene en casa. */
+    private const DESPENSA = ['aceite de oliva virgen extra', 'sal', 'ajo', 'cebolla', 'arroz redondo', 'huevo', 'tomate triturado', 'leche semidesnatada', 'pimentón dulce', 'macarrones'];
+
     private const GUARDADAS = ['lentejas-estofadas', 'tortilla-de-patatas', 'salmon-al-horno-con-patatas', 'crema-de-calabacin', 'fajitas-de-pollo'];
 
     /** La semana: [día (0 = lunes), momento, receta (slug) | 'fuera' | 'sobras', raciones]. */
@@ -38,6 +41,7 @@ class PlantillaDemo
 
         $u->recetasGuardadas()->sync($deFoodit->only(self::GUARDADAS)->values()->all());
         $this->recetasPropias($u);
+        $u->despensa()->sync(Alimento::whereIn('nombre', self::DESPENSA)->pluck('id')->all());
 
         foreach (self::SEMANA as [$dia, $momento, $que, $raciones]) {
             $esReceta = ! in_array($que, ['fuera', 'sobras'], true);

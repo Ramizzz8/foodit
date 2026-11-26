@@ -95,6 +95,12 @@ class User extends Authenticatable implements MustVerifyEmail, PasskeyUser
         static::deleting(fn (User $u) => $u->recetas()->get()->each->delete());
     }
 
+    /** Alimentos que tiene en casa (sin cantidades). */
+    public function despensa(): BelongsToMany
+    {
+        return $this->belongsToMany(Alimento::class, 'despensa')->withTimestamps()->orderBy('nombre');
+    }
+
     /** Recetas propias (privadas). */
     public function recetas(): HasMany
     {

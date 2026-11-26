@@ -2,6 +2,7 @@ import { Link } from '@inertiajs/react';
 import {
     BookOpen,
     CalendarDays,
+    Refrigerator,
     ShoppingBasket,
     UserRound,
 } from 'lucide-react';
@@ -24,6 +25,7 @@ const mainNavItems: NavItem[] = [
     { title: 'Plan de la semana', href: '/plan', icon: CalendarDays },
     { title: 'Lista de la compra', href: '/lista', icon: ShoppingBasket },
     { title: 'Recetas', href: '/recetas', icon: BookOpen },
+    { title: 'Despensa', href: '/despensa', icon: Refrigerator },
     { title: 'Tu perfil', href: '/ajustes/salud', icon: UserRound },
 ];
 

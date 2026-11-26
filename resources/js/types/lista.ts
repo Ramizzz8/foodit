@@ -14,6 +14,7 @@ export type Linea = {
     alimento: string;
     gramos: number | null;
     tachado: boolean;
+    quiza_en_despensa: boolean;
     producto: ProductoLinea | null;
     envases: number | null;
     comprado: number | null;

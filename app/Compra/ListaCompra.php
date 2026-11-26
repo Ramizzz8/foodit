@@ -25,6 +25,7 @@ class ListaCompra
     {
         [$porAlimento, $sinAlimento, $alGusto] = $this->sumar($u, $lunes);
         $tachados = $u->listaMarcas()->whereDate('lunes', $lunes->toDateString())->pluck('tachado', 'alimento_id');
+        $enDespensa = $u->despensa()->pluck('alimentos.id')->all();
 
         $conProducto = [];
         $sinProducto = $sinAlimento;
@@ -35,7 +36,8 @@ class ListaCompra
         foreach ($porAlimento as ['alimento' => $a, 'gramos' => $gramos]) {
             $p = $a->productoPara($u);
             $envases = $p ? Envases::calcular($gramos, $p, $a) : null;
-            $linea = ['alimento_id' => $a->id, 'alimento' => $a->nombre, 'gramos' => round($gramos, 1), 'tachado' => (bool) ($tachados[$a->id] ?? false)];
+            $linea = ['alimento_id' => $a->id, 'alimento' => $a->nombre, 'gramos' => round($gramos, 1), 'tachado' => (bool) ($tachados[$a->id] ?? false),
+                'quiza_en_despensa' => in_array($a->id, $enDespensa, true)];
 
             if ($envases === null) {
                 $sinProducto[] = $linea + ['producto' => null, 'envases' => null, 'comprado' => null, 'sobra' => null, 'unidad' => null, 'coste' => null];
@@ -100,7 +102,7 @@ class ListaCompra
                 }
                 $gramos = $i->alimento ? Unidades::aGramos($i->cantidad, $i->unidad, $i->alimento) : null;
                 if ($gramos === null) {
-                    $sinAlimento[$i->texto] = ['alimento_id' => $i->alimento_id, 'alimento' => $i->alimento?->nombre ?? $i->texto, 'gramos' => null, 'tachado' => false,
+                    $sinAlimento[$i->texto] = ['alimento_id' => $i->alimento_id, 'alimento' => $i->alimento?->nombre ?? $i->texto, 'gramos' => null, 'tachado' => false, 'quiza_en_despensa' => false,
                         'producto' => null, 'envases' => null, 'comprado' => null, 'sobra' => null, 'unidad' => null, 'coste' => null];
 
                     continue;
