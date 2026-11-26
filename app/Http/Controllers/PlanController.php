@@ -96,6 +96,9 @@ class PlanController extends Controller
         $lunes = Semana::fecha($fecha)->startOfWeek();
         $semilla = (int) ($request->validate(['semilla' => ['nullable', 'integer', 'min:0']])['semilla'] ?? random_int(0, PHP_INT_MAX));
         $semana = $generar->para($request->user(), $lunes, $semilla);
+        if ($semana['comidas'] === []) {
+            return back()->with('aviso', $semana['aviso'] ?? 'No hemos encontrado recetas para proponerte una semana. Tu plan sigue como estaba.');
+        }
         $generar->aplicar($request->user(), $lunes, $semana);
 
         return back()->with('exito', 'Semana propuesta: '.count($semana['comidas']).' comidas por unos '.number_format($semana['coste'], 2, ',', '.').' €.')

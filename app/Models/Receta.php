@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Storage;
 
 /** Receta de Foodit (user_id null, visible para todos) o propia (privada). */
 class Receta extends Model
@@ -15,6 +16,19 @@ class Receta extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    /** Al borrar una receta se borra su foto del disco, salvo que la comparta con otra (una copia duplicada). */
+    protected static function booted(): void
+    {
+        static::deleted(fn (Receta $r) => self::borrarFotoSiSobra($r->foto_path));
+    }
+
+    public static function borrarFotoSiSobra(?string $ruta): void
+    {
+        if ($ruta !== null && ! self::where('foto_path', $ruta)->exists()) {
+            Storage::disk('public')->delete($ruta);
+        }
+    }
 
     protected function casts(): array
     {
@@ -60,6 +74,11 @@ class Receta extends Model
             return false;
         }
         if ($this->ingredientes->pluck('alimento_id')->intersect($u->alimentos_vetados ?? [])->isNotEmpty()) {
+            return false;
+        }
+        // Con alergias, dieta o vetados, un ingrediente escrito a mano (sin alimento) es una incógnita: no se arriesga.
+        $restringe = ($u->alergenos ?? []) !== [] || ($u->dieta ?? 'omnivora') !== 'omnivora' || ($u->alimentos_vetados ?? []) !== [];
+        if ($restringe && $this->ingredientes->contains(fn ($i) => $i->alimento_id === null && $i->unidad !== 'al_gusto')) {
             return false;
         }
 

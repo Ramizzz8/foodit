@@ -29,6 +29,7 @@ type Props = {
     perfil: Perfil;
     alergenos: { clave: string; nombre: string }[];
     propuesta: Propuesta | null;
+    editar: boolean;
 };
 type Propuesta = {
     semilla: number;
@@ -292,11 +293,33 @@ function Pie({
     paso,
     procesando,
     texto = 'Siguiente',
+    editar = false,
 }: {
     paso: number;
     procesando: boolean;
     texto?: string;
+    editar?: boolean;
 }) {
+    if (editar) {
+        return (
+            <div className="mt-10 flex items-center justify-between gap-4 border-t-2 border-dashed border-[#7d0c14]/30 pt-6">
+                <Link
+                    href="/ajustes/salud"
+                    className="font-medium underline underline-offset-4"
+                >
+                    Cancelar
+                </Link>
+                <button
+                    type="submit"
+                    disabled={procesando}
+                    className="bg-[#7d0c14] px-6 py-3 font-medium text-[#f3f3f1] hover:bg-[#5e0910] disabled:opacity-60"
+                >
+                    Guardar
+                </button>
+            </div>
+        );
+    }
+
     return (
         <div className="mt-10 flex items-center justify-between gap-4 border-t-2 border-dashed border-[#7d0c14]/30 pt-6">
             {paso > 1 ? (
@@ -320,7 +343,7 @@ function Pie({
     );
 }
 
-function PasoTu({ perfil, consentido }: Props) {
+function PasoTu({ perfil, consentido, editar }: Props) {
     const form = useForm({
         sexo: perfil.sexo,
         edad: perfil.edad,
@@ -347,7 +370,9 @@ function PasoTu({ perfil, consentido }: Props) {
 
     function enviar(e: FormEvent) {
         e.preventDefault();
-        form.put('/bienvenida/1', { preserveScroll: 'errors' });
+        form.put(`/bienvenida/1${editar ? '?editar=1' : ''}`, {
+            preserveScroll: 'errors',
+        });
     }
 
     return (
@@ -498,12 +523,12 @@ function PasoTu({ perfil, consentido }: Props) {
                     error={form.errors.consentimiento_salud}
                 />
             )}
-            <Pie paso={1} procesando={form.processing} />
+            <Pie paso={1} procesando={form.processing} editar={editar} />
         </form>
     );
 }
 
-function PasoLoQueNoComes({ perfil, consentido, alergenos }: Props) {
+function PasoLoQueNoComes({ perfil, consentido, alergenos, editar }: Props) {
     const form = useForm({
         alergenos: perfil.alergenos,
         dieta: perfil.dieta,
@@ -570,7 +595,9 @@ function PasoLoQueNoComes({ perfil, consentido, alergenos }: Props) {
 
     function enviar(e: FormEvent) {
         e.preventDefault();
-        form.put('/bienvenida/2', { preserveScroll: 'errors' });
+        form.put(`/bienvenida/2${editar ? '?editar=1' : ''}`, {
+            preserveScroll: 'errors',
+        });
     }
 
     return (
@@ -671,12 +698,12 @@ function PasoLoQueNoComes({ perfil, consentido, alergenos }: Props) {
                     error={form.errors.consentimiento_salud}
                 />
             )}
-            <Pie paso={2} procesando={form.processing} />
+            <Pie paso={2} procesando={form.processing} editar={editar} />
         </form>
     );
 }
 
-function PasoTuSemana({ perfil }: Props) {
+function PasoTuSemana({ perfil, editar }: Props) {
     const form = useForm({
         presupuesto_semanal: perfil.presupuesto_semanal,
         planifica_desayuno: perfil.planifica_desayuno,
@@ -685,7 +712,9 @@ function PasoTuSemana({ perfil }: Props) {
 
     function enviar(e: FormEvent) {
         e.preventDefault();
-        form.put('/bienvenida/3', { preserveScroll: 'errors' });
+        form.put(`/bienvenida/3${editar ? '?editar=1' : ''}`, {
+            preserveScroll: 'errors',
+        });
     }
 
     return (
@@ -760,7 +789,7 @@ function PasoTuSemana({ perfil }: Props) {
                     ))}
                 </div>
             </Pregunta>
-            <Pie paso={3} procesando={form.processing} />
+            <Pie paso={3} procesando={form.processing} editar={editar} />
         </form>
     );
 }

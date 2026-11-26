@@ -42,6 +42,7 @@ class BienvenidaController extends Controller
 
         return Inertia::render('bienvenida', [
             'paso' => $paso,
+            'editar' => $request->boolean('editar') && $paso < 4,
             'consentido' => $u->consentimiento_salud_en !== null,
             'perfil' => [
                 ...$u->only('sexo', 'edad', 'altura_cm', 'actividad', 'meta', 'objetivo_kcal', 'dieta', 'planifica_desayuno', 'minutos_entre_semana'),
@@ -65,6 +66,10 @@ class BienvenidaController extends Controller
             3 => $this->tuSemana($request, $u),
             4 => $this->empezar($request, $u),
         };
+
+        if ($request->boolean('editar') && $paso < 4) {
+            return redirect('/ajustes/salud')->with('exito', 'Cambios guardados.');
+        }
 
         return $paso < 4 ? redirect('/bienvenida/'.($paso + 1)) : redirect('/plan');
     }

@@ -1,5 +1,10 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, CalendarDays, ShoppingBasket } from 'lucide-react';
+import {
+    BookOpen,
+    CalendarDays,
+    ShoppingBasket,
+    UserRound,
+} from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -19,6 +24,7 @@ const mainNavItems: NavItem[] = [
     { title: 'Plan de la semana', href: '/plan', icon: CalendarDays },
     { title: 'Lista de la compra', href: '/lista', icon: ShoppingBasket },
     { title: 'Recetas', href: '/recetas', icon: BookOpen },
+    { title: 'Tu perfil', href: '/ajustes/salud', icon: UserRound },
 ];
 
 const footerNavItems: NavItem[] = [];

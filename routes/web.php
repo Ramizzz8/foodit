@@ -8,6 +8,7 @@ use App\Http\Controllers\ObjetivosController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PortadaController;
 use App\Http\Controllers\RecetaController;
+use App\Http\Controllers\SaludController;
 use App\Http\Middleware\PerfilCompleto;
 use App\Models\Receta;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,8 @@ Route::middleware(['auth', PerfilCompleto::class])->group(function () {
     Route::post('plan/{fecha}/generar', [PlanController::class, 'generar'])->name('plan.generar');
 
     Route::get('ajustes/objetivos', [ObjetivosController::class, 'edit'])->name('objetivos.edit');
+    Route::get('ajustes/salud', [SaludController::class, 'show'])->name('salud');
+    Route::delete('ajustes/salud', [SaludController::class, 'destroy'])->name('salud.borrar');
     Route::put('ajustes/objetivos', [ObjetivosController::class, 'update'])->name('objetivos.update');
 
     Route::get('lista/{fecha?}', [ListaController::class, 'semana'])->name('lista');

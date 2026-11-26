@@ -65,7 +65,7 @@ const APARTADOS: [string, React.ReactNode][] = [
     ],
     [
         'Tus derechos',
-        'Puedes ver y cambiar tus datos en Ajustes, retirar el consentimiento de los datos de salud borrándolos de tu perfil, y pedir una copia o el borrado escribiendo al email de arriba. Si crees que no se han tratado bien, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).',
+        'En «Tu perfil» (menú lateral) ves y cambias tus datos de salud, y con «Borrar mis datos de salud» retiras el consentimiento y se borran. También puedes pedir una copia o el borrado escribiendo al email de arriba. Si crees que no se han tratado bien, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).',
     ],
     [
         'Alérgenos',

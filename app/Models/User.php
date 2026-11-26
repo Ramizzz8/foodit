@@ -89,6 +89,12 @@ class User extends Authenticatable implements MustVerifyEmail, PasskeyUser
         ];
     }
 
+    /** Al borrar la cuenta, sus recetas se borran una a una para que también se vayan sus fotos. */
+    protected static function booted(): void
+    {
+        static::deleting(fn (User $u) => $u->recetas()->get()->each->delete());
+    }
+
     /** Recetas propias (privadas). */
     public function recetas(): HasMany
     {

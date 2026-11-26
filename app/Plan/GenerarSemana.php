@@ -93,22 +93,31 @@ class GenerarSemana
             $ayer = $hoy;
         }
 
-        $comidas = $this->ajustarAlPresupuesto($comidas, $recetas->reject($esDesayuno)->values()->all(), $u);
-        $coste = round(array_sum(array_column($comidas, 'coste')) + 1e-9, 2);
+        $ajustadas = $this->ajustarAlPresupuesto($comidas, $recetas->reject($esDesayuno)->values()->all(), $u);
+        $presupuesto = (float) $u->presupuesto_semanal;
+        $masBarata = round(array_sum(array_column($ajustadas, 'coste')) + 1e-9, 2);
 
-        if ($comidas !== [] && $coste > (float) $u->presupuesto_semanal) {
+        // Si ni abaratando se llega al presupuesto, no se sacrifican calorías para nada: se queda la semana original.
+        if ($comidas !== [] && $masBarata > $presupuesto) {
             $avisos['presupuesto'] = sprintf(
-                'Con lo que no comes, la semana más barata que hemos encontrado cuesta %s €, por encima de tu presupuesto de %s €.',
-                number_format($coste, 2, ',', '.'), number_format((float) $u->presupuesto_semanal, 2, ',', '.'),
+                'Con lo que no comes, ni la semana más barata que hemos encontrado (%s €) entra en tu presupuesto de %s €, así que te proponemos la que mejor cuadra tus calorías.',
+                self::euros($masBarata), self::euros($presupuesto),
             );
+        } else {
+            $comidas = $ajustadas;
         }
+        $coste = round(array_sum(array_column($comidas, 'coste')) + 1e-9, 2);
 
         return ['comidas' => $comidas, 'coste' => $coste, 'aviso' => $avisos === [] ? null : implode(' ', $avisos)];
     }
 
-    /** Sustituye las comidas de esa semana por las propuestas. */
+    /** Sustituye las comidas de esa semana por las propuestas. Una propuesta vacía no toca nada. */
     public function aplicar(User $u, CarbonImmutable $lunes, array $semana): void
     {
+        if ($semana['comidas'] === []) {
+            return;
+        }
+
         DB::transaction(function () use ($u, $lunes, $semana) {
             $u->comidasPlan()->whereBetween('fecha', [$lunes->toDateString(), $lunes->addDays(6)->toDateString()])->delete();
             foreach ($semana['comidas'] as $c) {
@@ -167,7 +176,8 @@ class GenerarSemana
 
     /**
      * Mientras se pase del presupuesto: cambia la comida más cara por la receta más barata que pueda ir ese día
-     * (sin repetir más de dos veces ni en días seguidos) con unas calorías parecidas (±15 %).
+     * (sin repetir más de dos veces ni en días seguidos) y que deje el día a ±15 % del objetivo de calorías
+     * (o, si el día ya estaba fuera, no más lejos que antes).
      */
     private function ajustarAlPresupuesto(array $comidas, array $principales, User $u): array
     {
@@ -190,6 +200,11 @@ class GenerarSemana
             $prohibidas = [...$ocupadas($actual['fecha']), ...$ocupadas($fecha->subDay()->toDateString()), ...$ocupadas($fecha->addDay()->toDateString())];
             $usos = array_count_values(array_column(array_filter($comidas, fn ($c, $i) => $i !== $k && $c['momento'] !== 'desayuno', ARRAY_FILTER_USE_BOTH), 'receta_id'));
 
+            $objetivo = (float) $u->objetivo_kcal;
+            $restoDia = array_sum(array_column(array_filter($comidas, fn ($c, $i) => $i !== $k && $c['fecha'] === $actual['fecha'], ARRAY_FILTER_USE_BOTH), 'kcal'));
+            $errorActual = abs($restoDia + $actual['kcal'] - $objetivo);
+            $admisible = fn (float $kcal) => abs($restoDia + $kcal - $objetivo) <= max($objetivo * 0.15, $errorActual);
+
             $mejor = null;
             foreach ($principales as $x) {
                 $id = $x['receta']->id;
@@ -199,7 +214,7 @@ class GenerarSemana
                 foreach (self::RACIONES as $r) {
                     // Comparado ya redondeado: si no, una sustituta «0,996 €» por una de 1,00 € se cambiaría sin fin.
                     $coste = round($x['coste'] * $r + 1e-9, 2);
-                    if (abs($x['kcal'] * $r - $actual['kcal']) <= $actual['kcal'] * 0.15 && $coste < $actual['coste'] && ($mejor === null || $coste < $mejor[0]['coste'] * $mejor[1])) {
+                    if ($admisible($x['kcal'] * $r) && $coste < $actual['coste'] && ($mejor === null || $coste < round($mejor[0]['coste'] * $mejor[1] + 1e-9, 2))) {
                         $mejor = [$x, $r];
                     }
                 }
@@ -212,6 +227,11 @@ class GenerarSemana
         }
 
         return $comidas;
+    }
+
+    private static function euros(float $n): string
+    {
+        return number_format($n, 2, ',', '.');
     }
 
     private function comida(CarbonImmutable $fecha, string $momento, array $x, float $raciones): array

@@ -17,6 +17,8 @@ use Inertia\Response;
 
 class RecetaController extends Controller
 {
+    public const MAX_FOTOS = 50;
+
     public const ETIQUETAS = ['rápida', 'económica', 'vegetariana', 'legumbre', 'pescado', 'carne', 'pasta y arroz', 'ligera', 'desayuno', 'sin gluten'];
 
     public function __construct(private CalculadoraReceta $calculadora) {}
@@ -182,7 +184,14 @@ class RecetaController extends Controller
             'ingredientes.*.cantidad' => ['nullable', 'numeric', 'min:0', 'max:100000'],
             'ingredientes.*.unidad' => ['required', Rule::in(Unidades::LISTA)],
             'ingredientes.*.nota' => ['nullable', 'string', 'max:100'],
-            'foto' => ['nullable', 'image', 'max:5120'],
+            // Las cuentas de ejemplo no suben fotos; las reales, hasta 50 recetas con foto.
+            'foto' => $request->user()->es_demo
+                ? ['prohibited']
+                : ['nullable', 'image', 'max:5120', function (string $campo, mixed $valor, \Closure $falla) use ($request) {
+                    if ($valor && $request->user()->recetas()->whereNotNull('foto_path')->count() >= self::MAX_FOTOS) {
+                        $falla('Has llegado al máximo de '.self::MAX_FOTOS.' recetas con foto.');
+                    }
+                }],
         ]);
     }
 
@@ -194,12 +203,15 @@ class RecetaController extends Controller
             'etiquetas' => array_values($datos['etiquetas'] ?? []),
             'pasos' => array_values($datos['pasos']),
         ]);
+        $fotoAnterior = null;
         if ($request->hasFile('foto')) {
+            $fotoAnterior = $receta->foto_path;
             $receta->foto_path = $request->file('foto')->store('recetas', 'public');
             $receta->foto_url = null;
             $receta->foto_credito = null;
         }
         $receta->save();
+        Receta::borrarFotoSiSobra($fotoAnterior);
 
         $receta->ingredientes()->delete();
         foreach (array_values($datos['ingredientes']) as $orden => $i) {
