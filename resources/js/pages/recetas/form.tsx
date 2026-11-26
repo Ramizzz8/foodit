@@ -1,5 +1,6 @@
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, router, useForm, usePage } from '@inertiajs/react';
 import { ArrowDown, ArrowUp, Plus, X } from 'lucide-react';
+import { useState } from 'react';
 import type { FormEvent } from 'react';
 import InputError from '@/components/input-error';
 import { SelectorAlimento } from '@/components/recetas/selector-alimento';
@@ -9,7 +10,16 @@ import { Label } from '@/components/ui/label';
 import { UNIDADES } from '@/lib/formato';
 import { cn } from '@/lib/utils';
 
-type Ingrediente = { texto: string; alimento_id: number | null; alimento?: string | null; cantidad: number | string | null; unidad: string; nota: string | null };
+type Ingrediente = {
+    texto: string;
+    alimento_id: number | null;
+    alimento?: string | null;
+    cantidad: number | string | null;
+    unidad: string;
+    nota: string | null;
+};
+
+type Borrador = Omit<Receta, 'id' | 'dificultad' | 'etiquetas' | 'foto'>;
 
 type Receta = {
     id: number;
@@ -24,25 +34,49 @@ type Receta = {
     ingredientes: Ingrediente[];
 };
 
-const claseCampo = 'h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm shadow-xs focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 outline-none';
-const nuevo = (): Ingrediente => ({ texto: '', alimento_id: null, alimento: null, cantidad: '', unidad: 'g', nota: '' });
+const claseCampo =
+    'h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm shadow-xs focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 outline-none';
+const nuevo = (): Ingrediente => ({
+    texto: '',
+    alimento_id: null,
+    alimento: null,
+    cantidad: '',
+    unidad: 'g',
+    nota: '',
+});
 
-export default function FormularioReceta({ receta, etiquetas, unidades }: { receta: Receta | null; etiquetas: string[]; unidades: string[] }) {
+export default function FormularioReceta({
+    receta,
+    borrador = null,
+    etiquetas,
+    unidades,
+}: {
+    receta: Receta | null;
+    borrador?: Borrador | null;
+    etiquetas: string[];
+    unidades: string[];
+}) {
+    const inicial = receta ?? borrador;
     const form = useForm({
-        titulo: receta?.titulo ?? '',
-        descripcion: receta?.descripcion ?? '',
-        raciones: receta?.raciones ?? 2,
-        minutos: receta?.minutos ?? '',
+        titulo: inicial?.titulo ?? '',
+        descripcion: inicial?.descripcion ?? '',
+        raciones: inicial?.raciones ?? 2,
+        minutos: inicial?.minutos ?? '',
         dificultad: receta?.dificultad ?? 'facil',
         etiquetas: receta?.etiquetas ?? [],
-        pasos: receta?.pasos ?? [''],
-        ingredientes: receta?.ingredientes ?? [nuevo(), nuevo()],
+        pasos: inicial?.pasos ?? [''],
+        ingredientes: inicial?.ingredientes ?? [nuevo(), nuevo()],
         foto: null as File | null,
     });
     const errores = form.errors as Record<string, string>;
 
     const cambiarIngrediente = (n: number, cambios: Partial<Ingrediente>) =>
-        form.setData('ingredientes', form.data.ingredientes.map((i, k) => (k === n ? { ...i, ...cambios } : i)));
+        form.setData(
+            'ingredientes',
+            form.data.ingredientes.map((i, k) =>
+                k === n ? { ...i, ...cambios } : i,
+            ),
+        );
     const mover = <T,>(lista: T[], n: number, d: number) => {
         const copia = [...lista];
         [copia[n], copia[n + d]] = [copia[n + d], copia[n]];
@@ -52,40 +86,100 @@ export default function FormularioReceta({ receta, etiquetas, unidades }: { rece
 
     function enviar(e: FormEvent) {
         e.preventDefault();
-        const datos = { ...form.data, ingredientes: form.data.ingredientes.map((i) => ({ ...i, cantidad: i.unidad === 'al_gusto' || i.cantidad === '' ? null : i.cantidad })) };
+        const datos = {
+            ...form.data,
+            ingredientes: form.data.ingredientes.map((i) => ({
+                ...i,
+                cantidad:
+                    i.unidad === 'al_gusto' || i.cantidad === ''
+                        ? null
+                        : i.cantidad,
+            })),
+        };
         form.transform(() => (receta ? { ...datos, _method: 'put' } : datos));
-        form.post(receta ? `/recetas/${receta.id}` : '/recetas', { forceFormData: true });
+        form.post(receta ? `/recetas/${receta.id}` : '/recetas', {
+            forceFormData: true,
+        });
     }
 
     return (
         <>
             <Head title={receta ? `Editar ${receta.titulo}` : 'Nueva receta'} />
-            <form onSubmit={enviar} className="mx-auto w-full max-w-4xl space-y-8 p-4 md:p-6">
-                <h1 className="text-2xl font-semibold tracking-tight">{receta ? 'Editar receta' : 'Nueva receta'}</h1>
+            <form
+                onSubmit={enviar}
+                className="mx-auto w-full max-w-4xl space-y-8 p-4 md:p-6"
+            >
+                <h1 className="text-2xl font-semibold tracking-tight">
+                    {receta ? 'Editar receta' : 'Nueva receta'}
+                </h1>
+
+                {!receta && <ImportarDesdeWeb />}
 
                 <section className="grid gap-4 sm:grid-cols-2">
                     <div className="grid gap-1.5 sm:col-span-2">
                         <Label htmlFor="titulo">Título *</Label>
-                        <Input id="titulo" value={form.data.titulo} onChange={(e) => form.setData('titulo', e.target.value)} required />
+                        <Input
+                            id="titulo"
+                            value={form.data.titulo}
+                            onChange={(e) =>
+                                form.setData('titulo', e.target.value)
+                            }
+                            required
+                        />
                         <InputError message={errores.titulo} />
                     </div>
                     <div className="grid gap-1.5 sm:col-span-2">
                         <Label htmlFor="descripcion">Descripción</Label>
-                        <Input id="descripcion" value={form.data.descripcion} onChange={(e) => form.setData('descripcion', e.target.value)} placeholder="Una frase que la presente" />
+                        <Input
+                            id="descripcion"
+                            value={form.data.descripcion}
+                            onChange={(e) =>
+                                form.setData('descripcion', e.target.value)
+                            }
+                            placeholder="Una frase que la presente"
+                        />
                     </div>
                     <div className="grid grid-cols-3 gap-3 sm:col-span-2">
                         <div className="grid gap-1.5">
                             <Label htmlFor="raciones">Raciones *</Label>
-                            <Input id="raciones" type="number" min={1} max={20} value={form.data.raciones} onChange={(e) => form.setData('raciones', Number(e.target.value))} required />
+                            <Input
+                                id="raciones"
+                                type="number"
+                                min={1}
+                                max={20}
+                                value={form.data.raciones}
+                                onChange={(e) =>
+                                    form.setData(
+                                        'raciones',
+                                        Number(e.target.value),
+                                    )
+                                }
+                                required
+                            />
                             <InputError message={errores.raciones} />
                         </div>
                         <div className="grid gap-1.5">
                             <Label htmlFor="minutos">Minutos</Label>
-                            <Input id="minutos" type="number" min={1} value={form.data.minutos ?? ''} onChange={(e) => form.setData('minutos', e.target.value)} />
+                            <Input
+                                id="minutos"
+                                type="number"
+                                min={1}
+                                value={form.data.minutos ?? ''}
+                                onChange={(e) =>
+                                    form.setData('minutos', e.target.value)
+                                }
+                            />
                         </div>
                         <div className="grid gap-1.5">
                             <Label htmlFor="dificultad">Dificultad</Label>
-                            <select id="dificultad" className={claseCampo} value={form.data.dificultad} onChange={(e) => form.setData('dificultad', e.target.value)}>
+                            <select
+                                id="dificultad"
+                                className={claseCampo}
+                                value={form.data.dificultad}
+                                onChange={(e) =>
+                                    form.setData('dificultad', e.target.value)
+                                }
+                            >
                                 <option value="facil">Fácil</option>
                                 <option value="media">Media</option>
                                 <option value="dificil">Difícil</option>
@@ -93,7 +187,9 @@ export default function FormularioReceta({ receta, etiquetas, unidades }: { rece
                         </div>
                     </div>
                     <fieldset className="sm:col-span-2">
-                        <legend className="mb-2 text-sm font-medium">Etiquetas</legend>
+                        <legend className="mb-2 text-sm font-medium">
+                            Etiquetas
+                        </legend>
                         <div className="flex flex-wrap gap-2">
                             {etiquetas.map((e) => {
                                 const activa = form.data.etiquetas.includes(e);
@@ -103,8 +199,26 @@ export default function FormularioReceta({ receta, etiquetas, unidades }: { rece
                                         key={e}
                                         type="button"
                                         aria-pressed={activa}
-                                        onClick={() => form.setData('etiquetas', activa ? form.data.etiquetas.filter((x) => x !== e) : [...form.data.etiquetas, e])}
-                                        className={cn('rounded-full border px-3 py-1 text-sm first-letter:uppercase', activa ? 'border-transparent bg-primary text-primary-foreground' : 'hover:bg-muted')}
+                                        onClick={() =>
+                                            form.setData(
+                                                'etiquetas',
+                                                activa
+                                                    ? form.data.etiquetas.filter(
+                                                          (x) => x !== e,
+                                                      )
+                                                    : [
+                                                          ...form.data
+                                                              .etiquetas,
+                                                          e,
+                                                      ],
+                                            )
+                                        }
+                                        className={cn(
+                                            'rounded-full border px-3 py-1 text-sm first-letter:uppercase',
+                                            activa
+                                                ? 'border-transparent bg-primary text-primary-foreground'
+                                                : 'hover:bg-muted',
+                                        )}
                                     >
                                         {e}
                                     </button>
@@ -114,22 +228,45 @@ export default function FormularioReceta({ receta, etiquetas, unidades }: { rece
                     </fieldset>
                     <div className="grid gap-1.5 sm:col-span-2">
                         <Label htmlFor="foto">Foto</Label>
-                        <input id="foto" type="file" accept="image/*" className="text-sm" onChange={(e) => form.setData('foto', e.target.files?.[0] ?? null)} />
+                        <input
+                            id="foto"
+                            type="file"
+                            accept="image/*"
+                            className="text-sm"
+                            onChange={(e) =>
+                                form.setData(
+                                    'foto',
+                                    e.target.files?.[0] ?? null,
+                                )
+                            }
+                        />
                         <InputError message={errores.foto} />
                     </div>
                 </section>
 
-                <section aria-labelledby="titulo-ingredientes" className="space-y-3">
+                <section
+                    aria-labelledby="titulo-ingredientes"
+                    className="space-y-3"
+                >
                     <div>
-                        <h2 id="titulo-ingredientes" className="text-lg font-semibold">
+                        <h2
+                            id="titulo-ingredientes"
+                            className="text-lg font-semibold"
+                        >
                             Ingredientes *
                         </h2>
-                        <p className="text-sm text-muted-foreground">Elige el alimento de cada uno para calcular el precio y las calorías.</p>
+                        <p className="text-sm text-muted-foreground">
+                            Elige el alimento de cada uno para calcular el
+                            precio y las calorías.
+                        </p>
                     </div>
                     <InputError message={errores.ingredientes} />
                     <ul className="space-y-3">
                         {form.data.ingredientes.map((i, n) => (
-                            <li key={n} className="grid gap-2 rounded-lg border p-3 sm:grid-cols-[6rem_8rem_1fr_1fr_auto]">
+                            <li
+                                key={n}
+                                className="grid gap-2 rounded-lg border p-3 sm:grid-cols-[6rem_8rem_1fr_1fr_auto]"
+                            >
                                 <Input
                                     aria-label={`Cantidad del ingrediente ${n + 1}`}
                                     type="number"
@@ -137,10 +274,23 @@ export default function FormularioReceta({ receta, etiquetas, unidades }: { rece
                                     min={0}
                                     disabled={i.unidad === 'al_gusto'}
                                     value={i.cantidad ?? ''}
-                                    onChange={(e) => cambiarIngrediente(n, { cantidad: e.target.value })}
+                                    onChange={(e) =>
+                                        cambiarIngrediente(n, {
+                                            cantidad: e.target.value,
+                                        })
+                                    }
                                     placeholder="Cant."
                                 />
-                                <select aria-label={`Unidad del ingrediente ${n + 1}`} className={claseCampo} value={i.unidad} onChange={(e) => cambiarIngrediente(n, { unidad: e.target.value })}>
+                                <select
+                                    aria-label={`Unidad del ingrediente ${n + 1}`}
+                                    className={claseCampo}
+                                    value={i.unidad}
+                                    onChange={(e) =>
+                                        cambiarIngrediente(n, {
+                                            unidad: e.target.value,
+                                        })
+                                    }
+                                >
                                     {unidades.map((u) => (
                                         <option key={u} value={u}>
                                             {UNIDADES[u]}
@@ -150,30 +300,63 @@ export default function FormularioReceta({ receta, etiquetas, unidades }: { rece
                                 <Input
                                     aria-label={`Texto del ingrediente ${n + 1}`}
                                     value={i.texto}
-                                    onChange={(e) => cambiarIngrediente(n, { texto: e.target.value })}
+                                    onChange={(e) =>
+                                        cambiarIngrediente(n, {
+                                            texto: e.target.value,
+                                        })
+                                    }
                                     placeholder="Cómo se lee: 2 dientes de ajo"
                                 />
                                 <SelectorAlimento
                                     etiqueta={`Alimento del ingrediente ${n + 1}`}
                                     valor={i.alimento_id}
                                     nombre={i.alimento ?? null}
-                                    onElegir={(o) => cambiarIngrediente(n, { alimento_id: o?.id ?? null, alimento: o?.nombre ?? null })}
+                                    onElegir={(o) =>
+                                        cambiarIngrediente(n, {
+                                            alimento_id: o?.id ?? null,
+                                            alimento: o?.nombre ?? null,
+                                        })
+                                    }
                                 />
                                 <Button
                                     type="button"
                                     variant="ghost"
                                     size="icon"
                                     aria-label={`Quitar el ingrediente ${n + 1}`}
-                                    onClick={() => form.setData('ingredientes', form.data.ingredientes.filter((_, k) => k !== n))}
+                                    onClick={() =>
+                                        form.setData(
+                                            'ingredientes',
+                                            form.data.ingredientes.filter(
+                                                (_, k) => k !== n,
+                                            ),
+                                        )
+                                    }
                                 >
                                     <X className="size-4" />
                                 </Button>
-                                <InputError className="sm:col-span-5" message={errores[`ingredientes.${n}.texto`] ?? errores[`ingredientes.${n}.unidad`] ?? errores[`ingredientes.${n}.cantidad`]} />
+                                <InputError
+                                    className="sm:col-span-5"
+                                    message={
+                                        errores[`ingredientes.${n}.texto`] ??
+                                        errores[`ingredientes.${n}.unidad`] ??
+                                        errores[`ingredientes.${n}.cantidad`]
+                                    }
+                                />
                             </li>
                         ))}
                     </ul>
-                    <Button type="button" variant="outline" onClick={() => form.setData('ingredientes', [...form.data.ingredientes, nuevo()])}>
-                        <Plus className="size-4" aria-hidden="true" /> Añadir ingrediente
+                    <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() =>
+                            form.setData('ingredientes', [
+                                ...form.data.ingredientes,
+                                nuevo(),
+                            ])
+                        }
+                    >
+                        <Plus className="size-4" aria-hidden="true" /> Añadir
+                        ingrediente
                     </Button>
                 </section>
 
@@ -185,42 +368,94 @@ export default function FormularioReceta({ receta, etiquetas, unidades }: { rece
                     <ol className="space-y-3">
                         {form.data.pasos.map((p, n) => (
                             <li key={n} className="flex gap-2">
-                                <span className="mt-2 flex size-7 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">{n + 1}</span>
+                                <span className="mt-2 flex size-7 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground">
+                                    {n + 1}
+                                </span>
                                 <textarea
                                     aria-label={`Paso ${n + 1}`}
                                     value={p}
-                                    onChange={(e) => form.setData('pasos', form.data.pasos.map((x, k) => (k === n ? e.target.value : x)))}
+                                    onChange={(e) =>
+                                        form.setData(
+                                            'pasos',
+                                            form.data.pasos.map((x, k) =>
+                                                k === n ? e.target.value : x,
+                                            ),
+                                        )
+                                    }
                                     className="min-h-20 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
                                 />
                                 <div className="flex flex-col">
-                                    <Button type="button" variant="ghost" size="icon" disabled={n === 0} aria-label={`Subir el paso ${n + 1}`} onClick={() => form.setData('pasos', mover(form.data.pasos, n, -1))}>
+                                    <Button
+                                        type="button"
+                                        variant="ghost"
+                                        size="icon"
+                                        disabled={n === 0}
+                                        aria-label={`Subir el paso ${n + 1}`}
+                                        onClick={() =>
+                                            form.setData(
+                                                'pasos',
+                                                mover(form.data.pasos, n, -1),
+                                            )
+                                        }
+                                    >
                                         <ArrowUp className="size-4" />
                                     </Button>
                                     <Button
                                         type="button"
                                         variant="ghost"
                                         size="icon"
-                                        disabled={n === form.data.pasos.length - 1}
+                                        disabled={
+                                            n === form.data.pasos.length - 1
+                                        }
                                         aria-label={`Bajar el paso ${n + 1}`}
-                                        onClick={() => form.setData('pasos', mover(form.data.pasos, n, 1))}
+                                        onClick={() =>
+                                            form.setData(
+                                                'pasos',
+                                                mover(form.data.pasos, n, 1),
+                                            )
+                                        }
                                     >
                                         <ArrowDown className="size-4" />
                                     </Button>
-                                    <Button type="button" variant="ghost" size="icon" aria-label={`Quitar el paso ${n + 1}`} onClick={() => form.setData('pasos', form.data.pasos.filter((_, k) => k !== n))}>
+                                    <Button
+                                        type="button"
+                                        variant="ghost"
+                                        size="icon"
+                                        aria-label={`Quitar el paso ${n + 1}`}
+                                        onClick={() =>
+                                            form.setData(
+                                                'pasos',
+                                                form.data.pasos.filter(
+                                                    (_, k) => k !== n,
+                                                ),
+                                            )
+                                        }
+                                    >
                                         <X className="size-4" />
                                     </Button>
                                 </div>
                             </li>
                         ))}
                     </ol>
-                    <Button type="button" variant="outline" onClick={() => form.setData('pasos', [...form.data.pasos, ''])}>
-                        <Plus className="size-4" aria-hidden="true" /> Añadir paso
+                    <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() =>
+                            form.setData('pasos', [...form.data.pasos, ''])
+                        }
+                    >
+                        <Plus className="size-4" aria-hidden="true" /> Añadir
+                        paso
                     </Button>
                 </section>
 
                 <div className="flex justify-end gap-2 border-t pt-6">
                     <Button variant="ghost" asChild>
-                        <Link href={receta ? `/recetas/${receta.id}` : '/recetas'}>Cancelar</Link>
+                        <Link
+                            href={receta ? `/recetas/${receta.id}` : '/recetas'}
+                        >
+                            Cancelar
+                        </Link>
                     </Button>
                     <Button type="submit" disabled={form.processing}>
                         {form.processing ? 'Guardando…' : 'Guardar receta'}
@@ -231,4 +466,66 @@ export default function FormularioReceta({ receta, etiquetas, unidades }: { rece
     );
 }
 
-FormularioReceta.layout = { breadcrumbs: [{ title: 'Recetas', href: '/recetas' }] };
+FormularioReceta.layout = {
+    breadcrumbs: [{ title: 'Recetas', href: '/recetas' }],
+};
+
+/** Lee una receta de una web de cocina (datos schema.org) y rellena el formulario como borrador. Vive dentro del formulario: no es un <form>. */
+function ImportarDesdeWeb() {
+    const { errors } = usePage().props as { errors: Record<string, string> };
+    const [url, setUrl] = useState('');
+    const [leyendo, setLeyendo] = useState(false);
+    const leer = () => {
+        if (!url.trim()) {
+            return;
+        }
+        router.post(
+            '/recetas/importar-url',
+            { url },
+            {
+                onStart: () => setLeyendo(true),
+                onFinish: () => setLeyendo(false),
+            },
+        );
+    };
+
+    return (
+        <section
+            className="rounded-lg border bg-muted/30 p-4"
+            aria-labelledby="importar"
+        >
+            <h2 id="importar" className="text-sm font-semibold">
+                ¿La tienes en una web de cocina?
+            </h2>
+            <p className="text-sm text-muted-foreground">
+                Pega el enlace y la leemos por ti. Luego revisas los
+                ingredientes antes de guardar.
+            </p>
+            <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+                <Input
+                    type="url"
+                    inputMode="url"
+                    value={url}
+                    onChange={(e) => setUrl(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            leer();
+                        }
+                    }}
+                    placeholder="https://www.ejemplo.com/receta-de-lentejas"
+                    aria-label="Enlace de la receta"
+                />
+                <Button
+                    type="button"
+                    variant="outline"
+                    onClick={leer}
+                    disabled={leyendo}
+                >
+                    {leyendo ? 'Leyendo…' : 'Leer receta'}
+                </Button>
+            </div>
+            <InputError message={errors.url} className="mt-2" />
+        </section>
+    );
+}

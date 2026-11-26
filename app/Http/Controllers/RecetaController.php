@@ -6,6 +6,7 @@ use App\Cocina\CalculadoraReceta;
 use App\Cocina\Unidades;
 use App\Models\Receta;
 use App\Models\User;
+use App\Recetas\ImportarDesdeUrl;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -68,7 +69,22 @@ class RecetaController extends Controller
 
     public function create(): Response
     {
-        return Inertia::render('recetas/form', ['receta' => null, 'etiquetas' => self::ETIQUETAS, 'unidades' => Unidades::LISTA]);
+        return Inertia::render('recetas/form', ['receta' => null, 'borrador' => session('borrador'), 'etiquetas' => self::ETIQUETAS, 'unidades' => Unidades::LISTA]);
+    }
+
+    /** Lee la receta de una web (schema.org) y la deja como borrador en el formulario para revisarla. */
+    public function importarUrl(Request $request, ImportarDesdeUrl $importar): RedirectResponse
+    {
+        $url = $request->validate(['url' => ['required', 'string', 'max:2000']])['url'];
+
+        try {
+            $borrador = $importar->ejecutar(trim($url));
+        } catch (\InvalidArgumentException $e) {
+            return back()->withErrors(['url' => $e->getMessage()])->withInput();
+        }
+
+        return redirect('/recetas/crear')->with('borrador', $borrador)
+            ->with('exito', 'Receta leída. Revisa los ingredientes y guárdala.');
     }
 
     public function store(Request $request): RedirectResponse

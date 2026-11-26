@@ -18,7 +18,7 @@ beforeEach(function () {
     ]));
 });
 
-function alimento(string $nombre): Alimento
+function alimentoDespensa(string $nombre): Alimento
 {
     return Alimento::where('nombre', $nombre)->firstOrFail();
 }
@@ -26,25 +26,25 @@ function alimento(string $nombre): Alimento
 it('se añaden y se quitan alimentos de la despensa', function () {
     $u = User::factory()->create();
 
-    $this->actingAs($u)->post('/despensa', ['alimento_id' => alimento('arroz redondo')->id])->assertRedirect();
-    $this->actingAs($u)->post('/despensa', ['alimento_id' => alimento('arroz redondo')->id])->assertRedirect();
+    $this->actingAs($u)->post('/despensa', ['alimento_id' => alimentoDespensa('arroz redondo')->id])->assertRedirect();
+    $this->actingAs($u)->post('/despensa', ['alimento_id' => alimentoDespensa('arroz redondo')->id])->assertRedirect();
     $this->actingAs($u)->post('/despensa', ['alimento_id' => 999999])->assertSessionHasErrors('alimento_id');
     expect($u->despensa()->pluck('nombre')->all())->toBe(['arroz redondo']);
 
     $this->actingAs($u)->get('/despensa')->assertOk()
         ->assertInertia(fn ($p) => $p->component('despensa')->has('despensa', 1)->where('despensa.0.nombre', 'arroz redondo'));
 
-    $this->actingAs($u)->delete('/despensa/'.alimento('arroz redondo')->id)->assertRedirect();
+    $this->actingAs($u)->delete('/despensa/'.alimentoDespensa('arroz redondo')->id)->assertRedirect();
     expect($u->despensa()->count())->toBe(0);
 });
 
 it('cada uno ve solo su despensa', function () {
     $ana = User::factory()->create();
     $bea = User::factory()->create();
-    $ana->despensa()->attach(alimento('huevo')->id);
+    $ana->despensa()->attach(alimentoDespensa('huevo')->id);
 
     $this->actingAs($bea)->get('/despensa')->assertInertia(fn ($p) => $p->has('despensa', 0));
-    $this->actingAs($bea)->delete('/despensa/'.alimento('huevo')->id);
+    $this->actingAs($bea)->delete('/despensa/'.alimentoDespensa('huevo')->id);
     expect($ana->despensa()->count())->toBe(1);
 });
 
@@ -52,7 +52,7 @@ it('marca en la lista lo que quizá ya tienes', function () {
     $u = User::factory()->create();
     $tortilla = Receta::firstWhere('slug', 'tortilla-de-patatas');
     $u->comidasPlan()->create(['fecha' => '2026-11-30', 'momento' => 'cena', 'receta_id' => $tortilla->id]);
-    $u->despensa()->attach(alimento('huevo')->id);
+    $u->despensa()->attach(alimentoDespensa('huevo')->id);
 
     $lista = app(ListaCompra::class)->para($u, CarbonImmutable::parse('2026-11-30'));
     $lineas = collect($lista['grupos'])->flatMap(fn ($g) => $g['lineas'])->keyBy('alimento');
@@ -64,7 +64,7 @@ it('marca en la lista lo que quizá ya tienes', function () {
 it('con lo que tienes, ordena las recetas por lo que te falta', function () {
     $u = User::factory()->create();
     foreach (['huevo', 'patata', 'aceite de oliva virgen extra', 'cebolla'] as $n) {
-        $u->despensa()->attach(alimento($n)->id);
+        $u->despensa()->attach(alimentoDespensa($n)->id);
     }
 
     $this->actingAs($u)->get('/despensa')->assertInertia(fn ($p) => $p

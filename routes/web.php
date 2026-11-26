@@ -58,6 +58,7 @@ Route::middleware(['auth', PerfilCompleto::class])->group(function () {
     Route::get('alimentos/{alimento}/productos', [AlimentoController::class, 'productos'])->name('alimentos.productos');
     Route::put('alimentos/{alimento}/producto', [AlimentoController::class, 'elegirProducto'])->name('alimentos.producto');
 
+    Route::post('recetas/importar-url', [RecetaController::class, 'importarUrl'])->middleware('throttle:10,1')->name('recetas.importar');
     Route::resource('recetas', RecetaController::class)->parameters(['recetas' => 'receta']);
     Route::post('recetas/{receta}/duplicar', [RecetaController::class, 'duplicar'])->name('recetas.duplicar');
     Route::post('recetas/{receta}/guardar', [RecetaController::class, 'guardar'])->name('recetas.guardar');
