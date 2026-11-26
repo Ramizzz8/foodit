@@ -268,7 +268,7 @@ return [
     ],
     [
         'titulo' => 'Salmorejo cordobés', 'raciones' => 4, 'minutos' => 15, 'dificultad' => 'facil',
-        'etiquetas' => ['vegetariana', 'rápida'],
+        'etiquetas' => ['rápida'],
         'descripcion' => 'Espeso, con huevo duro y taquitos de jamón por encima.',
         'ingredientes' => [
             [8, 'ud', 'tomate', '1 kg de tomates'],
@@ -621,7 +621,7 @@ return [
     ],
     [
         'titulo' => 'Gambas al ajillo', 'raciones' => 2, 'minutos' => 10, 'dificultad' => 'facil',
-        'etiquetas' => ['pescado', 'rápida', 'sin gluten'],
+        'etiquetas' => ['pescado', 'rápida'],
         'descripcion' => 'En cazuela de barro y con pan para mojar.',
         'ingredientes' => [
             [16, 'ud', 'gambas', '16 gambas'],

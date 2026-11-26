@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Cocina\Alergenos;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -33,6 +34,36 @@ class Receta extends Model
     public function esDeFoodit(): bool
     {
         return $this->user_id === null;
+    }
+
+    /** @return list<string> Alérgenos de sus ingredientes, en el orden de la UE. */
+    public function alergenos(): array
+    {
+        $todos = $this->ingredientes->flatMap(fn ($i) => $i->alimento?->alergenos ?? [])->unique()->all();
+
+        return array_values(array_intersect(Alergenos::TODOS, $todos));
+    }
+
+    /** @return list<string> Grupos de alimentos que lleva (vegetal, carne, cerdo…). */
+    public function grupos(): array
+    {
+        return $this->ingredientes->map(fn ($i) => $i->alimento?->grupo)->filter()->unique()->values()->all();
+    }
+
+    /** ¿La puede comer esta persona? Alérgenos, dieta, alimentos vetados y, entre semana, el tiempo que tiene. */
+    public function compatibleCon(User $u, bool $entreSemana = true): bool
+    {
+        if (array_intersect($this->alergenos(), $u->alergenos ?? []) !== []) {
+            return false;
+        }
+        if (array_intersect($this->grupos(), Alergenos::EXCLUYE[$u->dieta ?? 'omnivora'] ?? []) !== []) {
+            return false;
+        }
+        if ($this->ingredientes->pluck('alimento_id')->intersect($u->alimentos_vetados ?? [])->isNotEmpty()) {
+            return false;
+        }
+
+        return ! ($entreSemana && $u->minutos_entre_semana && $this->minutos > $u->minutos_entre_semana);
     }
 
     /** Las de Foodit y las propias del usuario. */

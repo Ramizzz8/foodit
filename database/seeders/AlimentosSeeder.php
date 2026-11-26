@@ -11,7 +11,7 @@ class AlimentosSeeder extends Seeder
 {
     public function run(): void
     {
-        foreach (require database_path('data/alimentos.php') as [$nombre, $kcal, $p, $h, $g, $usda, $gml, $gud, $producto]) {
+        foreach (require database_path('data/alimentos.php') as [$nombre, $kcal, $p, $h, $g, $usda, $gml, $gud, $producto, $grupo, $alergenos]) {
             Alimento::updateOrCreate(['slug' => Str::slug($nombre)], [
                 'nombre' => $nombre,
                 'kcal' => $kcal,
@@ -22,6 +22,8 @@ class AlimentosSeeder extends Seeder
                 'gramos_por_ml' => $gml,
                 'gramos_por_unidad' => $gud,
                 'producto_mercadona_id' => $producto,
+                'grupo' => $grupo,
+                'alergenos' => $alergenos,
             ]);
         }
     }

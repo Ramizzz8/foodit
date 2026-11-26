@@ -33,6 +33,18 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
  * @property bool $planifica_desayuno
  * @property bool $es_demo
  * @property Carbon|null $caduca_en
+ * @property string|null $sexo
+ * @property int|null $edad
+ * @property int|null $altura_cm
+ * @property string|null $peso_kg
+ * @property string|null $actividad
+ * @property string|null $meta
+ * @property string $dieta
+ * @property list<string>|null $alergenos
+ * @property list<int>|null $alimentos_vetados
+ * @property int|null $minutos_entre_semana
+ * @property Carbon|null $consentimiento_salud_en
+ * @property Carbon|null $perfil_completo_en
  */
 #[Fillable(['name', 'email', 'password', 'objetivo_kcal', 'presupuesto_semanal', 'planifica_desayuno'])]
 #[Hidden(['password', 'two_factor_secret', 'two_factor_recovery_codes', 'remember_token'])]
@@ -47,6 +59,7 @@ class User extends Authenticatable implements MustVerifyEmail, PasskeyUser
         'presupuesto_semanal' => 60,
         'planifica_desayuno' => false,
         'es_demo' => false,
+        'dieta' => 'omnivora',
     ];
 
     /**
@@ -65,6 +78,14 @@ class User extends Authenticatable implements MustVerifyEmail, PasskeyUser
             'planifica_desayuno' => 'boolean',
             'es_demo' => 'boolean',
             'caduca_en' => 'datetime',
+            'edad' => 'integer',
+            'altura_cm' => 'integer',
+            'peso_kg' => 'decimal:1',
+            'alergenos' => 'array',
+            'alimentos_vetados' => 'array',
+            'minutos_entre_semana' => 'integer',
+            'consentimiento_salud_en' => 'datetime',
+            'perfil_completo_en' => 'datetime',
         ];
     }
 

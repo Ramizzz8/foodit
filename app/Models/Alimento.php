@@ -13,9 +13,11 @@ class Alimento extends Model
 
     protected $guarded = [];
 
+    protected $attributes = ['grupo' => 'vegetal', 'alergenos' => '[]'];
+
     protected function casts(): array
     {
-        return ['kcal' => 'float', 'proteinas' => 'float', 'hidratos' => 'float', 'grasas' => 'float', 'gramos_por_ml' => 'float', 'gramos_por_unidad' => 'float'];
+        return ['kcal' => 'float', 'proteinas' => 'float', 'hidratos' => 'float', 'grasas' => 'float', 'gramos_por_ml' => 'float', 'gramos_por_unidad' => 'float', 'alergenos' => 'array'];
     }
 
     /** El producto que ha elegido el usuario para este alimento o, si no, el de por defecto. */
