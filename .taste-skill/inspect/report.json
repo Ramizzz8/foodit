@@ -1,0 +1,2547 @@
+{
+ "url": "http://localhost:8020/",
+ "at": "2026-11-26T15:10:28.269Z",
+ "allow": [],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 8,
+   "filled": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "motion": {
+    "elements": 15,
+    "css": 1,
+    "transitions": 14,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 6982,
+     "screens": 7.8,
+     "words": 647,
+     "img": 17,
+     "video": 0,
+     "canvas": 0,
+     "svg": 1,
+     "sections": 6,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 3,
+     "uiAbuse": false,
+     "realPictures": 5,
+     "videoCount": 0,
+     "uiPictures": 2,
+     "pictureSamples": [
+      "a5648e373920a10023a7ab6304eb0dc0.jpg?fit=crop&h=",
+      "db53895dcbf286affe16def253a0ab89.jpg?fit=crop&h=",
+      "ebbfb6a904fe02ba5a88b02f2be911fd.jpg?fit=crop&h=",
+      "707625e3e76b36f1834d56c1ed8aa8df.jpg?fit=crop&h=",
+      "80c08ddcd236321ea41242268903726b.jpg?fit=crop&h="
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "DE LA RECETA AL TIQUE.",
+     "words": 5,
+     "chars": 22,
+     "lines": 2,
+     "size": 76,
+     "vw": 5.3,
+     "font": "Barlow Condensed",
+     "weight": 700,
+     "tracking": -0.01,
+     "leading": 0.9,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.35,
+     "top": 68,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "DE LA RECETA AL TIQUE.",
+     "words": 5,
+     "lines": 2,
+     "size": 76,
+     "font": "Barlow Condensed"
+    },
+    "headings": [
+     {
+      "text": "DE LA RECETA AL TIQUE.",
+      "words": 5,
+      "chars": 22,
+      "lines": 2,
+      "size": 76,
+      "vw": 5.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.35,
+      "top": 68,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "TRES COSAS QUE HACE POR TI",
+      "words": 6,
+      "chars": 26,
+      "lines": 2,
+      "size": 76,
+      "vw": 5.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.8,
+      "top": 1137,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "RECETAS CON PRECIO",
+      "words": 3,
+      "chars": 18,
+      "lines": 1,
+      "size": 44,
+      "vw": 3.1,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.36,
+      "top": 1362,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "LA SEMANA DE UN VISTAZO",
+      "words": 5,
+      "chars": 23,
+      "lines": 1,
+      "size": 44,
+      "vw": 3.1,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.36,
+      "top": 1992,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "LA LISTA SE HACE SOLA",
+      "words": 5,
+      "chars": 21,
+      "lines": 1,
+      "size": 44,
+      "vw": 3.1,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.36,
+      "top": 2622,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "PRODUCTOS DE VERDAD",
+      "words": 3,
+      "chars": 19,
+      "lines": 1,
+      "size": 76,
+      "vw": 5.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.8,
+      "top": 3404,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "ASÍ QUEDA TU SEMANA",
+      "words": 4,
+      "chars": 19,
+      "lines": 2,
+      "size": 76,
+      "vw": 5.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.43,
+      "top": 4120,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "LO QUE TE PREGUNTARÁS",
+      "words": 4,
+      "chars": 21,
+      "lines": 2,
+      "size": 76,
+      "vw": 5.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.62,
+      "top": 4716,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "PRUEBA",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 432,
+      "vw": 30,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 0.78,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 5958,
+      "tag": "span",
+      "kind": "heading"
+     },
+     {
+      "text": "VALENCIA",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 44,
+      "vw": 3.1,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.37,
+      "top": 6455,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "FOODIT",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 388.8,
+      "vw": 27,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.98,
+      "top": 6531,
+      "tag": "div",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 11,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Barlow",
+       "share": 0.93,
+       "mono": false
+      },
+      {
+       "family": "Barlow Condensed",
+       "share": 0.07,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      16,
+      17,
+      22,
+      44,
+      76,
+      389,
+      432
+     ],
+     "sizeCount": 8,
+     "notLoaded": [],
+     "body": {
+      "font": "Barlow",
+      "size": 17,
+      "leading": 1.38,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.3
+     },
+     "measureChars": 56,
+     "max": {
+      "size": 432,
+      "vw": 30,
+      "font": "Barlow Condensed",
+      "text": "Prueba"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.08,
+     "centerShare": 0.02,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#e2e2e2",
+       "top": 0,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.89
+       }
+      },
+      {
+       "color": "#3b0a0e",
+       "top": 0,
+       "hsl": {
+        "h": 355,
+        "s": 0.71,
+        "l": 0.14
+       }
+      },
+      {
+       "color": "#f3f3f1",
+       "top": 40,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#7d0c14",
+       "top": 1322,
+       "hsl": {
+        "h": 356,
+        "s": 0.82,
+        "l": 0.27
+       }
+      },
+      {
+       "color": "#d6d6d6",
+       "top": 2582,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.84
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#3b0a0e",
+       "share": 0.52
+      },
+      {
+       "color": "#f3f3f1",
+       "share": 0.13
+      },
+      {
+       "color": "#7a4a4e",
+       "share": 0.12
+      },
+      {
+       "color": "#525252",
+       "share": 0.1
+      },
+      {
+       "color": "#1c1c1c",
+       "share": 0.08
+      }
+     ],
+     "button": {
+      "bg": "#7d0c14",
+      "hsl": {
+       "h": 356,
+       "s": 0.82,
+       "l": 0.27
+      },
+      "fg": "#f3f3f1"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 0,
+     "height": 48,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Probar la demo"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 2,
+     "blurred": 0,
+     "roundedBoxes": 3,
+     "boxRadius": 6,
+     "squareMedia": 5,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 1322
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": false,
+     "height": 200,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "barlow",
+     "barlow condensed"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 6982,
+    "margins": {
+     "left": 144,
+     "right": 176
+    },
+    "sections": [
+     {
+      "sel": "section.flex.min-h-svh",
+      "tag": "section",
+      "top": 0,
+      "height": 1041,
+      "words": 109,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "De la receta",
+       "size": 76,
+       "tag": "h1"
+      },
+      "left": 468,
+      "right": 468,
+      "textLeft": 468,
+      "textRight": 468,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "h2#hojas.mx-auto.mb-12",
+      "tag": "h2",
+      "top": 1137,
+      "height": 137,
+      "words": 0,
+      "media": 0,
+      "middle": 0,
+      "heading": null,
+      "left": null,
+      "right": null,
+      "textLeft": null,
+      "textRight": null,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "article.revelar.grid",
+      "tag": "article",
+      "top": 1322,
+      "height": 630,
+      "words": 76,
+      "media": 0,
+      "middle": 276,
+      "heading": {
+       "text": "Recetas con precio",
+       "size": 44,
+       "tag": "h3"
+      },
+      "left": 184,
+      "right": 359,
+      "textLeft": 184,
+      "textRight": 359,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "article.revelar.grid",
+      "tag": "article",
+      "top": 1952,
+      "height": 630,
+      "words": 66,
+      "media": 0,
+      "middle": 189,
+      "heading": {
+       "text": "La semana de un vistazo",
+       "size": 44,
+       "tag": "h3"
+      },
+      "left": 184,
+      "right": 237,
+      "textLeft": 184,
+      "textRight": 237,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "article.revelar.grid",
+      "tag": "article",
+      "top": 2582,
+      "height": 630,
+      "words": 95,
+      "media": 0,
+      "middle": 227,
+      "heading": {
+       "text": "La lista se hace sola",
+       "size": 44,
+       "tag": "h3"
+      },
+      "left": 184,
+      "right": 233,
+      "textLeft": 184,
+      "textRight": 233,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": true,
+      "pinned": false
+     },
+     {
+      "sel": "section.bg-[#f3f3f1].px-4",
+      "tag": "section",
+      "top": 3308,
+      "height": 717,
+      "words": 71,
+      "media": 5,
+      "middle": 16,
+      "heading": {
+       "text": "Productos de verdad",
+       "size": 76,
+       "tag": "h2"
+      },
+      "left": 144,
+      "right": 144,
+      "textLeft": 144,
+      "textRight": 159,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.bg-[#7d0c14].px-4",
+      "tag": "section",
+      "top": 4024,
+      "height": 596,
+      "words": 76,
+      "media": 0,
+      "middle": 398,
+      "heading": {
+       "text": "Así queda",
+       "size": 76,
+       "tag": "h2"
+      },
+      "left": 144,
+      "right": 176,
+      "textLeft": 144,
+      "textRight": 176,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.bg-[#e2e2e2].px-4",
+      "tag": "section",
+      "top": 4620,
+      "height": 1222,
+      "words": 63,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Lo que",
+       "size": 76,
+       "tag": "h2"
+      },
+      "left": 272,
+      "right": 272,
+      "textLeft": 272,
+      "textRight": 470,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "button.group.relative",
+      "tag": "button",
+      "top": 5843,
+      "height": 468,
+      "words": 16,
+      "media": 0,
+      "middle": 87,
+      "heading": {
+       "text": "Prueba",
+       "size": 432,
+       "tag": "span"
+      },
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 159,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.grid.gap-2",
+      "tag": "footer",
+      "top": 6311,
+      "height": 669,
+      "words": 51,
+      "media": 0,
+      "middle": 162,
+      "heading": {
+       "text": "Valencia",
+       "size": 44,
+       "tag": "p"
+      },
+      "left": 36,
+      "right": 404,
+      "textLeft": 36,
+      "textRight": 404,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "DE LA RECETA AL TIQUE.",
+      "size": 76,
+      "top": 68,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 144,
+      "n": 7
+     },
+     {
+      "x": 184,
+      "n": 6
+     },
+     {
+      "x": 468,
+      "n": 3
+     },
+     {
+      "x": 272,
+      "n": 2
+     },
+     {
+      "x": 296,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 19,
+    "bodySize": 17,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0.25,
+    "voidBox": {
+     "x": 0,
+     "y": 120,
+     "w": 420,
+     "h": 780
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 7,
+   "filled": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "motion": {
+    "elements": 15,
+    "css": 1,
+    "transitions": 14,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 6996,
+     "screens": 6.8,
+     "words": 647,
+     "img": 17,
+     "video": 0,
+     "canvas": 0,
+     "svg": 1,
+     "sections": 6,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 3,
+     "uiAbuse": false,
+     "realPictures": 0,
+     "videoCount": 0,
+     "uiPictures": 3,
+     "pictureSamples": [],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "DE LA RECETA AL TIQUE.",
+     "words": 5,
+     "chars": 22,
+     "lines": 2,
+     "size": 44,
+     "vw": 5.7,
+     "font": "Barlow Condensed",
+     "weight": 700,
+     "tracking": -0.01,
+     "leading": 0.9,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.66,
+     "top": 88,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "DE LA RECETA AL TIQUE.",
+     "words": 5,
+     "lines": 2,
+     "size": 44,
+     "font": "Barlow Condensed"
+    },
+    "headings": [
+     {
+      "text": "DE LA RECETA AL TIQUE.",
+      "words": 5,
+      "chars": 22,
+      "lines": 2,
+      "size": 44,
+      "vw": 5.7,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.66,
+      "top": 88,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "TRES COSAS QUE HACE POR TI",
+      "words": 6,
+      "chars": 26,
+      "lines": 2,
+      "size": 44,
+      "vw": 5.7,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 1120,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "RECETAS CON PRECIO",
+      "words": 3,
+      "chars": 18,
+      "lines": 2,
+      "size": 44,
+      "vw": 5.7,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.4,
+      "top": 1287,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "LA SEMANA DE UN VISTAZO",
+      "words": 5,
+      "chars": 23,
+      "lines": 2,
+      "size": 44,
+      "vw": 5.7,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.4,
+      "top": 2004,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "LA LISTA SE HACE SOLA",
+      "words": 5,
+      "chars": 21,
+      "lines": 2,
+      "size": 44,
+      "vw": 5.7,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.4,
+      "top": 2721,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "PRODUCTOS DE VERDAD",
+      "words": 3,
+      "chars": 19,
+      "lines": 1,
+      "size": 44,
+      "vw": 5.7,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 3590,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "ASÍ QUEDA TU SEMANA",
+      "words": 4,
+      "chars": 19,
+      "lines": 2,
+      "size": 44,
+      "vw": 5.7,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.25,
+      "top": 4217,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "LO QUE TE PREGUNTARÁS",
+      "words": 4,
+      "chars": 21,
+      "lines": 2,
+      "size": 44,
+      "vw": 5.7,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 4813,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "PRUEBA",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 230.4,
+      "vw": 30,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 0.78,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.78,
+      "top": 6218,
+      "tag": "span",
+      "kind": "heading"
+     },
+     {
+      "text": "VALENCIA",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 44,
+      "vw": 5.7,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.34,
+      "top": 6653,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "FOODIT",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 207.4,
+      "vw": 27,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.97,
+      "top": 6729,
+      "tag": "div",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 11,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 1,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Barlow",
+       "share": 0.93,
+       "mono": false
+      },
+      {
+       "family": "Barlow Condensed",
+       "share": 0.07,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      16,
+      17,
+      22,
+      44,
+      207,
+      230
+     ],
+     "sizeCount": 7,
+     "notLoaded": [],
+     "body": {
+      "font": "Barlow",
+      "size": 17,
+      "leading": 1.38,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.3
+     },
+     "measureChars": 56,
+     "max": {
+      "size": 230.4,
+      "vw": 30,
+      "font": "Barlow Condensed",
+      "text": "Prueba"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.08,
+     "centerShare": 0.02,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#e2e2e2",
+       "top": 0,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.89
+       }
+      },
+      {
+       "color": "#3b0a0e",
+       "top": 0,
+       "hsl": {
+        "h": 355,
+        "s": 0.71,
+        "l": 0.14
+       }
+      },
+      {
+       "color": "#f3f3f1",
+       "top": 60,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#7d0c14",
+       "top": 1247,
+       "hsl": {
+        "h": 356,
+        "s": 0.82,
+        "l": 0.27
+       }
+      },
+      {
+       "color": "#d6d6d6",
+       "top": 2681,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.84
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#3b0a0e",
+       "share": 0.52
+      },
+      {
+       "color": "#f3f3f1",
+       "share": 0.13
+      },
+      {
+       "color": "#7a4a4e",
+       "share": 0.12
+      },
+      {
+       "color": "#525252",
+       "share": 0.1
+      },
+      {
+       "color": "#1c1c1c",
+       "share": 0.08
+      }
+     ],
+     "button": {
+      "bg": "#7d0c14",
+      "hsl": {
+       "h": 356,
+       "s": 0.82,
+       "l": 0.27
+      },
+      "fg": "#f3f3f1"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 0,
+     "height": 48,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Probar la demo"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 2,
+     "blurred": 0,
+     "roundedBoxes": 3,
+     "boxRadius": 6,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": false,
+     "height": 295,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "barlow",
+     "barlow condensed"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 6996,
+    "margins": {
+     "left": 24,
+     "right": 24
+    },
+    "sections": [
+     {
+      "sel": "section.flex.min-h-svh",
+      "tag": "section",
+      "top": 0,
+      "height": 1024,
+      "words": 109,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "De la receta",
+       "size": 44,
+       "tag": "h1"
+      },
+      "left": 132,
+      "right": 132,
+      "textLeft": 132,
+      "textRight": 132,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.bg-[#e2e2e2].px-3",
+      "tag": "section",
+      "top": 1024,
+      "height": 2470,
+      "words": 237,
+      "media": 0,
+      "middle": 46,
+      "heading": {
+       "text": "Tres cosas",
+       "size": 44,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 77,
+      "textLeft": 24,
+      "textRight": 77,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.bg-[#f3f3f1].px-4",
+      "tag": "section",
+      "top": 3494,
+      "height": 627,
+      "words": 71,
+      "media": 0,
+      "middle": 16,
+      "heading": {
+       "text": "Productos de verdad",
+       "size": 44,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 39,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.bg-[#7d0c14].px-4",
+      "tag": "section",
+      "top": 4121,
+      "height": 596,
+      "words": 76,
+      "media": 0,
+      "middle": 93,
+      "heading": {
+       "text": "Así queda",
+       "size": 44,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 56,
+      "textLeft": 24,
+      "textRight": 56,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.bg-[#e2e2e2].px-4",
+      "tag": "section",
+      "top": 4717,
+      "height": 1165,
+      "words": 63,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Lo que",
+       "size": 44,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 70,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "button.group.relative",
+      "tag": "button",
+      "top": 5881,
+      "height": 532,
+      "words": 16,
+      "media": 0,
+      "middle": 13,
+      "heading": {
+       "text": "Prueba",
+       "size": 230,
+       "tag": "span"
+      },
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 85,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.grid.gap-2",
+      "tag": "footer",
+      "top": 6414,
+      "height": 582,
+      "words": 52,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Foodit",
+       "size": 207,
+       "tag": "span"
+      },
+      "left": 36,
+      "right": 121,
+      "textLeft": 36,
+      "textRight": 121,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "DE LA RECETA AL TIQUE.",
+      "size": 44,
+      "top": 88,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 24,
+      "n": 9
+     },
+     {
+      "x": 64,
+      "n": 6
+     },
+     {
+      "x": 132,
+      "n": 3
+     },
+     {
+      "x": 48,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 19,
+    "bodySize": 17,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 10,
+   "filled": [
+    0.83,
+    0.83,
+    0.88,
+    0.91,
+    0.83,
+    0.83,
+    0.83,
+    0.83,
+    0.83,
+    0.83
+   ],
+   "motion": {
+    "elements": 15,
+    "css": 1,
+    "transitions": 14,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 474,
+     "h": 1026
+    },
+    "page": {
+     "height": 7631,
+     "screens": 7.4,
+     "words": 647,
+     "img": 17,
+     "video": 0,
+     "canvas": 0,
+     "svg": 1,
+     "sections": 6,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 3,
+     "uiAbuse": false,
+     "realPictures": 5,
+     "videoCount": 0,
+     "uiPictures": 3,
+     "pictureSamples": [
+      "a5648e373920a10023a7ab6304eb0dc0.jpg?fit=crop&h=",
+      "db53895dcbf286affe16def253a0ab89.jpg?fit=crop&h=",
+      "ebbfb6a904fe02ba5a88b02f2be911fd.jpg?fit=crop&h=",
+      "707625e3e76b36f1834d56c1ed8aa8df.jpg?fit=crop&h=",
+      "80c08ddcd236321ea41242268903726b.jpg?fit=crop&h="
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "DE LA RECETA AL TIQUE.",
+     "words": 5,
+     "chars": 22,
+     "lines": 2,
+     "size": 44,
+     "vw": 9.3,
+     "font": "Barlow Condensed",
+     "weight": 700,
+     "tracking": -0.01,
+     "leading": 0.9,
+     "upper": true,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.67,
+     "top": 68,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "DE LA RECETA AL TIQUE.",
+     "words": 5,
+     "lines": 2,
+     "size": 44,
+     "font": "Barlow Condensed"
+    },
+    "headings": [
+     {
+      "text": "DE LA RECETA AL TIQUE.",
+      "words": 5,
+      "chars": 22,
+      "lines": 2,
+      "size": 44,
+      "vw": 9.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.67,
+      "top": 68,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "TOTAL CENAS 15,74 €",
+      "words": 4,
+      "chars": 19,
+      "lines": 1,
+      "size": 22,
+      "vw": 4.6,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.67,
+      "top": 793,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "TRES COSAS QUE HACE POR TI",
+      "words": 6,
+      "chars": 26,
+      "lines": 2,
+      "size": 44,
+      "vw": 9.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.77,
+      "top": 1079,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "RECETAS CON PRECIO",
+      "words": 3,
+      "chars": 18,
+      "lines": 2,
+      "size": 44,
+      "vw": 9.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.67,
+      "top": 1230,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Lentejas estofadas",
+      "words": 2,
+      "chars": 18,
+      "lines": 1,
+      "size": 22,
+      "vw": 4.6,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.6,
+      "top": 1535,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "LA SEMANA DE UN VISTAZO",
+      "words": 5,
+      "chars": 23,
+      "lines": 2,
+      "size": 44,
+      "vw": 9.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.67,
+      "top": 1821,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "LA LISTA SE HACE SOLA",
+      "words": 5,
+      "chars": 21,
+      "lines": 1,
+      "size": 44,
+      "vw": 9.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2412,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "PRODUCTOS DE VERDAD",
+      "words": 3,
+      "chars": 19,
+      "lines": 1,
+      "size": 44,
+      "vw": 9.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.76,
+      "top": 3230,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "ASÍ QUEDA TU SEMANA",
+      "words": 4,
+      "chars": 19,
+      "lines": 2,
+      "size": 44,
+      "vw": 9.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.76,
+      "top": 4447,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "LO QUE TE PREGUNTARÁS",
+      "words": 4,
+      "chars": 21,
+      "lines": 2,
+      "size": 44,
+      "vw": 9.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.01,
+      "leading": 0.9,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.76,
+      "top": 5303,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "¿De dónde salen los precios?",
+      "words": 5,
+      "chars": 28,
+      "lines": 1,
+      "size": 22,
+      "vw": 4.6,
+      "font": "Barlow",
+      "weight": 500,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.76,
+      "top": 5468,
+      "tag": "button",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Son exactos?",
+      "words": 2,
+      "chars": 13,
+      "lines": 1,
+      "size": 22,
+      "vw": 4.6,
+      "font": "Barlow",
+      "weight": 500,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.76,
+      "top": 5756,
+      "tag": "button",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Y las calorías?",
+      "words": 3,
+      "chars": 16,
+      "lines": 1,
+      "size": 22,
+      "vw": 4.6,
+      "font": "Barlow",
+      "weight": 500,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.76,
+      "top": 5875,
+      "tag": "button",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Puedo elegir mis productos?",
+      "words": 4,
+      "chars": 28,
+      "lines": 1,
+      "size": 22,
+      "vw": 4.6,
+      "font": "Barlow",
+      "weight": 500,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.76,
+      "top": 5993,
+      "tag": "button",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Qué pasa con la demo?",
+      "words": 5,
+      "chars": 22,
+      "lines": 1,
+      "size": 22,
+      "vw": 4.6,
+      "font": "Barlow",
+      "weight": 500,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.76,
+      "top": 6112,
+      "tag": "button",
+      "kind": "heading"
+     },
+     {
+      "text": "¿Es una app de Mercadona?",
+      "words": 5,
+      "chars": 25,
+      "lines": 1,
+      "size": 22,
+      "vw": 4.6,
+      "font": "Barlow",
+      "weight": 500,
+      "tracking": 0,
+      "leading": 1.5,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.76,
+      "top": 6230,
+      "tag": "button",
+      "kind": "heading"
+     },
+     {
+      "text": "PRUEBA",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 117,
+      "vw": 24.7,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": -0.03,
+      "leading": 0.78,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.64,
+      "top": 6731,
+      "tag": "span",
+      "kind": "heading"
+     },
+     {
+      "text": "Comer bien y gastar menos empieza por saber lo que cuesta tu semana.",
+      "words": 13,
+      "chars": 68,
+      "lines": 3,
+      "size": 22,
+      "vw": 4.6,
+      "font": "Barlow",
+      "weight": 400,
+      "tracking": 0,
+      "leading": 1.38,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.7,
+      "top": 6866,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "VALENCIA",
+      "words": 1,
+      "chars": 8,
+      "lines": 1,
+      "size": 44,
+      "vw": 9.3,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.7,
+      "top": 7331,
+      "tag": "p",
+      "kind": "statement"
+     },
+     {
+      "text": "FOODIT",
+      "words": 1,
+      "chars": 6,
+      "lines": 1,
+      "size": 105.3,
+      "vw": 22.2,
+      "font": "Barlow Condensed",
+      "weight": 700,
+      "tracking": 0,
+      "leading": 1,
+      "upper": true,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.79,
+      "top": 7403,
+      "tag": "div",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 20,
+     "maxLines": 3,
+     "over2Lines": 0,
+     "statements": 4,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Barlow",
+       "share": 0.93,
+       "mono": false
+      },
+      {
+       "family": "Barlow Condensed",
+       "share": 0.07,
+       "mono": false
+      }
+     ],
+     "familyCount": 2,
+     "sizes": [
+      14,
+      16,
+      17,
+      22,
+      44,
+      105,
+      117
+     ],
+     "sizeCount": 7,
+     "notLoaded": [],
+     "body": {
+      "font": "Barlow",
+      "size": 17,
+      "leading": 1.38,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 15.3
+     },
+     "measureChars": 42,
+     "max": {
+      "size": 117,
+      "vw": 24.7,
+      "font": "Barlow Condensed",
+      "text": "Prueba"
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0.08,
+     "centerShare": 0.02,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#e2e2e2",
+       "top": 0,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.89
+       }
+      },
+      {
+       "color": "#3b0a0e",
+       "top": 0,
+       "hsl": {
+        "h": 355,
+        "s": 0.71,
+        "l": 0.14
+       }
+      },
+      {
+       "color": "#f3f3f1",
+       "top": 40,
+       "hsl": {
+        "h": 60,
+        "s": 0.08,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#7d0c14",
+       "top": 1206,
+       "hsl": {
+        "h": 356,
+        "s": 0.82,
+        "l": 0.27
+       }
+      },
+      {
+       "color": "#d6d6d6",
+       "top": 2388,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 0.84
+       }
+      },
+      {
+       "color": "#ffffff",
+       "top": 2603,
+       "hsl": {
+        "h": 0,
+        "s": 0,
+        "l": 1
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#3b0a0e",
+       "share": 0.52
+      },
+      {
+       "color": "#f3f3f1",
+       "share": 0.13
+      },
+      {
+       "color": "#7a4a4e",
+       "share": 0.12
+      },
+      {
+       "color": "#525252",
+       "share": 0.1
+      },
+      {
+       "color": "#1c1c1c",
+       "share": 0.08
+      }
+     ],
+     "button": {
+      "bg": "#7d0c14",
+      "hsl": {
+       "h": 356,
+       "s": 0.82,
+       "l": 0.27
+      },
+      "fg": "#f3f3f1"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 1,
+     "inHero": 1,
+     "radius": 0,
+     "height": 48,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Probar la demo"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 0,
+     "hairlineSamples": [],
+     "outlinedBoxes": 0,
+     "dashed": 2,
+     "blurred": 0,
+     "roundedBoxes": 3,
+     "boxRadius": 6,
+     "squareMedia": 0,
+     "roundedMedia": 0,
+     "mediaRadius": 0,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 7,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 0
+      },
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 1206
+      },
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 6846
+      }
+     ]
+    },
+    "heroMedia": [],
+    "nav": {
+     "links": 0,
+     "fixed": false,
+     "height": 133,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": [
+     "barlow",
+     "barlow condensed"
+    ]
+   },
+   "layout": {
+    "viewport": {
+     "w": 474,
+     "h": 1026
+    },
+    "pageH": 7631,
+    "margins": {
+     "left": 16,
+     "right": 13
+    },
+    "sections": [
+     {
+      "sel": "section.flex.min-h-svh",
+      "tag": "section",
+      "top": 0,
+      "height": 983,
+      "words": 109,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "De la receta",
+       "size": 44,
+       "tag": "h1"
+      },
+      "left": 36,
+      "right": 120,
+      "textLeft": 36,
+      "textRight": 120,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.bg-[#e2e2e2].px-3",
+      "tag": "section",
+      "top": 983,
+      "height": 2151,
+      "words": 243,
+      "media": 0,
+      "middle": 8,
+      "heading": {
+       "text": "Tres cosas",
+       "size": 44,
+       "tag": "h2"
+      },
+      "left": 12,
+      "right": 13,
+      "textLeft": 12,
+      "textRight": 13,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.bg-[#f3f3f1].px-4",
+      "tag": "section",
+      "top": 3134,
+      "height": 1218,
+      "words": 71,
+      "media": 5,
+      "middle": 0,
+      "heading": {
+       "text": "Productos de verdad",
+       "size": 44,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 100,
+      "textLeft": 16,
+      "textRight": 101,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.bg-[#7d0c14].px-4",
+      "tag": "section",
+      "top": 4351,
+      "height": 856,
+      "words": 76,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Así queda",
+       "size": 44,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 124,
+      "textLeft": 16,
+      "textRight": 124,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "section.bg-[#e2e2e2].px-4",
+      "tag": "section",
+      "top": 5207,
+      "height": 1192,
+      "words": 63,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Lo que",
+       "size": 44,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 100,
+      "textLeft": 16,
+      "textRight": 146,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "button.group.relative",
+      "tag": "button",
+      "top": 6399,
+      "height": 439,
+      "words": 16,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Prueba",
+       "size": 117,
+       "tag": "span"
+      },
+      "left": 0,
+      "right": 84,
+      "textLeft": 16,
+      "textRight": 127,
+      "fullBleed": false,
+      "footer": false,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.grid.gap-2",
+      "tag": "footer",
+      "top": 6838,
+      "height": 793,
+      "words": 52,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Valencia",
+       "size": 44,
+       "tag": "p"
+      },
+      "left": 28,
+      "right": 117,
+      "textLeft": 28,
+      "textRight": 117,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "DE LA RECETA AL TIQUE.",
+      "size": 44,
+      "top": 68,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 36,
+      "n": 10
+     },
+     {
+      "x": 12,
+      "n": 9
+     }
+    ],
+    "leftBlocks": 19,
+    "bodySize": 17,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "dashed",
+   "width": 1440,
+   "message": "2 dashed/dotted border(s).",
+   "fix": "Remove unless it is a real drop zone.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  },
+  {
+   "level": "WARN",
+   "id": "off-centre",
+   "width": 1440,
+   "message": "The margins differ: 144px on the left, 176px on the right, at 1440px.",
+   "fix": "Put the navigation and the content on one pair of margins; check for padding on one side only, a scrollbar gutter, or a header on another inset than the page."
+  },
+  {
+   "level": "WARN",
+   "id": "still-page",
+   "width": 1440,
+   "message": "Little motion: 15 element(s) moved while the page loaded and scrolled.",
+   "fix": "Give every section an entrance for its parts (not one fade of the whole block) and add one moving picture: a looping clip or a slow move on a photograph."
+  },
+  {
+   "level": "WARN",
+   "id": "card-rows",
+   "width": 390,
+   "message": "3 rows of identical boxed cards.",
+   "fix": "Vary the composition; not every section is a card grid."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "C:\\dev\\foodit\\.taste-skill\\inspect\\desktop-fold.jpg",
+   "pages": [
+    "C:\\dev\\foodit\\.taste-skill\\inspect\\desktop-page-01.jpg",
+    "C:\\dev\\foodit\\.taste-skill\\inspect\\desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "C:\\dev\\foodit\\.taste-skill\\inspect\\tablet-fold.jpg",
+   "pages": [
+    "C:\\dev\\foodit\\.taste-skill\\inspect\\tablet-page-01.jpg",
+    "C:\\dev\\foodit\\.taste-skill\\inspect\\tablet-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "C:\\dev\\foodit\\.taste-skill\\inspect\\mobile-fold.jpg",
+   "pages": [
+    "C:\\dev\\foodit\\.taste-skill\\inspect\\mobile-page-01.jpg",
+    "C:\\dev\\foodit\\.taste-skill\\inspect\\mobile-page-02.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

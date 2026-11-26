@@ -1,7 +1,10 @@
 @import 'tailwindcss';
 
 @import 'tw-animate-css';
-@import '@fontsource-variable/geist';
+@import '@fontsource/barlow/400.css';
+@import '@fontsource/barlow/500.css';
+@import '@fontsource/barlow/600.css';
+@import '@fontsource/barlow-condensed/700.css';
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -10,9 +13,11 @@
 
 @theme {
     --font-sans:
-        'Geist Variable', ui-sans-serif, system-ui, sans-serif,
+        'Barlow', ui-sans-serif, system-ui, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
+
+    --font-display: 'Barlow Condensed', 'Barlow', ui-sans-serif, system-ui, sans-serif;
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -69,8 +74,8 @@
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
+    --primary: #7d0c14;
+    --primary-foreground: #f4f1ee;
     --secondary: oklch(0.97 0 0);
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
@@ -81,13 +86,13 @@
     --destructive-foreground: oklch(0.577 0.245 27.325);
     --border: oklch(0.922 0 0);
     --input: oklch(0.922 0 0);
-    --ring: oklch(0.87 0 0);
+    --ring: #b35a60;
     --chart-1: oklch(0.646 0.222 41.116);
     --chart-2: oklch(0.6 0.118 184.704);
     --chart-3: oklch(0.398 0.07 227.392);
     --chart-4: oklch(0.828 0.189 84.429);
     --chart-5: oklch(0.769 0.188 70.08);
-    --radius: 0.625rem;
+    --radius: 0.375rem;
     --sidebar: oklch(0.985 0 0);
     --sidebar-foreground: oklch(0.145 0 0);
     --sidebar-primary: oklch(0.205 0 0);
@@ -105,8 +110,8 @@
     --card-foreground: oklch(0.985 0 0);
     --popover: oklch(0.145 0 0);
     --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.985 0 0);
-    --primary-foreground: oklch(0.205 0 0);
+    --primary: #e8a3a8;
+    --primary-foreground: #3a0509;
     --secondary: oklch(0.269 0 0);
     --secondary-foreground: oklch(0.985 0 0);
     --muted: oklch(0.269 0 0);
@@ -141,4 +146,36 @@
     body {
         @apply bg-background text-foreground;
     }
+}
+
+/* Títulos con la letra condensada del tique. */
+h1,
+h2 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+}
+
+/* El total del tique «se reimprime» al cambiar una cena. */
+@keyframes imprimir {
+    from {
+        opacity: 0.2;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Entrada suave de las piezas de la portada al hacer scroll (ver useRevelar). */
+.con-revelar .revelar {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+        opacity 0.6s ease var(--retraso, 0ms),
+        transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--retraso, 0ms);
+}
+.con-revelar .revelar.visible {
+    opacity: 1;
+    transform: none;
 }

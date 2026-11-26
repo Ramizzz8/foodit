@@ -5,11 +5,12 @@ use App\Http\Controllers\DemoController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\ObjetivosController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\PortadaController;
 use App\Http\Controllers\RecetaController;
 use App\Models\Receta;
 use Illuminate\Support\Facades\Route;
 
-Route::inertia('/', 'welcome')->name('home');
+Route::get('/', PortadaController::class)->name('home');
 
 Route::post('demo/entrar', [DemoController::class, 'entrar'])->name('demo.entrar');
 
