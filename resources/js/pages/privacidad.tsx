@@ -1,12 +1,12 @@
-import { Head, Link } from "@inertiajs/react";
-import AppLogoIcon from "@/components/app-logo-icon";
+import { Head, Link } from '@inertiajs/react';
+import AppLogoIcon from '@/components/app-logo-icon';
 
 const APARTADOS: [string, React.ReactNode][] = [
     [
-        "Quién",
+        'Quién',
         <>
             Foodit es un proyecto personal de Andrés Ramírez. Para cualquier
-            cosa sobre tus datos escribe a{" "}
+            cosa sobre tus datos escribe a{' '}
             <a
                 href="mailto:hola@andresrami.com"
                 className="font-medium underline underline-offset-4"
@@ -17,7 +17,7 @@ const APARTADOS: [string, React.ReactNode][] = [
         </>,
     ],
     [
-        "Qué guardamos",
+        'Qué guardamos',
         <ul className="list-disc space-y-2 pl-5">
             <li>
                 Tu cuenta: nombre, email y la contraseña cifrada (nadie puede
@@ -35,11 +35,11 @@ const APARTADOS: [string, React.ReactNode][] = [
         </ul>,
     ],
     [
-        "Para qué",
-        "Para calcular tus calorías, quitar de tu semana lo que no puedes o no quieres comer, proponerte menús que encajen en tu presupuesto y hacer tu lista de la compra. Para nada más: no hay publicidad, no se venden datos y no se usan para entrenar ninguna IA.",
+        'Para qué',
+        'Para calcular tus calorías, quitar de tu semana lo que no puedes o no quieres comer, proponerte menús que encajen en tu presupuesto y hacer tu lista de la compra. Para nada más: no hay publicidad, no se venden datos y no se usan para entrenar ninguna IA.',
     ],
     [
-        "Dónde y con quién",
+        'Dónde y con quién',
         <ul className="list-disc space-y-2 pl-5">
             <li>
                 Todo se guarda en un servidor de Hetzner en la Unión Europea.
@@ -60,16 +60,16 @@ const APARTADOS: [string, React.ReactNode][] = [
         </ul>,
     ],
     [
-        "Cuánto tiempo",
-        "Mientras tengas la cuenta. Si la borras desde Ajustes → Perfil, se borra todo al momento: perfil, recetas, plan y lista. Las cuentas de ejemplo («Ver un ejemplo sin registrarme») se borran solas a las 24 horas.",
+        'Cuánto tiempo',
+        'Mientras tengas la cuenta. Si la borras desde Ajustes → Perfil, se borra todo al momento: perfil, recetas, plan y lista. Las cuentas de ejemplo («Ver un ejemplo sin registrarme») se borran solas a las 24 horas.',
     ],
     [
-        "Tus derechos",
-        "Puedes ver y cambiar tus datos en Ajustes, retirar el consentimiento de los datos de salud borrándolos de tu perfil, y pedir una copia o el borrado escribiendo al email de arriba. Si crees que no se han tratado bien, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).",
+        'Tus derechos',
+        'Puedes ver y cambiar tus datos en Ajustes, retirar el consentimiento de los datos de salud borrándolos de tu perfil, y pedir una copia o el borrado escribiendo al email de arriba. Si crees que no se han tratado bien, puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).',
     ],
     [
-        "Alérgenos",
-        "Los alérgenos de Foodit son orientativos: salen de los ingredientes genéricos de cada receta, no de la etiqueta del producto que compras. Revisa siempre las etiquetas. Foodit no es consejo médico.",
+        'Alérgenos',
+        'Los alérgenos de Foodit son orientativos: salen de los ingredientes genéricos de cada receta, no de la etiqueta del producto que compras. Revisa siempre las etiquetas. Foodit no es consejo médico.',
     ],
 ];
 

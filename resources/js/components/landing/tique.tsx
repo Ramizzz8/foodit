@@ -1,7 +1,7 @@
-import { Link, router } from "@inertiajs/react";
-import { useMemo, useState } from "react";
-import { formatoEuros } from "@/lib/formato";
-import { cn } from "@/lib/utils";
+import { Link, router } from '@inertiajs/react';
+import { useMemo, useState } from 'react';
+import { formatoEuros } from '@/lib/formato';
+import { cn } from '@/lib/utils';
 
 export type DiaTique = {
     dia: string;
@@ -14,11 +14,11 @@ export type DiaTique = {
     }[];
 };
 
-const entero = new Intl.NumberFormat("es-ES", { maximumFractionDigits: 0 });
+const entero = new Intl.NumberFormat('es-ES', { maximumFractionDigits: 0 });
 
 /** Borde inferior cortado en zigzag, como el papel de un tique. */
 export const ZIGZAG =
-    "polygon(0 0,100% 0,100% calc(100% - 10px),95% 100%,90% calc(100% - 10px),85% 100%,80% calc(100% - 10px),75% 100%,70% calc(100% - 10px),65% 100%,60% calc(100% - 10px),55% 100%,50% calc(100% - 10px),45% 100%,40% calc(100% - 10px),35% 100%,30% calc(100% - 10px),25% 100%,20% calc(100% - 10px),15% 100%,10% calc(100% - 10px),5% 100%,0 calc(100% - 10px))";
+    'polygon(0 0,100% 0,100% calc(100% - 10px),95% 100%,90% calc(100% - 10px),85% 100%,80% calc(100% - 10px),75% 100%,70% calc(100% - 10px),65% 100%,60% calc(100% - 10px),55% 100%,50% calc(100% - 10px),45% 100%,40% calc(100% - 10px),35% 100%,30% calc(100% - 10px),25% 100%,20% calc(100% - 10px),15% 100%,10% calc(100% - 10px),5% 100%,0 calc(100% - 10px))';
 
 /** El tique de la semana: cada cena se cambia con un toque y el total se «reimprime». */
 export function Tique({
@@ -91,16 +91,16 @@ export function Tique({
                         {demo && (
                             <button
                                 type="button"
-                                onClick={() => router.post("/demo/entrar")}
+                                onClick={() => router.post('/demo/entrar')}
                                 className={cn(
                                     registro
-                                        ? "font-medium underline underline-offset-4"
-                                        : "bg-[#7d0c14] px-5 py-3 font-medium text-[#f3f3f1] hover:bg-[#5e0910]",
+                                        ? 'font-medium underline underline-offset-4'
+                                        : 'bg-[#7d0c14] px-5 py-3 font-medium text-[#f3f3f1] hover:bg-[#5e0910]',
                                 )}
                             >
                                 {registro
-                                    ? "Ver un ejemplo sin registrarme"
-                                    : "Probar la demo"}
+                                    ? 'Ver un ejemplo sin registrarme'
+                                    : 'Probar la demo'}
                             </button>
                         )}
                         <Link
@@ -124,7 +124,7 @@ export function Tique({
                                 type="button"
                                 onClick={() => cambiar(i)}
                                 aria-label={`${l.dia}: ${l.receta.titulo}, ${formatoEuros(l.receta.coste)}. Cambiar por otra cena`}
-                                className="group grid w-full grid-cols-[2.5rem_2.75rem_1fr_auto] sm:grid-cols-[2.5rem_5rem_1fr_auto] items-center gap-2 rounded px-1 py-1.5 text-left text-[17px] hover:bg-[#7d0c14]/8 focus-visible:outline-2 focus-visible:outline-[#7d0c14]"
+                                className="group grid w-full grid-cols-[2.5rem_2.75rem_1fr_auto] items-center gap-2 rounded px-1 py-1.5 text-left text-[17px] hover:bg-[#7d0c14]/8 focus-visible:outline-2 focus-visible:outline-[#7d0c14] sm:grid-cols-[2.5rem_5rem_1fr_auto]"
                             >
                                 {l.receta.foto ? (
                                     <img
@@ -176,8 +176,8 @@ export function Tique({
                 <p className="text-sm text-[#7a4a4e]">
                     Precios estimados de Mercadona Valencia
                     {preciosDe
-                        ? ` del ${new Date(preciosDe).toLocaleDateString("es-ES", { day: "numeric", month: "numeric" })}`
-                        : ""}
+                        ? ` del ${new Date(preciosDe).toLocaleDateString('es-ES', { day: 'numeric', month: 'numeric' })}`
+                        : ''}
                     .
                 </p>
             </div>

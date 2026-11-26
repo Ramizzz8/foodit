@@ -1,13 +1,13 @@
-import { router } from "@inertiajs/react";
-import { useState } from "react";
-import { cantidad } from "@/components/lista/cantidades";
-import { ZIGZAG } from "@/components/landing/tique";
-import { formatoEuros } from "@/lib/formato";
-import { cn } from "@/lib/utils";
+import { router } from '@inertiajs/react';
+import { useState } from 'react';
+import { cantidad } from '@/components/lista/cantidades';
+import { ZIGZAG } from '@/components/landing/tique';
+import { formatoEuros } from '@/lib/formato';
+import { cn } from '@/lib/utils';
 
-const PAPEL = "bg-[#f3f3f1] text-[#3b0a0e]";
-const GRANATE = "bg-[#7d0c14] text-[#f3f3f1]";
-const GRIS = "bg-[#d6d6d6] text-[#3b0a0e]";
+const PAPEL = 'bg-[#f3f3f1] text-[#3b0a0e]';
+const GRANATE = 'bg-[#7d0c14] text-[#f3f3f1]';
+const GRIS = 'bg-[#d6d6d6] text-[#3b0a0e]';
 
 /** Fragmentos reales de la interfaz de Foodit, a tamaño real, para las hojas de funciones. */
 function FragmentoReceta() {
@@ -42,18 +42,18 @@ function FragmentoReceta() {
 
 function FragmentoSemana() {
     const dias = [
-        ["Lun", 1520, "dentro"],
-        ["Mar", 1490, "dentro"],
-        ["Mié", 1690, "dentro"],
-        ["Jue", 1210, "debajo"],
-        ["Vie", 1830, "encima"],
-        ["Sáb", 1790, "encima"],
-        ["Dom", 1440, "dentro"],
+        ['Lun', 1520, 'dentro'],
+        ['Mar', 1490, 'dentro'],
+        ['Mié', 1690, 'dentro'],
+        ['Jue', 1210, 'debajo'],
+        ['Vie', 1830, 'encima'],
+        ['Sáb', 1790, 'encima'],
+        ['Dom', 1440, 'dentro'],
     ] as const;
     const color = {
-        dentro: "bg-emerald-100 text-emerald-900",
-        encima: "bg-rose-100 text-rose-900",
-        debajo: "bg-amber-100 text-amber-900",
+        dentro: 'bg-emerald-100 text-emerald-900',
+        encima: 'bg-rose-100 text-rose-900',
+        debajo: 'bg-amber-100 text-amber-900',
     };
 
     return (
@@ -66,7 +66,7 @@ function FragmentoSemana() {
                     Coste de lo que comes esta semana
                 </span>
                 <strong className="text-lg">
-                    38,40 €{" "}
+                    38,40 €{' '}
                     <span className="text-sm font-normal text-neutral-500">
                         de 60 €
                     </span>
@@ -77,7 +77,7 @@ function FragmentoSemana() {
             </div>
             <ul className="mt-3 grid grid-cols-7 gap-1 text-center">
                 {dias.map(([d, k, e]) => (
-                    <li key={d} className={cn("rounded py-1.5", color[e])}>
+                    <li key={d} className={cn('rounded py-1.5', color[e])}>
                         <span className="block text-[14px]">{d}</span>
                         <span className="block text-sm font-semibold tabular-nums">
                             {k}
@@ -98,7 +98,7 @@ export type ProductoPortada = {
     envase: string | null;
     precio: number;
     cantidad_envase: number;
-    unidad_envase: "g" | "ml" | "ud";
+    unidad_envase: 'g' | 'ml' | 'ud';
     foto_url: string;
 };
 
@@ -112,8 +112,8 @@ function FragmentoLista({ productos }: { productos: ProductoPortada[] }) {
                 <div key={p.alimento} className="flex items-center gap-3 p-3">
                     <span
                         className={cn(
-                            "size-5 shrink-0 rounded-sm border-2 border-neutral-400",
-                            i === 1 && "border-[#7d0c14] bg-[#7d0c14]",
+                            'size-5 shrink-0 rounded-sm border-2 border-neutral-400',
+                            i === 1 && 'border-[#7d0c14] bg-[#7d0c14]',
                         )}
                         aria-hidden="true"
                     />
@@ -127,14 +127,14 @@ function FragmentoLista({ productos }: { productos: ProductoPortada[] }) {
                     />
                     <div
                         className={cn(
-                            "min-w-0 flex-1",
-                            i === 1 && "opacity-50",
+                            'min-w-0 flex-1',
+                            i === 1 && 'opacity-50',
                         )}
                     >
                         <p
                             className={cn(
-                                "text-sm font-medium first-letter:uppercase",
-                                i === 1 && "line-through",
+                                'text-sm font-medium first-letter:uppercase',
+                                i === 1 && 'line-through',
                             )}
                         >
                             {p.alimento}
@@ -152,7 +152,7 @@ function FragmentoLista({ productos }: { productos: ProductoPortada[] }) {
             <div className="flex justify-between bg-neutral-50 p-3 text-sm">
                 <span>Pagas en la tienda</span>
                 <strong>
-                    ≈{" "}
+                    ≈{' '}
                     {formatoEuros(productos.reduce((s, p) => s + p.precio, 0))}
                 </strong>
             </div>
@@ -162,20 +162,20 @@ function FragmentoLista({ productos }: { productos: ProductoPortada[] }) {
 
 const hojas = (productos: ProductoPortada[]) => [
     {
-        titulo: "Recetas con precio",
-        texto: "Cada receta sabe lo que cuesta una ración y las calorías que aporta, con los productos de Mercadona. Si falta un dato, te dice cuál en vez de inventárselo.",
+        titulo: 'Recetas con precio',
+        texto: 'Cada receta sabe lo que cuesta una ración y las calorías que aporta, con los productos de Mercadona. Si falta un dato, te dice cuál en vez de inventárselo.',
         clase: GRANATE,
         fragmento: <FragmentoReceta />,
     },
     {
-        titulo: "La semana de un vistazo",
-        texto: "Coloca recetas en la semana y mira al momento cuánto vas a gastar frente a tu presupuesto y cómo queda cada día frente a tu objetivo de calorías.",
+        titulo: 'La semana de un vistazo',
+        texto: 'Coloca recetas en la semana y mira al momento cuánto vas a gastar frente a tu presupuesto y cómo queda cada día frente a tu objetivo de calorías.',
         clase: PAPEL,
         fragmento: <FragmentoSemana />,
     },
     {
-        titulo: "La lista se hace sola",
-        texto: "Foodit junta los ingredientes de toda la semana, los convierte en envases reales, te dice lo que te sobrará y lo ordena por pasillos. Tú solo tachas.",
+        titulo: 'La lista se hace sola',
+        texto: 'Foodit junta los ingredientes de toda la semana, los convierte en envases reales, te dice lo que te sobrará y lo ordena por pasillos. Tú solo tachas.',
         clase: GRIS,
         fragmento: <FragmentoLista productos={productos} />,
     },
@@ -200,7 +200,7 @@ export function Hojas({ productos }: { productos: ProductoPortada[] }) {
                     <article
                         key={h.titulo}
                         className={cn(
-                            "revelar grid min-h-[70svh] gap-8 rounded-t-[6px] p-6 sm:p-10 md:grid-cols-2",
+                            'revelar grid min-h-[70svh] gap-8 rounded-t-[6px] p-6 sm:p-10 md:grid-cols-2',
                             h.clase,
                         )}
                     >
@@ -224,22 +224,22 @@ export function Hojas({ productos }: { productos: ProductoPortada[] }) {
 
 const ITINERARIO = [
     {
-        cuando: "El domingo",
+        cuando: 'El domingo',
         filas: [
-            ["Eliges las recetas de la semana", "5 min"],
-            ["Ajustas raciones y tu objetivo", "1 min"],
+            ['Eliges las recetas de la semana', '5 min'],
+            ['Ajustas raciones y tu objetivo', '1 min'],
         ],
     },
     {
-        cuando: "Antes de comprar",
+        cuando: 'Antes de comprar',
         filas: [
-            ["Tachas lo que ya tienes en casa", "2 min"],
-            ["Imprimes la lista o la llevas en el móvil", "0 min"],
+            ['Tachas lo que ya tienes en casa', '2 min'],
+            ['Imprimes la lista o la llevas en el móvil', '0 min'],
         ],
     },
     {
-        cuando: "En el súper",
-        filas: [["Compras por pasillos, sin vueltas", "35 min"]],
+        cuando: 'En el súper',
+        filas: [['Compras por pasillos, sin vueltas', '35 min']],
     },
 ];
 
@@ -267,7 +267,7 @@ export function Itinerario() {
                 <div
                     className={cn(
                         PAPEL,
-                        "px-6 pt-6 pb-10 text-[17px] tabular-nums sm:px-8",
+                        'px-6 pt-6 pb-10 text-[17px] tabular-nums sm:px-8',
                     )}
                     style={{ clipPath: ZIGZAG }}
                 >
@@ -301,45 +301,45 @@ export function Itinerario() {
 
 const PREGUNTAS = [
     [
-        "Precios",
-        "¿De dónde salen los precios?",
-        "Cada noche Foodit copia el catálogo de alimentación de la tienda online de Mercadona del almacén de Valencia: productos, envases y precios. Por eso cada precio lleva su fecha.",
+        'Precios',
+        '¿De dónde salen los precios?',
+        'Cada noche Foodit copia el catálogo de alimentación de la tienda online de Mercadona del almacén de Valencia: productos, envases y precios. Por eso cada precio lleva su fecha.',
     ],
     [
-        "Exactitud",
-        "¿Son exactos?",
-        "Son una estimación: en tu tienda pueden variar y algunos productos se venden a peso. Sirven para saber si tu semana sale por 40 o por 70 €, no para cuadrar el tique al céntimo.",
+        'Exactitud',
+        '¿Son exactos?',
+        'Son una estimación: en tu tienda pueden variar y algunos productos se venden a peso. Sirven para saber si tu semana sale por 40 o por 70 €, no para cuadrar el tique al céntimo.',
     ],
     [
-        "Calorías",
-        "¿Y las calorías?",
-        "Salen de la base de datos de alimentos del USDA (dominio público), por cada 100 g. Foodit pasa cada ingrediente a gramos y suma. No es consejo médico.",
+        'Calorías',
+        '¿Y las calorías?',
+        'Salen de la base de datos de alimentos del USDA (dominio público), por cada 100 g. Foodit pasa cada ingrediente a gramos y suma. No es consejo médico.',
     ],
     [
-        "Marcas",
-        "¿Puedo elegir mis productos?",
-        "Sí. Cada alimento tiene un producto por defecto, y puedes cambiarlo por la marca o el envase que compras tú. El precio de tus recetas cambia con él.",
+        'Marcas',
+        '¿Puedo elegir mis productos?',
+        'Sí. Cada alimento tiene un producto por defecto, y puedes cambiarlo por la marca o el envase que compras tú. El precio de tus recetas cambia con él.',
     ],
     [
-        "Cuenta",
-        "¿Qué me pregunta al empezar?",
-        "Cuatro cosas: tus datos para calcular tus calorías (puedes cambiarlas), lo que no comes (alergias, dieta, alimentos que no te gustan), tu presupuesto y tu tiempo para cocinar. Con eso te propone tu primera semana.",
+        'Cuenta',
+        '¿Qué me pregunta al empezar?',
+        'Cuatro cosas: tus datos para calcular tus calorías (puedes cambiarlas), lo que no comes (alergias, dieta, alimentos que no te gustan), tu presupuesto y tu tiempo para cocinar. Con eso te propone tu primera semana.',
     ],
     [
-        "Ejemplo",
-        "¿Puedo verlo antes de registrarme?",
-        "Sí: «Ver un ejemplo» te abre una cuenta de prueba con una semana ya planificada. Cambia lo que quieras; se borra sola a las 24 horas.",
+        'Ejemplo',
+        '¿Puedo verlo antes de registrarme?',
+        'Sí: «Ver un ejemplo» te abre una cuenta de prueba con una semana ya planificada. Cambia lo que quieras; se borra sola a las 24 horas.',
     ],
     [
-        "Mercadona",
-        "¿Es una app de Mercadona?",
-        "No. Foodit no está afiliado a Mercadona: usa los datos públicos de su tienda online para darte precios reales.",
+        'Mercadona',
+        '¿Es una app de Mercadona?',
+        'No. Foodit no está afiliado a Mercadona: usa los datos públicos de su tienda online para darte precios reales.',
     ],
 ];
 
 export function Fichas() {
     const [abierta, setAbierta] = useState(0);
-    const colores = [PAPEL, GRIS, "bg-[#e9d6d7] text-[#3b0a0e]"];
+    const colores = [PAPEL, GRIS, 'bg-[#e9d6d7] text-[#3b0a0e]'];
 
     return (
         <section
@@ -360,13 +360,13 @@ export function Fichas() {
                         <div key={tema} className="revelar mt-2 first:mt-0">
                             <span
                                 className={cn(
-                                    "ml-[var(--paso)] inline-block px-4 pt-2 pb-1 text-[17px] font-medium",
+                                    'ml-[var(--paso)] inline-block px-4 pt-2 pb-1 text-[17px] font-medium',
                                     colores[i % 3],
                                 )}
                                 style={{
-                                    ["--paso" as string]: `min(${i * 120}px, calc(100% - 9rem))`,
+                                    ['--paso' as string]: `min(${i * 120}px, calc(100% - 9rem))`,
                                     clipPath:
-                                        "polygon(8% 0,92% 0,100% 100%,0 100%)",
+                                        'polygon(8% 0,92% 0,100% 100%,0 100%)',
                                 }}
                                 aria-hidden="true"
                             >
@@ -406,12 +406,12 @@ export function Banda({
 }) {
     const ir = () =>
         conSesion
-            ? router.visit("/plan")
+            ? router.visit('/plan')
             : registro
-              ? router.visit("/register")
+              ? router.visit('/register')
               : demo
-                ? router.post("/demo/entrar")
-                : router.visit("/login");
+                ? router.post('/demo/entrar')
+                : router.visit('/login');
 
     return (
         <button
@@ -421,10 +421,10 @@ export function Banda({
         >
             <span className="block max-w-[34ch] text-[17px] sm:text-[22px]">
                 {conSesion
-                    ? "Vuelve a tu plan de la semana."
+                    ? 'Vuelve a tu plan de la semana.'
                     : registro
-                      ? "Crea tu cuenta, responde cuatro preguntas y Foodit te propone tu primera semana con su lista de la compra."
-                      : "Te creamos una copia con una semana ya planificada. Es solo tuya y se borra en 24 horas."}
+                      ? 'Crea tu cuenta, responde cuatro preguntas y Foodit te propone tu primera semana con su lista de la compra.'
+                      : 'Te creamos una copia con una semana ya planificada. Es solo tuya y se borra en 24 horas.'}
             </span>
             <svg
                 className="absolute top-6 right-6 size-10 sm:size-12"
@@ -437,14 +437,14 @@ export function Banda({
                 <path d="M12 36 36 12M16 12h20v20" />
             </svg>
             <span className="absolute bottom-4 left-1/2 -translate-x-1/2 font-[family-name:var(--font-display)] text-[clamp(6rem,30vw,30rem)] leading-[0.78] font-bold tracking-[-0.03em] uppercase">
-                {conSesion ? "Entra" : registro ? "Empieza" : "Prueba"}
+                {conSesion ? 'Entra' : registro ? 'Empieza' : 'Prueba'}
             </span>
         </button>
     );
 }
 
 export function Pie() {
-    const baldosa = "p-5 sm:p-6";
+    const baldosa = 'p-5 sm:p-6';
 
     return (
         <footer className="grid gap-2 bg-[#e2e2e2] p-2 sm:p-3 md:grid-cols-12">
@@ -452,7 +452,7 @@ export function Pie() {
                 className={cn(
                     baldosa,
                     PAPEL,
-                    "flex min-h-[200px] flex-col justify-between md:col-span-4",
+                    'flex min-h-[200px] flex-col justify-between md:col-span-4',
                 )}
             >
                 <p className="text-[22px] leading-snug">
@@ -467,7 +467,7 @@ export function Pie() {
             </div>
             <nav
                 aria-label="Pie"
-                className={cn(baldosa, GRIS, "md:col-span-3")}
+                className={cn(baldosa, GRIS, 'md:col-span-3')}
             >
                 <ul className="space-y-2 text-[17px]">
                     <li>
@@ -508,7 +508,7 @@ export function Pie() {
                 className={cn(
                     baldosa,
                     PAPEL,
-                    "flex min-h-[200px] flex-col justify-between md:col-span-5",
+                    'flex min-h-[200px] flex-col justify-between md:col-span-5',
                 )}
             >
                 <p className="text-[17px] text-[#7a4a4e]">
@@ -522,7 +522,7 @@ export function Pie() {
                 className={cn(
                     baldosa,
                     GRANATE,
-                    "flex min-h-[220px] items-center justify-center md:col-span-12",
+                    'flex min-h-[220px] items-center justify-center md:col-span-12',
                 )}
             >
                 <span className="font-[family-name:var(--font-display)] text-[clamp(6rem,27vw,26rem)] leading-none font-bold uppercase">
@@ -535,7 +535,7 @@ export function Pie() {
 
 /** Las fotos grandes de lo que compras: productos reales con su precio de hoy. */
 export function Escaparate({ productos }: { productos: ProductoPortada[] }) {
-    const grande = (url: string) => url.replace("h=300&w=300", "h=600&w=600");
+    const grande = (url: string) => url.replace('h=300&w=300', 'h=600&w=600');
 
     return (
         <section
@@ -569,7 +569,7 @@ export function Escaparate({ productos }: { productos: ProductoPortada[] }) {
                                 {p.nombre}
                             </p>
                             <p className="text-[14px] text-[#7a4a4e]">
-                                {cantidad(p.cantidad_envase, p.unidad_envase)} ·{" "}
+                                {cantidad(p.cantidad_envase, p.unidad_envase)} ·{' '}
                                 {formatoEuros(p.precio)}
                             </p>
                         </li>

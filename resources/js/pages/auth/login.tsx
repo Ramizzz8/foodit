@@ -1,15 +1,15 @@
-import { Form, Head, router } from "@inertiajs/react";
-import InputError from "@/components/input-error";
-import PasswordInput from "@/components/password-input";
-import TextLink from "@/components/text-link";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Spinner } from "@/components/ui/spinner";
-import { store } from "@/routes/login";
-import { request } from "@/routes/password";
-import PasskeyVerify from "@/components/passkey-verify";
+import { Form, Head, router } from '@inertiajs/react';
+import InputError from '@/components/input-error';
+import PasswordInput from '@/components/password-input';
+import TextLink from '@/components/text-link';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Spinner } from '@/components/ui/spinner';
+import { store } from '@/routes/login';
+import { request } from '@/routes/password';
+import PasskeyVerify from '@/components/passkey-verify';
 
 type Props = {
     status?: string;
@@ -42,7 +42,7 @@ export default function Login({
                     <Button
                         type="button"
                         className="mt-3 w-full"
-                        onClick={() => router.post("/demo/entrar")}
+                        onClick={() => router.post('/demo/entrar')}
                     >
                         Ver un ejemplo
                     </Button>
@@ -51,7 +51,7 @@ export default function Login({
 
             <Form
                 {...store.form()}
-                resetOnSuccess={["password"]}
+                resetOnSuccess={['password']}
                 className="flex flex-col gap-6"
             >
                 {({ processing, errors }) => (
@@ -119,7 +119,7 @@ export default function Login({
 
                         {canRegister && (
                             <div className="text-center text-sm text-muted-foreground">
-                                ¿No tienes cuenta?{" "}
+                                ¿No tienes cuenta?{' '}
                                 <TextLink href="/register" tabIndex={5}>
                                     Regístrate
                                 </TextLink>
@@ -139,6 +139,6 @@ export default function Login({
 }
 
 Login.layout = {
-    title: "Entra en Foodit",
-    description: "Introduce tu email y contraseña para entrar",
+    title: 'Entra en Foodit',
+    description: 'Introduce tu email y contraseña para entrar',
 };

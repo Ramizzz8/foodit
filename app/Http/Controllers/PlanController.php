@@ -6,6 +6,7 @@ use App\Cocina\CalculadoraReceta;
 use App\Models\ComidaPlan;
 use App\Models\Receta;
 use App\Models\User;
+use App\Plan\GenerarSemana;
 use App\Plan\ResumenSemana;
 use App\Plan\Semana;
 use Carbon\CarbonImmutable;
@@ -87,6 +88,18 @@ class PlanController extends Controller
         $request->user()->comidasPlan()->whereDate('fecha', Semana::fecha($fecha)->toDateString())->where('momento', $momento)->delete();
 
         return back();
+    }
+
+    /** «Proponerme la semana»: sustituye la semana por una generada por Foodit. */
+    public function generar(Request $request, string $fecha, GenerarSemana $generar): RedirectResponse
+    {
+        $lunes = Semana::fecha($fecha)->startOfWeek();
+        $semilla = (int) ($request->validate(['semilla' => ['nullable', 'integer', 'min:0']])['semilla'] ?? random_int(0, PHP_INT_MAX));
+        $semana = $generar->para($request->user(), $lunes, $semilla);
+        $generar->aplicar($request->user(), $lunes, $semana);
+
+        return back()->with('exito', 'Semana propuesta: '.count($semana['comidas']).' comidas por unos '.number_format($semana['coste'], 2, ',', '.').' €.')
+            ->with('aviso', $semana['aviso']);
     }
 
     public function copiarAnterior(Request $request, string $fecha): RedirectResponse

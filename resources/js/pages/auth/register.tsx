@@ -1,12 +1,12 @@
-import { Form, Head } from "@inertiajs/react";
-import InputError from "@/components/input-error";
-import PasswordInput from "@/components/password-input";
-import TextLink from "@/components/text-link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Spinner } from "@/components/ui/spinner";
-import { login } from "@/routes";
+import { Form, Head } from '@inertiajs/react';
+import InputError from '@/components/input-error';
+import PasswordInput from '@/components/password-input';
+import TextLink from '@/components/text-link';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Spinner } from '@/components/ui/spinner';
+import { login } from '@/routes';
 
 type Props = {
     passwordRules: string;
@@ -19,7 +19,7 @@ export default function Register({ passwordRules }: Props) {
             <Form
                 action="/register"
                 method="post"
-                resetOnSuccess={["password", "password_confirmation"]}
+                resetOnSuccess={['password', 'password_confirmation']}
                 disableWhileProcessing
                 className="flex flex-col gap-6"
             >
@@ -102,7 +102,7 @@ export default function Register({ passwordRules }: Props) {
 
                             <p className="text-center text-sm text-muted-foreground">
                                 Al crear la cuenta aceptas cómo tratamos tus
-                                datos, explicado en la{" "}
+                                datos, explicado en la{' '}
                                 <TextLink href="/privacidad">
                                     página de privacidad
                                 </TextLink>
@@ -111,7 +111,7 @@ export default function Register({ passwordRules }: Props) {
                         </div>
 
                         <div className="text-center text-sm text-muted-foreground">
-                            ¿Ya tienes cuenta?{" "}
+                            ¿Ya tienes cuenta?{' '}
                             <TextLink href={login()} tabIndex={6}>
                                 Entrar
                             </TextLink>
@@ -124,7 +124,7 @@ export default function Register({ passwordRules }: Props) {
 }
 
 Register.layout = {
-    title: "Crea tu cuenta",
+    title: 'Crea tu cuenta',
     description:
-        "Después te haremos cuatro preguntas para proponerte tu primera semana.",
+        'Después te haremos cuatro preguntas para proponerte tu primera semana.',
 };

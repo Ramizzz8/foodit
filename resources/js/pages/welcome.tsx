@@ -1,4 +1,4 @@
-import { Head, usePage } from "@inertiajs/react";
+import { Head, usePage } from '@inertiajs/react';
 import {
     Banda,
     Escaparate,
@@ -6,11 +6,11 @@ import {
     Hojas,
     Itinerario,
     Pie,
-} from "@/components/landing/secciones";
-import { Tique } from "@/components/landing/tique";
-import type { DiaTique } from "@/components/landing/tique";
-import type { ProductoPortada } from "@/components/landing/secciones";
-import { useRevelar } from "@/hooks/use-revelar";
+} from '@/components/landing/secciones';
+import { Tique } from '@/components/landing/tique';
+import type { DiaTique } from '@/components/landing/tique';
+import type { ProductoPortada } from '@/components/landing/secciones';
+import { useRevelar } from '@/hooks/use-revelar';
 
 export default function Portada({
     demo,

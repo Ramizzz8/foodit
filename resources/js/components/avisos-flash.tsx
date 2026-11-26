@@ -2,7 +2,7 @@ import { router, usePage } from '@inertiajs/react';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 
-type Props = { flash?: { exito?: string | null }; errors?: Record<string, string> };
+type Props = { flash?: { exito?: string | null; aviso?: string | null }; errors?: Record<string, string> };
 
 // Los avisos se disparan por respuesta del servidor, no por cambio de texto: Inertia reutiliza las props
 // iguales, así que un mismo aviso dos veces seguidas (dos mensajes, o reintentar algo bloqueado en la demo)
@@ -11,6 +11,7 @@ let primeraCargaRevisada = false;
 
 function avisar(props: Props) {
     if (props.flash?.exito) toast.success(props.flash.exito);
+    if (props.flash?.aviso) toast.warning(props.flash.aviso, { duration: 10000 });
 }
 
 /**

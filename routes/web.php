@@ -36,6 +36,7 @@ Route::middleware(['auth', PerfilCompleto::class])->group(function () {
     Route::put('plan/{fecha}/{momento}', [PlanController::class, 'poner'])->name('plan.poner');
     Route::delete('plan/{fecha}/{momento}', [PlanController::class, 'quitar'])->name('plan.quitar');
     Route::post('plan/{fecha}/copiar-anterior', [PlanController::class, 'copiarAnterior'])->name('plan.copiar');
+    Route::post('plan/{fecha}/generar', [PlanController::class, 'generar'])->name('plan.generar');
 
     Route::get('ajustes/objetivos', [ObjetivosController::class, 'edit'])->name('objetivos.edit');
     Route::put('ajustes/objetivos', [ObjetivosController::class, 'update'])->name('objetivos.update');

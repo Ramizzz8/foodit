@@ -6,6 +6,8 @@ use App\Cocina\Alergenos;
 use App\Models\Alimento;
 use App\Models\User;
 use App\Perfil\Calorias;
+use App\Plan\GenerarSemana;
+use Carbon\CarbonImmutable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -22,9 +24,21 @@ class BienvenidaController extends Controller
         'objetivo_kcal.min' => 'Por debajo de 1.200 kcal al día no te lo vamos a proponer: consúltalo con un profesional.',
     ];
 
+    public function __construct(private GenerarSemana $generar) {}
+
+    /** La primera semana es la actual; el fin de semana, la siguiente. */
+    public static function primeraSemana(): CarbonImmutable
+    {
+        $hoy = CarbonImmutable::today();
+
+        return $hoy->isWeekend() ? $hoy->next('Monday') : $hoy->startOfWeek();
+    }
+
     public function mostrar(Request $request, int $paso): Response
     {
         $u = $request->user();
+        $semilla = $request->integer('semilla', random_int(1, 999_999));
+        $lunes = self::primeraSemana();
 
         return Inertia::render('bienvenida', [
             'paso' => $paso,
@@ -36,6 +50,7 @@ class BienvenidaController extends Controller
                 'alergenos' => $u->alergenos ?? [],
                 'vetados' => Alimento::whereIn('id', $u->alimentos_vetados ?? [])->get(['id', 'nombre']),
             ],
+            'propuesta' => $paso === 4 ? ['semilla' => $semilla, 'lunes' => $lunes->toDateString(), ...$this->generar->para($u, $lunes, $semilla)] : null,
             'alergenos' => collect(Alergenos::NOMBRES)->map(fn ($nombre, $clave) => ['clave' => $clave, 'nombre' => $nombre])->values(),
         ]);
     }
@@ -48,7 +63,7 @@ class BienvenidaController extends Controller
             1 => $this->tu($request, $u),
             2 => $this->loQueNoComes($request, $u),
             3 => $this->tuSemana($request, $u),
-            4 => $u->forceFill(['perfil_completo_en' => $u->perfil_completo_en ?? now()])->save(),
+            4 => $this->empezar($request, $u),
         };
 
         return $paso < 4 ? redirect('/bienvenida/'.($paso + 1)) : redirect('/plan');
@@ -95,6 +110,14 @@ class BienvenidaController extends Controller
             'alimentos_vetados' => array_values(array_map('intval', $d['alimentos_vetados'] ?? [])),
             'consentimiento_salud_en' => $u->consentimiento_salud_en ?? now(),
         ])->save();
+    }
+
+    private function empezar(Request $request, User $u): void
+    {
+        $semilla = (int) ($request->validate(['semilla' => ['nullable', 'integer', 'min:0']])['semilla'] ?? 0);
+        $lunes = self::primeraSemana();
+        $this->generar->aplicar($u, $lunes, $this->generar->para($u, $lunes, $semilla));
+        $u->forceFill(['perfil_completo_en' => $u->perfil_completo_en ?? now()])->save();
     }
 
     private function tuSemana(Request $request, User $u): void

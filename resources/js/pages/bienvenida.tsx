@@ -1,53 +1,69 @@
-import { Head, Link, useForm } from "@inertiajs/react";
-import type { FormEvent, ReactNode } from "react";
-import { useEffect, useState } from "react";
-import AppLogoIcon from "@/components/app-logo-icon";
-import InputError from "@/components/input-error";
-import { Checkbox } from "@/components/ui/checkbox";
-import { cn } from "@/lib/utils";
+import { Head, Link, useForm } from '@inertiajs/react';
+import type { FormEvent, ReactNode } from 'react';
+import { useEffect, useState } from 'react';
+import AppLogoIcon from '@/components/app-logo-icon';
+import InputError from '@/components/input-error';
+import { Checkbox } from '@/components/ui/checkbox';
+import { cn } from '@/lib/utils';
 
 type Perfil = {
-    sexo: "mujer" | "hombre" | null;
+    sexo: 'mujer' | 'hombre' | null;
     edad: number | null;
     altura_cm: number | null;
     peso_kg: number | null;
     actividad: Actividad | null;
     meta: Meta | null;
     objetivo_kcal: number;
-    dieta: "omnivora" | "vegetariana" | "sin_cerdo";
+    dieta: 'omnivora' | 'vegetariana' | 'sin_cerdo';
     alergenos: string[];
     vetados: { id: number; nombre: string }[];
     presupuesto_semanal: number;
     planifica_desayuno: boolean;
     minutos_entre_semana: 20 | 40 | null;
 };
-type Actividad = "sedentaria" | "ligera" | "moderada" | "alta";
-type Meta = "perder" | "mantener" | "ganar";
+type Actividad = 'sedentaria' | 'ligera' | 'moderada' | 'alta';
+type Meta = 'perder' | 'mantener' | 'ganar';
 type Props = {
     paso: 1 | 2 | 3 | 4;
     consentido: boolean;
     perfil: Perfil;
     alergenos: { clave: string; nombre: string }[];
+    propuesta: Propuesta | null;
+};
+type Propuesta = {
+    semilla: number;
+    lunes: string;
+    coste: number;
+    aviso: string | null;
+    comidas: {
+        fecha: string;
+        momento: 'desayuno' | 'comida' | 'cena';
+        receta_id: number;
+        titulo: string;
+        raciones: number;
+        kcal: number;
+        coste: number;
+    }[];
 };
 
-const PASOS = ["Tú", "Lo que no comes", "Tu semana", "Tu primera semana"];
+const PASOS = ['Tú', 'Lo que no comes', 'Tu semana', 'Tu primera semana'];
 const ACTIVIDAD: [Actividad, string, string, number][] = [
-    ["sedentaria", "Sedentaria", "Trabajo sentado, casi sin ejercicio", 1.2],
-    ["ligera", "Ligera", "Ejercicio suave 1–3 días por semana", 1.375],
-    ["moderada", "Moderada", "Ejercicio 3–5 días por semana", 1.55],
-    ["alta", "Alta", "Ejercicio intenso casi a diario", 1.725],
+    ['sedentaria', 'Sedentaria', 'Trabajo sentado, casi sin ejercicio', 1.2],
+    ['ligera', 'Ligera', 'Ejercicio suave 1–3 días por semana', 1.375],
+    ['moderada', 'Moderada', 'Ejercicio 3–5 días por semana', 1.55],
+    ['alta', 'Alta', 'Ejercicio intenso casi a diario', 1.725],
 ];
 const META: [Meta, string, number][] = [
-    ["perder", "Perder peso", 0.85],
-    ["mantener", "Mantenerme", 1],
-    ["ganar", "Ganar peso", 1.1],
+    ['perder', 'Perder peso', 0.85],
+    ['mantener', 'Mantenerme', 1],
+    ['ganar', 'Ganar peso', 1.1],
 ];
 
 /** La misma fórmula que App\Perfil\Calorias, para enseñar la cifra mientras se escribe. */
 function calorias(
     p: Pick<
         Perfil,
-        "sexo" | "edad" | "altura_cm" | "peso_kg" | "actividad" | "meta"
+        'sexo' | 'edad' | 'altura_cm' | 'peso_kg' | 'actividad' | 'meta'
     >,
 ): number | null {
     if (
@@ -64,7 +80,7 @@ function calorias(
         10 * p.peso_kg +
         6.25 * p.altura_cm -
         5 * p.edad +
-        (p.sexo === "hombre" ? 5 : -161);
+        (p.sexo === 'hombre' ? 5 : -161);
     const total =
         basal *
         ACTIVIDAD.find((a) => a[0] === p.actividad)![3] *
@@ -96,23 +112,23 @@ export default function Bienvenida(props: Props) {
                             <li
                                 key={p}
                                 aria-current={
-                                    i + 1 === props.paso ? "step" : undefined
+                                    i + 1 === props.paso ? 'step' : undefined
                                 }
                             >
                                 <span
                                     className={cn(
-                                        "block h-1.5",
+                                        'block h-1.5',
                                         i < props.paso
-                                            ? "bg-[#7d0c14]"
-                                            : "bg-[#7d0c14]/20",
+                                            ? 'bg-[#7d0c14]'
+                                            : 'bg-[#7d0c14]/20',
                                     )}
                                 />
                                 <span
                                     className={cn(
-                                        "mt-2 hidden text-sm sm:block",
+                                        'mt-2 hidden text-sm sm:block',
                                         i + 1 === props.paso
-                                            ? "font-semibold"
-                                            : "text-[#7a4a4e]",
+                                            ? 'font-semibold'
+                                            : 'text-[#7a4a4e]',
                                     )}
                                 >
                                     {p}
@@ -180,10 +196,10 @@ function Opcion({
             aria-pressed={activa}
             onClick={onClick}
             className={cn(
-                "border-2 px-4 py-3 text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7d0c14]",
+                'border-2 px-4 py-3 text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7d0c14]',
                 activa
-                    ? "border-[#7d0c14] bg-[#7d0c14] text-[#f3f3f1]"
-                    : "border-[#7d0c14]/25 bg-white hover:border-[#7d0c14]",
+                    ? 'border-[#7d0c14] bg-[#7d0c14] text-[#f3f3f1]'
+                    : 'border-[#7d0c14]/25 bg-white hover:border-[#7d0c14]',
                 className,
             )}
         >
@@ -222,10 +238,10 @@ function Numero({
                     min={min}
                     max={max}
                     step={step}
-                    value={value ?? ""}
+                    value={value ?? ''}
                     onChange={(e) =>
                         onChange(
-                            e.target.value === ""
+                            e.target.value === ''
                                 ? null
                                 : Number(e.target.value),
                         )
@@ -258,7 +274,7 @@ function Consentimiento({
                 <span>
                     Acepto que Foodit guarde estos datos de salud (peso, altura,
                     alergias y dieta) solo para calcular mis calorías y
-                    proponerme menús. Puedo borrarlos cuando quiera.{" "}
+                    proponerme menús. Puedo borrarlos cuando quiera.{' '}
                     <Link
                         href="/privacidad"
                         className="font-medium underline underline-offset-4"
@@ -275,7 +291,7 @@ function Consentimiento({
 function Pie({
     paso,
     procesando,
-    texto = "Siguiente",
+    texto = 'Siguiente',
 }: {
     paso: number;
     procesando: boolean;
@@ -311,7 +327,7 @@ function PasoTu({ perfil, consentido }: Props) {
         altura_cm: perfil.altura_cm,
         peso_kg: perfil.peso_kg,
         actividad: perfil.actividad,
-        meta: perfil.meta ?? "mantener",
+        meta: perfil.meta ?? 'mantener',
         objetivo_kcal: perfil.sexo
             ? perfil.objetivo_kcal
             : (null as number | null),
@@ -324,14 +340,14 @@ function PasoTu({ perfil, consentido }: Props) {
 
     useEffect(() => {
         if (!tocadas) {
-            form.setData("objetivo_kcal", calculadas);
+            form.setData('objetivo_kcal', calculadas);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [calculadas, tocadas]);
 
     function enviar(e: FormEvent) {
         e.preventDefault();
-        form.put("/bienvenida/1", { preserveScroll: "errors" });
+        form.put('/bienvenida/1', { preserveScroll: 'errors' });
     }
 
     return (
@@ -345,14 +361,14 @@ function PasoTu({ perfil, consentido }: Props) {
             >
                 <div className="grid grid-cols-2 gap-2">
                     <Opcion
-                        activa={form.data.sexo === "mujer"}
-                        onClick={() => form.setData("sexo", "mujer")}
+                        activa={form.data.sexo === 'mujer'}
+                        onClick={() => form.setData('sexo', 'mujer')}
                     >
                         Mujer
                     </Opcion>
                     <Opcion
-                        activa={form.data.sexo === "hombre"}
-                        onClick={() => form.setData("sexo", "hombre")}
+                        activa={form.data.sexo === 'hombre'}
+                        onClick={() => form.setData('sexo', 'hombre')}
                     >
                         Hombre
                     </Opcion>
@@ -367,7 +383,7 @@ function PasoTu({ perfil, consentido }: Props) {
                     min={14}
                     max={100}
                     value={form.data.edad}
-                    onChange={(v) => form.setData("edad", v)}
+                    onChange={(v) => form.setData('edad', v)}
                 />
                 <Numero
                     id="altura"
@@ -376,7 +392,7 @@ function PasoTu({ perfil, consentido }: Props) {
                     min={120}
                     max={230}
                     value={form.data.altura_cm}
-                    onChange={(v) => form.setData("altura_cm", v)}
+                    onChange={(v) => form.setData('altura_cm', v)}
                 />
                 <Numero
                     id="peso"
@@ -386,7 +402,7 @@ function PasoTu({ perfil, consentido }: Props) {
                     max={300}
                     step={0.1}
                     value={form.data.peso_kg}
-                    onChange={(v) => form.setData("peso_kg", v)}
+                    onChange={(v) => form.setData('peso_kg', v)}
                 />
             </div>
             <InputError
@@ -403,7 +419,7 @@ function PasoTu({ perfil, consentido }: Props) {
                         <Opcion
                             key={clave}
                             activa={form.data.actividad === clave}
-                            onClick={() => form.setData("actividad", clave)}
+                            onClick={() => form.setData('actividad', clave)}
                         >
                             <span className="block font-semibold">
                                 {nombre}
@@ -422,7 +438,7 @@ function PasoTu({ perfil, consentido }: Props) {
                         <Opcion
                             key={clave}
                             activa={form.data.meta === clave}
-                            onClick={() => form.setData("meta", clave)}
+                            onClick={() => form.setData('meta', clave)}
                         >
                             {nombre}
                         </Opcion>
@@ -434,8 +450,8 @@ function PasoTu({ perfil, consentido }: Props) {
                     <p className="text-sm opacity-80">Tus calorías al día</p>
                     <p className="text-sm opacity-80">
                         {calculadas
-                            ? `Foodit calcula ${calculadas.toLocaleString("es-ES")} kcal`
-                            : "Rellena tus datos y lo calculamos"}
+                            ? `Foodit calcula ${calculadas.toLocaleString('es-ES')} kcal`
+                            : 'Rellena tus datos y lo calculamos'}
                     </p>
                 </div>
                 <label className="flex items-baseline gap-2">
@@ -445,12 +461,12 @@ function PasoTu({ perfil, consentido }: Props) {
                         min={1200}
                         max={5000}
                         step={50}
-                        value={form.data.objetivo_kcal ?? ""}
+                        value={form.data.objetivo_kcal ?? ''}
                         onChange={(e) => {
                             setTocadas(true);
                             form.setData(
-                                "objetivo_kcal",
-                                e.target.value === ""
+                                'objetivo_kcal',
+                                e.target.value === ''
                                     ? null
                                     : Number(e.target.value),
                             );
@@ -468,7 +484,7 @@ function PasoTu({ perfil, consentido }: Props) {
                         className="mt-2 text-sm underline underline-offset-4"
                         onClick={() => {
                             setTocadas(false);
-                            form.setData("objetivo_kcal", calculadas);
+                            form.setData('objetivo_kcal', calculadas);
                         }}
                     >
                         Volver a la cifra de Foodit
@@ -478,7 +494,7 @@ function PasoTu({ perfil, consentido }: Props) {
             {!consentido && (
                 <Consentimiento
                     marcado={form.data.consentimiento_salud}
-                    onChange={(v) => form.setData("consentimiento_salud", v)}
+                    onChange={(v) => form.setData('consentimiento_salud', v)}
                     error={form.errors.consentimiento_salud}
                 />
             )}
@@ -495,7 +511,7 @@ function PasoLoQueNoComes({ perfil, consentido, alergenos }: Props) {
         consentimiento_salud: false,
     });
     const [vetados, setVetados] = useState(perfil.vetados);
-    const [busqueda, setBusqueda] = useState("");
+    const [busqueda, setBusqueda] = useState('');
     const [resultados, setResultados] = useState<
         { id: number; nombre: string }[]
     >([]);
@@ -509,7 +525,7 @@ function PasoLoQueNoComes({ perfil, consentido, alergenos }: Props) {
         const control = new AbortController();
         const t = setTimeout(() => {
             fetch(`/alimentos/buscar?q=${encodeURIComponent(busqueda)}`, {
-                headers: { Accept: "application/json" },
+                headers: { Accept: 'application/json' },
                 signal: control.signal,
             })
                 .then((r) => r.json())
@@ -525,7 +541,7 @@ function PasoLoQueNoComes({ perfil, consentido, alergenos }: Props) {
 
     const alternar = (clave: string) =>
         form.setData(
-            "alergenos",
+            'alergenos',
             form.data.alergenos.includes(clave)
                 ? form.data.alergenos.filter((a) => a !== clave)
                 : [...form.data.alergenos, clave],
@@ -536,25 +552,25 @@ function PasoLoQueNoComes({ perfil, consentido, alergenos }: Props) {
             const nuevos = [...vetados, a];
             setVetados(nuevos);
             form.setData(
-                "alimentos_vetados",
+                'alimentos_vetados',
                 nuevos.map((v) => v.id),
             );
         }
-        setBusqueda("");
+        setBusqueda('');
     }
 
     function quitar(id: number) {
         const nuevos = vetados.filter((v) => v.id !== id);
         setVetados(nuevos);
         form.setData(
-            "alimentos_vetados",
+            'alimentos_vetados',
             nuevos.map((v) => v.id),
         );
     }
 
     function enviar(e: FormEvent) {
         e.preventDefault();
-        form.put("/bienvenida/2", { preserveScroll: "errors" });
+        form.put('/bienvenida/2', { preserveScroll: 'errors' });
     }
 
     return (
@@ -587,15 +603,15 @@ function PasoLoQueNoComes({ perfil, consentido, alergenos }: Props) {
                 <div className="grid grid-cols-3 gap-2">
                     {(
                         [
-                            ["omnivora", "Como de todo"],
-                            ["vegetariana", "Vegetariana"],
-                            ["sin_cerdo", "Sin cerdo"],
+                            ['omnivora', 'Como de todo'],
+                            ['vegetariana', 'Vegetariana'],
+                            ['sin_cerdo', 'Sin cerdo'],
                         ] as const
                     ).map(([clave, nombre]) => (
                         <Opcion
                             key={clave}
                             activa={form.data.dieta === clave}
-                            onClick={() => form.setData("dieta", clave)}
+                            onClick={() => form.setData('dieta', clave)}
                         >
                             {nombre}
                         </Opcion>
@@ -651,7 +667,7 @@ function PasoLoQueNoComes({ perfil, consentido, alergenos }: Props) {
             {!consentido && (
                 <Consentimiento
                     marcado={form.data.consentimiento_salud}
-                    onChange={(v) => form.setData("consentimiento_salud", v)}
+                    onChange={(v) => form.setData('consentimiento_salud', v)}
                     error={form.errors.consentimiento_salud}
                 />
             )}
@@ -669,7 +685,7 @@ function PasoTuSemana({ perfil }: Props) {
 
     function enviar(e: FormEvent) {
         e.preventDefault();
-        form.put("/bienvenida/3", { preserveScroll: "errors" });
+        form.put('/bienvenida/3', { preserveScroll: 'errors' });
     }
 
     return (
@@ -690,7 +706,7 @@ function PasoTuSemana({ perfil }: Props) {
                         max={500}
                         value={form.data.presupuesto_semanal}
                         onChange={(v) =>
-                            form.setData("presupuesto_semanal", v ?? 0)
+                            form.setData('presupuesto_semanal', v ?? 0)
                         }
                     />
                 </div>
@@ -707,14 +723,14 @@ function PasoTuSemana({ perfil }: Props) {
                     <Opcion
                         activa={!form.data.planifica_desayuno}
                         onClick={() =>
-                            form.setData("planifica_desayuno", false)
+                            form.setData('planifica_desayuno', false)
                         }
                     >
                         Comida y cena
                     </Opcion>
                     <Opcion
                         activa={form.data.planifica_desayuno}
-                        onClick={() => form.setData("planifica_desayuno", true)}
+                        onClick={() => form.setData('planifica_desayuno', true)}
                     >
                         Desayuno, comida y cena
                     </Opcion>
@@ -727,16 +743,16 @@ function PasoTuSemana({ perfil }: Props) {
                 <div className="grid grid-cols-3 gap-2">
                     {(
                         [
-                            [20, "Hasta 20 min"],
-                            [40, "Hasta 40 min"],
-                            [null, "Sin límite"],
+                            [20, 'Hasta 20 min'],
+                            [40, 'Hasta 40 min'],
+                            [null, 'Sin límite'],
                         ] as const
                     ).map(([minutos, nombre]) => (
                         <Opcion
                             key={nombre}
                             activa={form.data.minutos_entre_semana === minutos}
                             onClick={() =>
-                                form.setData("minutos_entre_semana", minutos)
+                                form.setData('minutos_entre_semana', minutos)
                             }
                         >
                             {nombre}
@@ -749,36 +765,111 @@ function PasoTuSemana({ perfil }: Props) {
     );
 }
 
-function PasoPrimeraSemana({ perfil }: Props) {
-    const form = useForm({});
+const DIA = new Intl.DateTimeFormat('es-ES', {
+    weekday: 'long',
+    day: 'numeric',
+});
+const MOMENTO = { desayuno: 'Desayuno', comida: 'Comida', cena: 'Cena' };
+const euros = (n: number) =>
+    n.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
+
+function PasoPrimeraSemana({ perfil, propuesta }: Props) {
+    const form = useForm({ semilla: propuesta?.semilla ?? 0 });
+    const dias = new Map<string, Propuesta['comidas']>();
+    for (const c of propuesta?.comidas ?? []) {
+        dias.set(c.fecha, [...(dias.get(c.fecha) ?? []), c]);
+    }
 
     function enviar(e: FormEvent) {
         e.preventDefault();
-        form.put("/bienvenida/4", { preserveScroll: "errors" });
+        form.put('/bienvenida/4', { preserveScroll: 'errors' });
     }
 
     return (
         <form onSubmit={enviar}>
-            <Titulo texto="Esto es lo que nos has contado. Puedes cambiarlo cuando quieras en Ajustes.">
+            <Titulo texto="Una semana que respeta lo que no comes y se acerca a tus calorías. Si no te convence, pide otra; luego puedes cambiar cualquier comida.">
                 Tu primera semana
             </Titulo>
             <dl className="mt-8 grid grid-cols-2 gap-4 tabular-nums">
                 <div>
                     <dt className="text-sm text-[#7a4a4e]">Calorías al día</dt>
                     <dd className="font-[family-name:var(--font-display)] text-4xl font-bold text-[#7d0c14]">
-                        {perfil.objetivo_kcal.toLocaleString("es-ES")}
+                        {perfil.objetivo_kcal.toLocaleString('es-ES')}
                     </dd>
                 </div>
                 <div>
                     <dt className="text-sm text-[#7a4a4e]">
-                        Presupuesto semanal
+                        Lo que comes esta semana
                     </dt>
                     <dd className="font-[family-name:var(--font-display)] text-4xl font-bold text-[#7d0c14]">
-                        {perfil.presupuesto_semanal.toLocaleString("es-ES")} €
+                        {euros(propuesta?.coste ?? 0)}
+                    </dd>
+                    <dd className="text-sm text-[#7a4a4e]">
+                        de {euros(perfil.presupuesto_semanal)} de presupuesto
                     </dd>
                 </div>
             </dl>
-            <Pie paso={4} procesando={form.processing} texto="Empezar" />
+            {propuesta?.aviso && (
+                <p
+                    role="status"
+                    className="mt-6 border-l-4 border-[#7d0c14] bg-[#e9d6d7] px-4 py-3 text-[15px]"
+                >
+                    {propuesta.aviso}
+                </p>
+            )}
+            <ol className="mt-8 divide-y-2 divide-dashed divide-[#7d0c14]/25 border-y-2 border-dashed border-[#7d0c14]/25">
+                {[...dias].map(([fecha, comidas]) => (
+                    <li
+                        key={fecha}
+                        className="grid gap-1 py-3 sm:grid-cols-[8rem_1fr]"
+                    >
+                        <span className="text-sm font-medium text-[#7a4a4e] uppercase first-letter:uppercase">
+                            {DIA.format(new Date(`${fecha}T12:00`))}
+                        </span>
+                        <ul className="space-y-1">
+                            {comidas.map((c) => (
+                                <li
+                                    key={c.momento}
+                                    className="flex items-baseline justify-between gap-3 tabular-nums"
+                                >
+                                    <span>
+                                        <span className="text-sm text-[#7a4a4e]">
+                                            {MOMENTO[c.momento]} ·{' '}
+                                        </span>
+                                        {c.titulo}
+                                        {c.raciones !== 1 && (
+                                            <span className="text-sm text-[#7a4a4e]">
+                                                {' '}
+                                                ·{' '}
+                                                {c.raciones.toLocaleString(
+                                                    'es-ES',
+                                                )}{' '}
+                                                raciones
+                                            </span>
+                                        )}
+                                    </span>
+                                    <span className="shrink-0 text-sm">
+                                        {Math.round(c.kcal)} kcal ·{' '}
+                                        {euros(c.coste)}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </li>
+                ))}
+            </ol>
+            <Link
+                href={`/bienvenida/4?semilla=${(propuesta?.semilla ?? 0) + 1}`}
+                preserveScroll
+                className="mt-4 inline-block font-medium underline underline-offset-4"
+            >
+                Proponer otra
+            </Link>
+            <Pie
+                paso={4}
+                procesando={form.processing}
+                texto="Empezar con esta semana"
+            />
         </form>
     );
 }
