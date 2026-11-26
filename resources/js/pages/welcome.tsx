@@ -1,5 +1,6 @@
 import { Head, usePage } from '@inertiajs/react';
 import { useState } from 'react';
+import AppLogoIcon from '@/components/app-logo-icon';
 import {
     Banda,
     Escaparate,
@@ -53,7 +54,15 @@ export default function Portada({
                 />
             </Head>
             <main className="bg-[#e2e2e2] font-sans">
-                <section className="grid min-h-svh items-center gap-10 overflow-hidden bg-[#e2e2e2] px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,36rem)_minmax(0,1fr)] lg:gap-6 xl:px-12">
+                <section className="relative grid min-h-svh items-center gap-10 overflow-hidden bg-[#e2e2e2] px-4 pt-20 pb-10 sm:px-6 lg:grid-cols-[minmax(0,36rem)_minmax(0,1fr)] lg:gap-6 lg:pt-10 xl:px-12">
+                    <a
+                        href="/"
+                        aria-label="Foodit, inicio"
+                        className="absolute top-5 right-4 z-30 flex items-center gap-2 font-[family-name:var(--font-display)] text-[32px] leading-none font-bold text-[#7d0c14] uppercase sm:right-6 xl:right-12"
+                    >
+                        <AppLogoIcon className="h-8 w-[26px] fill-current" />
+                        Foodit
+                    </a>
                     <Tique
                         dias={tique}
                         demo={demo}

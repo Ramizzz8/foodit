@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { formatoEuros } from '@/lib/formato';
 import { cn } from '@/lib/utils';
 
@@ -11,72 +11,20 @@ export type PlatoPortada = {
     coste: number;
 };
 
-/** Dónde flota cada ingrediente alrededor del plato: posición (%), tamaño, profundidad y giro. */
+/** Dónde va cada ingrediente alrededor del plato: posición (%), tamaño y giro. */
 const SITIOS = [
-    { x: 2, y: 6, w: 26, p: 1.6, r: -14 },
-    { x: 74, y: 2, w: 20, p: 0.8, r: 18 },
-    { x: 82, y: 58, w: 24, p: 1.3, r: -8 },
-    { x: -4, y: 66, w: 22, p: 0.6, r: 12 },
-    { x: 58, y: 84, w: 18, p: 1.9, r: -22 },
-    { x: 24, y: 88, w: 16, p: 1.1, r: 30 },
-    { x: 44, y: -6, w: 15, p: 2.2, r: -30 },
+    { x: 2, y: 6, w: 26, r: -14 },
+    { x: 74, y: 2, w: 20, r: 18 },
+    { x: 82, y: 58, w: 24, r: -8 },
+    { x: -4, y: 66, w: 22, r: 12 },
+    { x: 58, y: 84, w: 18, r: -22 },
+    { x: 24, y: 88, w: 16, r: 30 },
+    { x: 44, y: -6, w: 15, r: -30 },
 ];
-
-/** Mueve los ingredientes con el scroll y, con ratón, un poco hacia el puntero. Nada si se pide menos movimiento. */
-function useParallax() {
-    const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const el = ref.current;
-        if (
-            !el ||
-            window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        ) {
-            return;
-        }
-        let pendiente = 0;
-        let mx = 0;
-        let my = 0;
-        const pintar = () => {
-            pendiente = 0;
-            // Distancia del centro de la escena al centro de la pantalla: 0 cuando el plato está centrado.
-            const caja = el.getBoundingClientRect();
-            const centro = caja.top + caja.height / 2 - window.innerHeight / 2;
-            el.style.setProperty(
-                '--sy',
-                Math.max(-500, Math.min(500, centro)).toFixed(0),
-            );
-            el.style.setProperty('--mx', mx.toFixed(3));
-            el.style.setProperty('--my', my.toFixed(3));
-        };
-        const pedir = () => {
-            pendiente ||= requestAnimationFrame(pintar);
-        };
-        const raton = (e: PointerEvent) => {
-            if (e.pointerType !== 'mouse') {
-                return;
-            }
-            mx = (e.clientX / window.innerWidth) * 2 - 1;
-            my = (e.clientY / window.innerHeight) * 2 - 1;
-            pedir();
-        };
-        pintar();
-        window.addEventListener('scroll', pedir, { passive: true });
-        window.addEventListener('pointermove', raton, { passive: true });
-
-        return () => {
-            window.removeEventListener('scroll', pedir);
-            window.removeEventListener('pointermove', raton);
-            cancelAnimationFrame(pendiente);
-        };
-    }, []);
-
-    return ref;
-}
 
 /**
  * La cena elegida en el tique, vista desde arriba. Al cambiarla, el plato que había sale girando
- * y entra el nuevo; alrededor flotan ingredientes reales a varias profundidades.
+ * y entra el nuevo; alrededor, ingredientes reales quietos.
  */
 export function Plato({
     actual,
@@ -85,7 +33,6 @@ export function Plato({
     actual: PlatoPortada;
     ingredientes: IngredientePortada[];
 }) {
-    const escena = useParallax();
     const [capas, setCapas] = useState<
         { clave: number; plato: PlatoPortada; sale: boolean }[]
     >([{ clave: 0, plato: actual, sale: false }]);
@@ -112,7 +59,7 @@ export function Plato({
 
     return (
         <figure className="relative mx-auto w-full max-w-[34rem] lg:mr-0">
-            <div ref={escena} className="relative aspect-square">
+            <div className="relative aspect-square">
                 {ingredientes.map((ing, i) => {
                     const s = SITIOS[i % SITIOS.length];
 
@@ -120,12 +67,11 @@ export function Plato({
                         <div
                             key={ing.url}
                             aria-hidden="true"
-                            className="parallax absolute z-10 mix-blend-multiply"
+                            className="absolute z-10 mix-blend-multiply"
                             style={{
                                 left: `${s.x}%`,
                                 top: `${s.y}%`,
                                 width: `${s.w}%`,
-                                ['--p' as string]: s.p,
                             }}
                         >
                             <img
@@ -133,12 +79,8 @@ export function Plato({
                                 alt=""
                                 width={300}
                                 height={200}
-                                className="flota w-full"
-                                style={{
-                                    rotate: `${s.r}deg`,
-                                    ['--duracion' as string]: `${5 + i}s`,
-                                    ['--retraso' as string]: `${-i * 700}ms`,
-                                }}
+                                className="w-full"
+                                style={{ rotate: `${s.r}deg` }}
                             />
                         </div>
                     );

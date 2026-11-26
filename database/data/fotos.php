@@ -8,7 +8,7 @@
 
 return [
     'platos' => [
-        'crema-de-calabacin' => ['alt' => 'Crema de calabacín', 'titulo' => 'cream of zucchini soup', 'autor' => 'seelensturm', 'licencia' => 'CC BY 2.0', 'enlace' => 'https://www.flickr.com/photos/61404197@N00/3920496262'],
+        'crema-de-calabacin' => ['alt' => 'Crema de calabacín', 'titulo' => 'Crema de Calabacín y Calabaza', 'autor' => 'jlastras', 'licencia' => 'CC BY 2.0', 'enlace' => 'https://www.flickr.com/photos/22662305@N04/3135781919'],
         'ensalada-mixta' => ['alt' => 'Ensalada de tomate y hojas verdes', 'titulo' => 'A stainless steel bowl sits on a dark, textured countertop, filled with a mix of fresh ingredients.', 'autor' => 'Dilip Modhavadiya', 'licencia' => 'CC0', 'enlace' => 'https://wordpress.org/photos/photo/1206ab674a/'],
         'espaguetis-carbonara' => ['alt' => 'Espaguetis a la carbonara', 'titulo' => 'Spaghetti alla carbonara (32998643591)', 'autor' => 'Luca Nebuloni', 'licencia' => 'CC BY 2.0', 'enlace' => 'https://commons.wikimedia.org/w/index.php?curid=57441021'],
         'garbanzos-con-espinacas' => ['alt' => 'Garbanzos con espinacas en un plato', 'titulo' => 'Nohutlu Ispanak', 'autor' => 'Miansari66', 'licencia' => 'CC0', 'enlace' => 'https://commons.wikimedia.org/wiki/File:Nohutlu_Ispanak.JPG'],
