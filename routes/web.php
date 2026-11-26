@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\AlimentoController;
+use App\Http\Controllers\BienvenidaController;
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\ObjetivosController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\PortadaController;
 use App\Http\Controllers\RecetaController;
+use App\Http\Middleware\PerfilCompleto;
 use App\Models\Receta;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +21,15 @@ Route::inertia('privacidad', 'privacidad')->name('privacidad');
 // Una receta solo existe para quien puede verla: las de Foodit y las propias. Las de otros dan 404.
 Route::bind('receta', fn (string $id) => Receta::visiblesPara(auth()->user())->findOrFail($id));
 
+// El alta guiada (y el buscador de alimentos que usa) va antes de exigir el perfil completo.
 Route::middleware(['auth'])->group(function () {
+    Route::redirect('bienvenida', '/bienvenida/1');
+    Route::get('bienvenida/{paso}', [BienvenidaController::class, 'mostrar'])->whereIn('paso', ['1', '2', '3', '4'])->name('bienvenida');
+    Route::put('bienvenida/{paso}', [BienvenidaController::class, 'guardar'])->whereIn('paso', ['1', '2', '3', '4'])->name('bienvenida.guardar');
+    Route::get('alimentos/buscar', [AlimentoController::class, 'buscar'])->name('alimentos.buscar');
+});
+
+Route::middleware(['auth', PerfilCompleto::class])->group(function () {
     Route::redirect('dashboard', '/plan')->name('dashboard');
 
     Route::get('plan/{fecha?}', [PlanController::class, 'semana'])->name('plan');
@@ -37,7 +47,6 @@ Route::middleware(['auth'])->group(function () {
     Route::put('lista/{fecha}/extras/{extra}', [ListaController::class, 'cambiarExtra'])->whereNumber('extra')->name('lista.extras.cambiar');
     Route::delete('lista/{fecha}/extras/{extra}', [ListaController::class, 'quitarExtra'])->whereNumber('extra')->name('lista.extras.quitar');
 
-    Route::get('alimentos/buscar', [AlimentoController::class, 'buscar'])->name('alimentos.buscar');
     Route::get('alimentos/{alimento}/productos', [AlimentoController::class, 'productos'])->name('alimentos.productos');
     Route::put('alimentos/{alimento}/producto', [AlimentoController::class, 'elegirProducto'])->name('alimentos.producto');
 

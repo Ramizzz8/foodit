@@ -33,7 +33,14 @@ class UserFactory extends Factory
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'two_factor_confirmed_at' => null,
+            'perfil_completo_en' => now(),
         ];
+    }
+
+    /** Recién registrada: aún no ha pasado por la bienvenida. */
+    public function sinPerfil(): static
+    {
+        return $this->state(fn () => ['perfil_completo_en' => null]);
     }
 
     /**

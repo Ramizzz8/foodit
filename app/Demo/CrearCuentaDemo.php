@@ -25,7 +25,7 @@ class CrearCuentaDemo
                 'planifica_desayuno' => true,
                 'presupuesto_semanal' => 60,
             ]);
-            $u->forceFill(['es_demo' => true, 'caduca_en' => now()->addHours(self::HORAS), 'email_verified_at' => now()])->save();
+            $u->forceFill(['es_demo' => true, 'caduca_en' => now()->addHours(self::HORAS), 'email_verified_at' => now(), 'perfil_completo_en' => now()])->save();
 
             $this->plantilla->aplicar($u, CarbonImmutable::today()->startOfWeek());
 
