@@ -15,7 +15,7 @@ it('presenta Foodit con un tique de ejemplo hecho con recetas reales', function 
         ->has('tique', 7)
         ->has('tique.0.opciones', 3)
         ->has('tique.0.opciones.0', fn ($o) => $o->hasAll(['id', 'titulo', 'coste', 'kcal', 'foto', 'plato'])->etc())
-        ->where('tique.0.opciones.0.plato', '/images/platos/crema-de-calabacin.webp')
+        ->where('tique.0.opciones.0.plato', '/images/platos/hamburguesas-caseras.webp')
         ->has('ingredientes', 7)
         ->has('productos'));
 });

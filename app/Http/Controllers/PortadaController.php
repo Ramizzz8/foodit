@@ -16,11 +16,11 @@ class PortadaController extends Controller
 {
     /** Cada día, tres cenas para elegir (slugs de recetas de Foodit); la primera de cada día tiene foto del plato. */
     private const SEMANA = [
-        'Lunes' => ['crema-de-calabacin', 'lentejas-estofadas', 'tortilla-de-patatas'],
+        'Lunes' => ['hamburguesas-caseras', 'lentejas-estofadas', 'tortilla-de-patatas'],
         'Martes' => ['ensalada-mixta', 'pollo-al-ajillo', 'revuelto-de-champinones'],
         'Miércoles' => ['garbanzos-con-espinacas', 'merluza-en-salsa-verde', 'atun-con-tomate'],
         'Jueves' => ['espaguetis-carbonara', 'fajitas-de-pollo', 'crema-de-calabaza-y-zanahoria'],
-        'Viernes' => ['gazpacho-andaluz', 'hamburguesas-caseras', 'ensalada-de-pasta'],
+        'Viernes' => ['gazpacho-andaluz', 'crema-de-calabacin', 'ensalada-de-pasta'],
         'Sábado' => ['salmorejo-cordobes', 'paella-de-pollo-y-verduras', 'arroz-con-verduras'],
         'Domingo' => ['salmon-al-horno-con-patatas', 'sopa-de-fideos', 'fideua-de-sepia-y-gambas'],
     ];
