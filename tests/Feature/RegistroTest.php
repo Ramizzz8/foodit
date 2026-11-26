@@ -43,3 +43,23 @@ it('tiene una página de privacidad', function () {
 it('la portada invita a crear una cuenta', function () {
     $this->get('/')->assertInertia(fn ($p) => $p->where('registro', true));
 });
+
+it('limita las altas desde una misma IP para frenar el spam', function () {
+    Notification::fake();
+
+    foreach (range(1, 5) as $n) {
+        auth()->logout();
+        $this->post('/register', ['name' => "Ana {$n}", 'email' => "ana{$n}@ejemplo.es", 'password' => 'una-clave-larga', 'password_confirmation' => 'una-clave-larga'])
+            ->assertRedirect('/bienvenida');
+    }
+    auth()->logout();
+
+    $this->post('/register', ['name' => 'Ana 6', 'email' => 'ana6@ejemplo.es', 'password' => 'una-clave-larga', 'password_confirmation' => 'una-clave-larga'])
+        ->assertTooManyRequests();
+    expect(User::count())->toBe(5);
+
+    // Otra IP sí puede.
+    $this->withServerVariables(['REMOTE_ADDR' => '10.9.9.9'])
+        ->post('/register', ['name' => 'Bea', 'email' => 'bea@ejemplo.es', 'password' => 'una-clave-larga', 'password_confirmation' => 'una-clave-larga'])
+        ->assertRedirect('/bienvenida');
+});
