@@ -33,6 +33,24 @@ it('las recetas con foto la enseñan con su crédito', function () {
 });
 
 it('la portada da los créditos de todas las fotos', function () {
-    $this->get('/')->assertInertia(fn ($p) => $p->has('creditos', 17)
+    $fotos = require database_path('data/fotos.php');
+
+    $this->get('/')->assertInertia(fn ($p) => $p->has('creditos', count($fotos['platos']) + count($fotos['ingredientes']))
         ->has('creditos.0', fn ($c) => $c->hasAll(['titulo', 'autor', 'licencia', 'enlace'])->etc()));
+});
+
+it('todas las cenas del tique de la portada tienen foto real del plato', function () {
+    $this->seed(AlimentosSeeder::class);
+    $this->seed(RecetasSeeder::class);
+
+    $this->get('/')->assertInertia(function ($p) {
+        $tique = $p->toArray()['props']['tique'];
+        expect($tique)->toHaveCount(7);
+        foreach ($tique as $dia) {
+            expect($dia['opciones'])->toHaveCount(3);
+            foreach ($dia['opciones'] as $o) {
+                expect($o['plato'])->not->toBeNull($o['titulo'])->and(file_exists(public_path(ltrim($o['plato'], '/'))))->toBeTrue($o['titulo']);
+            }
+        }
+    });
 });
