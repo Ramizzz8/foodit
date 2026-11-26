@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 type PlatoMesa = { titulo: string; plato: string };
 
-/** Una fila de platos reales vistos desde arriba que se desliza despacio con el scroll. */
+/** Una fila de fotos de platos reales, como fotos sueltas, que se desliza despacio con el scroll. */
 export function Mesa({ platos }: { platos: PlatoMesa[] }) {
     const fila = useRef<HTMLUListElement>(null);
 
@@ -42,19 +42,20 @@ export function Mesa({ platos }: { platos: PlatoMesa[] }) {
         >
             <ul
                 ref={fila}
-                className="flex w-max gap-6 px-6 will-change-transform"
+                className="flex w-max items-start gap-6 px-6 py-2 will-change-transform"
             >
-                {platos.map((p) => (
+                {platos.map((p, i) => (
                     <li
                         key={p.plato}
-                        className="w-[clamp(9rem,18vw,15rem)] shrink-0"
+                        className="w-[clamp(9rem,16vw,13rem)] shrink-0 bg-white p-2"
+                        style={{ rotate: `${i % 2 ? 2 : -2}deg` }}
                     >
                         <img
                             src={p.plato}
                             alt={p.titulo}
                             width={800}
                             height={800}
-                            className="aspect-square w-full rounded-full border-[6px] border-[#f3f3f1] object-cover"
+                            className="aspect-[4/5] w-full object-cover"
                         />
                     </li>
                 ))}

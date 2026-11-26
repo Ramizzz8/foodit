@@ -13,18 +13,18 @@ export type PlatoPortada = {
 
 /** Dónde va cada ingrediente alrededor del plato: posición (%), tamaño y giro. */
 const SITIOS = [
-    { x: 2, y: 6, w: 26, r: -14 },
-    { x: 74, y: 2, w: 20, r: 18 },
-    { x: 82, y: 58, w: 24, r: -8 },
-    { x: -4, y: 66, w: 22, r: 12 },
-    { x: 58, y: 84, w: 18, r: -22 },
-    { x: 24, y: 88, w: 16, r: 30 },
-    { x: 44, y: -6, w: 15, r: -30 },
+    { x: -2, y: 3, w: 22, r: -14 },
+    { x: 79, y: 1, w: 21, r: 18 },
+    { x: 80, y: 50, w: 24, r: -8 },
+    { x: -5, y: 56, w: 23, r: 12 },
+    { x: 63, y: 83, w: 18, r: -22 },
+    { x: 20, y: 85, w: 16, r: 30 },
+    { x: 3, y: 31, w: 14, r: -30 },
 ];
 
 /**
- * La cena elegida en el tique, vista desde arriba. Al cambiarla, el plato que había sale girando
- * y entra el nuevo; alrededor, ingredientes reales quietos.
+ * La cena elegida en el tique, como una foto grapada a su lado. Al cambiarla, la foto nueva sale
+ * desde abajo, como si se imprimiera, y la anterior se desvanece; alrededor, ingredientes reales quietos.
  */
 export function Plato({
     actual,
@@ -67,7 +67,7 @@ export function Plato({
                         <div
                             key={ing.url}
                             aria-hidden="true"
-                            className="absolute z-10 mix-blend-multiply"
+                            className="absolute mix-blend-multiply"
                             style={{
                                 left: `${s.x}%`,
                                 top: `${s.y}%`,
@@ -86,15 +86,19 @@ export function Plato({
                     );
                 })}
 
-                {/* El plato: aro de loza y la foto recortada en círculo. */}
-                <div className="absolute inset-[14%] rounded-full bg-[#f3f3f1] p-[4%]">
-                    <div className="plato-gira relative h-full w-full">
+                {/* La foto: papel blanco, un trozo de cinta arriba y la imagen en vertical (4:5), sin recortes en círculo. */}
+                <div className="absolute top-[7%] left-[21%] z-10 w-[58%] -rotate-2 bg-white p-[3.5%]">
+                    <span
+                        aria-hidden="true"
+                        className="absolute -top-[4%] left-1/2 h-[7%] w-[34%] -translate-x-1/2 rotate-3 bg-[#e9d6d7]/85"
+                    />
+                    <div className="relative aspect-[4/5] overflow-hidden bg-[#e9d6d7]">
                         {capas.map((c) => (
                             <div
                                 key={c.clave}
                                 className={cn(
-                                    'absolute inset-0 overflow-hidden rounded-full',
-                                    c.sale ? 'plato-sale' : 'plato-entra',
+                                    'absolute inset-0',
+                                    c.sale ? 'foto-sale' : 'foto-entra',
                                 )}
                             >
                                 {c.plato.plato ? (
@@ -106,7 +110,7 @@ export function Plato({
                                         className="h-full w-full object-cover"
                                     />
                                 ) : (
-                                    <div className="flex h-full w-full items-center justify-center bg-[#e9d6d7] p-[12%] text-center font-[family-name:var(--font-display)] text-[clamp(1.5rem,3vw,2.5rem)] leading-none font-bold text-[#7d0c14] uppercase">
+                                    <div className="flex h-full w-full items-center justify-center p-[12%] text-center font-[family-name:var(--font-display)] text-[clamp(1.5rem,3vw,2.5rem)] leading-none font-bold text-[#7d0c14] uppercase">
                                         {c.plato.titulo}
                                     </div>
                                 )}
