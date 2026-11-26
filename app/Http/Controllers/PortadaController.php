@@ -48,6 +48,8 @@ class PortadaController extends Controller
             'registro' => Features::enabled(Features::registration()),
             'tique' => $tique,
             'preciosDe' => ProductoMercadona::max('visto_en'),
+            'creditos' => collect(require database_path('data/fotos.php'))->flatMap(fn ($g) => array_values($g))
+                ->map(fn ($f) => collect($f)->only('titulo', 'autor', 'licencia', 'enlace'))->values(),
             'productos' => Alimento::whereIn('nombre', ['lenteja pardina', 'huevo', 'calabacín', 'tomate triturado', 'aceite de oliva virgen extra'])
                 ->with('producto')->get()
                 ->filter(fn (Alimento $a) => $a->producto?->foto_url)

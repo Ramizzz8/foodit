@@ -9,7 +9,7 @@ import {
 } from '@/components/landing/secciones';
 import { Tique } from '@/components/landing/tique';
 import type { DiaTique } from '@/components/landing/tique';
-import type { ProductoPortada } from '@/components/landing/secciones';
+import type { Credito, ProductoPortada } from '@/components/landing/secciones';
 import { useRevelar } from '@/hooks/use-revelar';
 
 export default function Portada({
@@ -18,12 +18,14 @@ export default function Portada({
     tique,
     preciosDe,
     productos,
+    creditos,
 }: {
     demo: boolean;
     registro: boolean;
     tique: DiaTique[];
     preciosDe: string | null;
     productos: ProductoPortada[];
+    creditos: Credito[];
 }) {
     useRevelar();
     const { auth } = usePage().props as { auth: { user: unknown } };
@@ -55,7 +57,7 @@ export default function Portada({
                     registro={registro}
                     conSesion={Boolean(auth.user)}
                 />
-                <Pie />
+                <Pie creditos={creditos} />
             </main>
         </>
     );

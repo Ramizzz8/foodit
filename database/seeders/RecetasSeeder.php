@@ -15,11 +15,13 @@ class RecetasSeeder extends Seeder
     public function run(): void
     {
         $alimentos = Alimento::pluck('id', 'nombre');
+        $fotos = (require database_path('data/fotos.php'))['platos'];
 
-        DB::transaction(function () use ($alimentos) {
+        DB::transaction(function () use ($alimentos, $fotos) {
             foreach (require database_path('data/recetas.php') as $datos) {
+                $slug = Str::slug($datos['titulo']);
                 $receta = Receta::updateOrCreate(
-                    ['user_id' => null, 'slug' => Str::slug($datos['titulo'])],
+                    ['user_id' => null, 'slug' => $slug],
                     [
                         'titulo' => $datos['titulo'],
                         'descripcion' => $datos['descripcion'] ?? null,
@@ -28,8 +30,8 @@ class RecetasSeeder extends Seeder
                         'dificultad' => $datos['dificultad'],
                         'etiquetas' => $datos['etiquetas'],
                         'pasos' => $datos['pasos'],
-                        'foto_url' => $datos['foto_url'] ?? null,
-                        'foto_credito' => $datos['foto_credito'] ?? null,
+                        'foto_url' => isset($fotos[$slug]) ? "/images/platos/{$slug}.webp" : null,
+                        'foto_credito' => isset($fotos[$slug]) ? "{$fotos[$slug]['autor']} · {$fotos[$slug]['licencia']}" : null,
                     ],
                 );
 

@@ -443,7 +443,14 @@ export function Banda({
     );
 }
 
-export function Pie() {
+export type Credito = {
+    titulo: string;
+    autor: string;
+    licencia: string;
+    enlace: string;
+};
+
+export function Pie({ creditos = [] }: { creditos?: Credito[] }) {
     const baldosa = 'p-5 sm:p-6';
 
     return (
@@ -529,6 +536,33 @@ export function Pie() {
                     Foodit
                 </span>
             </div>
+            {creditos.length > 0 && (
+                <details
+                    className={cn(
+                        baldosa,
+                        PAPEL,
+                        'text-[14px] text-[#7a4a4e] md:col-span-12',
+                    )}
+                >
+                    <summary className="cursor-pointer font-medium text-[#3b0a0e]">
+                        Créditos de las fotos
+                    </summary>
+                    <ul className="mt-3 grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
+                        {creditos.map((c) => (
+                            <li key={c.enlace}>
+                                <a
+                                    href={c.enlace}
+                                    className="underline-offset-4 hover:underline"
+                                    rel="noopener"
+                                >
+                                    «{c.titulo}»
+                                </a>{' '}
+                                de {c.autor}, {c.licencia}
+                            </li>
+                        ))}
+                    </ul>
+                </details>
+            )}
         </footer>
     );
 }

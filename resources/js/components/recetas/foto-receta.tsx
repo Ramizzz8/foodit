@@ -5,7 +5,7 @@ const FONDOS = ['bg-amber-100 text-amber-900', 'bg-lime-100 text-lime-900', 'bg-
 /** La foto de la receta o, si no hay, un fondo de color con la inicial del título. */
 export function FotoReceta({ titulo, foto, id, className }: { titulo: string; foto: string | null; id: number; className?: string }) {
     if (foto) {
-        return <img src={foto} alt="" className={cn('h-full w-full object-cover', className)} loading="lazy" />;
+        return <img src={foto} alt={titulo} className={cn('h-full w-full object-cover', className)} loading="lazy" />;
     }
 
     return (
