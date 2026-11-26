@@ -200,11 +200,11 @@ export function Hojas({ productos }: { productos: ProductoPortada[] }) {
                     <article
                         key={h.titulo}
                         className={cn(
-                            'revelar grid min-h-[70svh] gap-8 rounded-t-[6px] p-6 sm:p-10 md:grid-cols-2',
+                            'revelar grid items-center gap-8 rounded-t-[6px] p-6 sm:p-10 md:grid-cols-2 md:gap-12 md:py-16',
                             h.clase,
                         )}
                     >
-                        <div className="flex min-w-0 flex-col justify-between gap-8">
+                        <div className="flex min-w-0 flex-col gap-5">
                             <h3 className="font-[family-name:var(--font-display)] text-[2.75rem] leading-none font-bold uppercase">
                                 {h.titulo}
                             </h3>
