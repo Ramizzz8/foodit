@@ -34,6 +34,6 @@ class RegistrationTest extends TestCase
         ]);
 
         $this->assertAuthenticated();
-        $response->assertRedirect(route('plan', absolute: false));
+        $response->assertRedirect('/bienvenida');
     }
 }

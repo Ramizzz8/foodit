@@ -3,15 +3,9 @@
 use App\Models\Receta;
 use App\Models\User;
 
-it('no deja registrarse si el registro está desactivado', function () {
-    expect(config('foodit.registro'))->toBeFalse();
-
-    $this->get('/register')->assertNotFound();
-    $this->post('/register', [
-        'name' => 'Ana', 'email' => 'ana@example.com', 'password' => 'password', 'password_confirmation' => 'password',
-    ])->assertNotFound();
-
-    expect(User::count())->toBe(0);
+it('el registro de cuentas está abierto', function () {
+    expect(config('foodit.registro'))->toBeTrue();
+    $this->get('/register')->assertOk();
 });
 
 it('usa español y la hora de Madrid', function () {

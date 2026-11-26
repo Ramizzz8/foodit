@@ -40,6 +40,7 @@ class HandleInertiaRequests extends Middleware
             'name' => config('app.name'),
             'auth' => [
                 'user' => $request->user(),
+                'verificado' => $request->user()?->hasVerifiedEmail(),
             ],
             'flash' => fn () => ['exito' => $request->session()->get('exito')],
             'demo' => fn () => $request->user()?->es_demo ? ['caduca_en' => $request->user()->caduca_en?->toIso8601String()] : null,

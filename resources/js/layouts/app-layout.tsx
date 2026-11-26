@@ -1,3 +1,4 @@
+import { AvisoVerificar } from '@/components/aviso-verificar';
 import { AvisosFlash } from '@/components/avisos-flash';
 import { GuiaDemo } from '@/components/guia-demo';
 import AppLayoutTemplate from '@/layouts/app/app-sidebar-layout';
@@ -12,6 +13,7 @@ export default function AppLayout({
 }) {
     return (
         <AppLayoutTemplate breadcrumbs={breadcrumbs}>
+            <AvisoVerificar />
             <GuiaDemo />
             {children}
             <AvisosFlash />

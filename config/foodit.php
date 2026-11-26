@@ -1,8 +1,8 @@
 <?php
 
 return [
-    // Registro público de cuentas (en producción solo existe la demo).
-    'registro' => (bool) env('FOODIT_REGISTRO', false),
+    // Registro público de cuentas (FOODIT_REGISTRO=false lo cierra y deja solo el ejemplo).
+    'registro' => (bool) env('FOODIT_REGISTRO', true),
 
     // Modo demo: «Probar la demo» crea una copia temporal para cada visitante.
     'demo' => (bool) env('FOODIT_DEMO', false),

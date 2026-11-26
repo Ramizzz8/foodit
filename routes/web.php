@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', PortadaController::class)->name('home');
 
 Route::post('demo/entrar', [DemoController::class, 'entrar'])->name('demo.entrar');
+Route::inertia('privacidad', 'privacidad')->name('privacidad');
 
+// Verificar el email no bloquea: se usa la app desde el primer momento, con un aviso hasta verificarlo.
 // Una receta solo existe para quien puede verla: las de Foodit y las propias. Las de otros dan 404.
 Route::bind('receta', fn (string $id) => Receta::visiblesPara(auth()->user())->findOrFail($id));
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::redirect('dashboard', '/plan')->name('dashboard');
 
     Route::get('plan/{fecha?}', [PlanController::class, 'semana'])->name('plan');

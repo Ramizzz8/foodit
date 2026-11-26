@@ -1,15 +1,15 @@
-import { Form, Head, router } from '@inertiajs/react';
-import InputError from '@/components/input-error';
-import PasswordInput from '@/components/password-input';
-import TextLink from '@/components/text-link';
-import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
-import { store } from '@/routes/login';
-import { request } from '@/routes/password';
-import PasskeyVerify from '@/components/passkey-verify';
+import { Form, Head, router } from "@inertiajs/react";
+import InputError from "@/components/input-error";
+import PasswordInput from "@/components/password-input";
+import TextLink from "@/components/text-link";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Spinner } from "@/components/ui/spinner";
+import { store } from "@/routes/login";
+import { request } from "@/routes/password";
+import PasskeyVerify from "@/components/passkey-verify";
 
 type Props = {
     status?: string;
@@ -18,7 +18,12 @@ type Props = {
     demo: boolean;
 };
 
-export default function Login({ status, canResetPassword, canRegister, demo }: Props) {
+export default function Login({
+    status,
+    canResetPassword,
+    canRegister,
+    demo,
+}: Props) {
     return (
         <>
             <Head title="Entrar" />
@@ -27,17 +32,26 @@ export default function Login({ status, canResetPassword, canRegister, demo }: P
 
             {demo && (
                 <div className="mb-6 rounded-xl border bg-muted/40 p-4 text-center">
-                    <p className="font-medium">¿Solo quieres probarlo?</p>
-                    <p className="mt-1 text-sm text-muted-foreground">Entra en una demo con una semana ya planificada. Es solo para ti y se borra en 24 horas.</p>
-                    <Button type="button" className="mt-3 w-full" onClick={() => router.post('/demo/entrar')}>
-                        Probar la demo
+                    <p className="font-medium">
+                        ¿Solo quieres echar un vistazo?
+                    </p>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                        Abre una cuenta de ejemplo con una semana ya
+                        planificada. Es solo para ti y se borra en 24 horas.
+                    </p>
+                    <Button
+                        type="button"
+                        className="mt-3 w-full"
+                        onClick={() => router.post("/demo/entrar")}
+                    >
+                        Ver un ejemplo
                     </Button>
                 </div>
             )}
 
             <Form
                 {...store.form()}
-                resetOnSuccess={['password']}
+                resetOnSuccess={["password"]}
                 className="flex flex-col gap-6"
             >
                 {({ processing, errors }) => (
@@ -53,7 +67,7 @@ export default function Login({ status, canResetPassword, canRegister, demo }: P
                                     autoFocus
                                     tabIndex={1}
                                     autoComplete="email"
-                                    placeholder="email@example.com"
+                                    placeholder="tu@email.com"
                                 />
                                 <InputError message={errors.email} />
                             </div>
@@ -105,7 +119,7 @@ export default function Login({ status, canResetPassword, canRegister, demo }: P
 
                         {canRegister && (
                             <div className="text-center text-sm text-muted-foreground">
-                                ¿No tienes cuenta?{' '}
+                                ¿No tienes cuenta?{" "}
                                 <TextLink href="/register" tabIndex={5}>
                                     Regístrate
                                 </TextLink>
@@ -125,6 +139,6 @@ export default function Login({ status, canResetPassword, canRegister, demo }: P
 }
 
 Login.layout = {
-    title: 'Entra en Foodit',
-    description: 'Introduce tu email y contraseña para entrar',
+    title: "Entra en Foodit",
+    description: "Introduce tu email y contraseña para entrar",
 };

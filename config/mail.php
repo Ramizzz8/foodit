@@ -14,7 +14,8 @@ return [
     |
     */
 
-    'default' => env('MAIL_MAILER', 'log'),
+    // Resend cuando hay clave; si no, el correo se escribe en el log.
+    'default' => env('MAIL_MAILER', env('RESEND_API_KEY') ? 'resend' : 'log'),
 
     /*
     |--------------------------------------------------------------------------
@@ -111,8 +112,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
+        'address' => env('MAIL_FROM_ADDRESS', 'hola@andresrami.com'),
+        'name' => env('MAIL_FROM_NAME', 'Foodit'),
     ],
 
 ];

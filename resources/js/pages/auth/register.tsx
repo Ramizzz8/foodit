@@ -1,12 +1,12 @@
-import { Form, Head } from '@inertiajs/react';
-import InputError from '@/components/input-error';
-import PasswordInput from '@/components/password-input';
-import TextLink from '@/components/text-link';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Spinner } from '@/components/ui/spinner';
-import { login } from '@/routes';
+import { Form, Head } from "@inertiajs/react";
+import InputError from "@/components/input-error";
+import PasswordInput from "@/components/password-input";
+import TextLink from "@/components/text-link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Spinner } from "@/components/ui/spinner";
+import { login } from "@/routes";
 
 type Props = {
     passwordRules: string;
@@ -15,11 +15,11 @@ type Props = {
 export default function Register({ passwordRules }: Props) {
     return (
         <>
-            <Head title="Register" />
+            <Head title="Crear cuenta" />
             <Form
                 action="/register"
                 method="post"
-                resetOnSuccess={['password', 'password_confirmation']}
+                resetOnSuccess={["password", "password_confirmation"]}
                 disableWhileProcessing
                 className="flex flex-col gap-6"
             >
@@ -36,7 +36,7 @@ export default function Register({ passwordRules }: Props) {
                                     tabIndex={1}
                                     autoComplete="name"
                                     name="name"
-                                    placeholder="Nombre completo"
+                                    placeholder="Cómo quieres que te llamemos"
                                 />
                                 <InputError
                                     message={errors.name}
@@ -53,7 +53,7 @@ export default function Register({ passwordRules }: Props) {
                                     tabIndex={2}
                                     autoComplete="email"
                                     name="email"
-                                    placeholder="email@example.com"
+                                    placeholder="tu@email.com"
                                 />
                                 <InputError message={errors.email} />
                             </div>
@@ -97,12 +97,21 @@ export default function Register({ passwordRules }: Props) {
                                 data-test="register-user-button"
                             >
                                 {processing && <Spinner />}
-                                Create account
+                                Crear mi cuenta
                             </Button>
+
+                            <p className="text-center text-sm text-muted-foreground">
+                                Al crear la cuenta aceptas cómo tratamos tus
+                                datos, explicado en la{" "}
+                                <TextLink href="/privacidad">
+                                    página de privacidad
+                                </TextLink>
+                                .
+                            </p>
                         </div>
 
                         <div className="text-center text-sm text-muted-foreground">
-                            Already have an account?{' '}
+                            ¿Ya tienes cuenta?{" "}
                             <TextLink href={login()} tabIndex={6}>
                                 Entrar
                             </TextLink>
@@ -115,6 +124,7 @@ export default function Register({ passwordRules }: Props) {
 }
 
 Register.layout = {
-    title: 'Create an account',
-    description: 'Enter your details below to create your account',
+    title: "Crea tu cuenta",
+    description:
+        "Después te haremos cuatro preguntas para proponerte tu primera semana.",
 };

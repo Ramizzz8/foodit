@@ -9,6 +9,7 @@ use App\Models\ProductoMercadona;
 use App\Models\Receta;
 use Inertia\Inertia;
 use Inertia\Response;
+use Laravel\Fortify\Features;
 
 /** La landing: un tique de la semana hecho con recetas y precios reales, que el visitante puede cambiar. */
 class PortadaController extends Controller
@@ -44,6 +45,7 @@ class PortadaController extends Controller
 
         return Inertia::render('welcome', [
             'demo' => (bool) config('foodit.demo'),
+            'registro' => Features::enabled(Features::registration()),
             'tique' => $tique,
             'preciosDe' => ProductoMercadona::max('visto_en'),
             'productos' => Alimento::whereIn('nombre', ['lenteja pardina', 'huevo', 'calabacín', 'tomate triturado', 'aceite de oliva virgen extra'])
