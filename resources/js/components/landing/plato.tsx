@@ -39,7 +39,13 @@ function useParallax() {
         let my = 0;
         const pintar = () => {
             pendiente = 0;
-            el.style.setProperty('--sy', String(window.scrollY));
+            // Distancia del centro de la escena al centro de la pantalla: 0 cuando el plato está centrado.
+            const caja = el.getBoundingClientRect();
+            const centro = caja.top + caja.height / 2 - window.innerHeight / 2;
+            el.style.setProperty(
+                '--sy',
+                Math.max(-500, Math.min(500, centro)).toFixed(0),
+            );
             el.style.setProperty('--mx', mx.toFixed(3));
             el.style.setProperty('--my', my.toFixed(3));
         };
@@ -54,6 +60,7 @@ function useParallax() {
             my = (e.clientY / window.innerHeight) * 2 - 1;
             pedir();
         };
+        pintar();
         window.addEventListener('scroll', pedir, { passive: true });
         window.addEventListener('pointermove', raton, { passive: true });
 

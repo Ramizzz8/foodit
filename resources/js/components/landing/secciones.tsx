@@ -204,7 +204,7 @@ export function Hojas({ productos }: { productos: ProductoPortada[] }) {
                             h.clase,
                         )}
                     >
-                        <div className="flex flex-col justify-between gap-8">
+                        <div className="flex min-w-0 flex-col justify-between gap-8">
                             <h3 className="font-[family-name:var(--font-display)] text-[2.75rem] leading-none font-bold uppercase">
                                 {h.titulo}
                             </h3>
@@ -212,7 +212,7 @@ export function Hojas({ productos }: { productos: ProductoPortada[] }) {
                                 {h.texto}
                             </p>
                         </div>
-                        <div className="flex items-center justify-center">
+                        <div className="flex min-w-0 items-center justify-center">
                             {h.fragmento}
                         </div>
                     </article>
@@ -279,12 +279,14 @@ export function Itinerario() {
                                     key={que}
                                     className="mt-1 flex items-baseline gap-2"
                                 >
-                                    <span>{que}</span>
+                                    <span className="min-w-0">{que}</span>
                                     <span
-                                        className="mb-1 flex-1 border-b-[3px] border-dotted border-[#7d0c14]/40"
+                                        className="mb-1 min-w-4 flex-1 border-b-[3px] border-dotted border-[#7d0c14]/40"
                                         aria-hidden="true"
                                     />
-                                    <span>{tiempo}</span>
+                                    <span className="shrink-0 whitespace-nowrap">
+                                        {tiempo}
+                                    </span>
                                 </p>
                             ))}
                         </div>
@@ -417,9 +419,9 @@ export function Banda({
         <button
             type="button"
             onClick={ir}
-            className="group relative block min-h-[52svh] w-full overflow-hidden bg-[#7d0c14] px-4 pt-6 text-left text-[#f3f3f1] transition-colors hover:bg-[#f3f3f1] hover:text-[#7d0c14] focus-visible:bg-[#f3f3f1] focus-visible:text-[#7d0c14] focus-visible:outline-none sm:px-6"
+            className="group relative flex min-h-[52svh] w-full flex-col justify-between gap-8 overflow-hidden bg-[#7d0c14] px-4 pt-6 pb-4 text-left text-[#f3f3f1] transition-colors hover:bg-[#f3f3f1] hover:text-[#7d0c14] focus-visible:bg-[#f3f3f1] focus-visible:text-[#7d0c14] focus-visible:outline-none sm:px-6"
         >
-            <span className="block max-w-[34ch] text-[17px] sm:text-[22px]">
+            <span className="block max-w-[34ch] pr-16 text-[17px] sm:text-[22px]">
                 {conSesion
                     ? 'Vuelve a tu plan de la semana.'
                     : registro
@@ -436,7 +438,7 @@ export function Banda({
             >
                 <path d="M12 36 36 12M16 12h20v20" />
             </svg>
-            <span className="absolute bottom-4 left-1/2 -translate-x-1/2 font-[family-name:var(--font-display)] text-[clamp(6rem,30vw,30rem)] leading-[0.78] font-bold tracking-[-0.03em] uppercase">
+            <span className="block self-center font-[family-name:var(--font-display)] text-[clamp(6rem,30vw,30rem)] leading-[0.78] font-bold tracking-[-0.03em] uppercase">
                 {conSesion ? 'Entra' : registro ? 'Empieza' : 'Prueba'}
             </span>
         </button>

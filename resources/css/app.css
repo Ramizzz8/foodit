@@ -256,7 +256,7 @@ h2 {
 .parallax {
     transform: translate3d(
         calc(var(--mx, 0) * var(--p, 1) * 18px),
-        calc(var(--my, 0) * var(--p, 1) * 18px + var(--sy, 0) * var(--p, 1) * -0.25px),
+        calc(var(--my, 0) * var(--p, 1) * 18px + var(--sy, 0) * var(--p, 1) * 0.08px),
         0
     );
     will-change: transform;

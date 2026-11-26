@@ -69,7 +69,7 @@ export function Tique({
     return (
         <article
             aria-label="Tique de ejemplo de una semana de cenas"
-            className="papel-termico relative mx-auto w-full max-w-xl px-6 pt-9 pb-12 text-[#3b0a0e] sm:px-9"
+            className="papel-termico relative z-20 mx-auto w-full max-w-xl px-6 pt-9 pb-12 text-[#3b0a0e] sm:px-9"
             style={{ clipPath: RASGADO }}
         >
             <span
